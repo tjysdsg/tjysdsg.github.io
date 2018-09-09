@@ -10,7 +10,7 @@
   <meta name="description" content="Basic Template">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://tjysdsg.github.io/2018/09/07/cmake-notes.html">
+  <link rel="canonical" href="http://localhost:4000/2018/09/07/cmake-notes.html">
 </head>
 
 
@@ -65,17 +65,26 @@
 <blockquote>
   <p>cmake_minimum_required (VERSION 3.0)</p>
 
-  <p>project (<your project="" name="" here="">)</your></p>
+  <p>project (&lt;your project name here&gt;)</p>
 
   <p>include_directories (“${PROJECT_SOURCE_DIR}/include”)</p>
 
   <p>aux_source_directory(${PROJECT_SOURCE_DIR}/src SRCS)</p>
 
-  <p>add_executable(<your project="" name="" here=""> ${SRCS})</your></p>
+  <p>add_executable(&lt;your project name here&gt; ${SRCS})</p>
 
-  <p>target_link_libraries(<your project="" name="" here=""> <libraries you="" want="" to="" link="">)</libraries></your></p>
+  <p>target_link_libraries(&lt;your project name here&gt; &lt;libraries you want to link&gt;)</p>
+
+  <p>set(&lt;variable\ &lt;value&gt;&gt;</p>
 
 </blockquote>
+
+<h3 id="useful-examples">Useful Examples</h3>
+<ul>
+  <li>set(CMAKE_EXPORT_COMPILE_COMMANDS ON)</li>
+</ul>
+
+<p> This enable cmake to export informations about this project which can be utilized by other tools like cppcheck</p>
 
   </div>
 

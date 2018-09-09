@@ -1,19 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://tjysdsg.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="http://tjysdsg.github.io/" rel="alternate" type="text/html" /><updated>2018-09-07T00:55:36+08:00</updated><id>http://tjysdsg.github.io/</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
-</subtitle><entry><title type="html">CMake Notes</title><link href="http://tjysdsg.github.io/2018/09/07/cmake-notes.html" rel="alternate" type="text/html" title="CMake Notes" /><published>2018-09-07T00:00:00+08:00</published><updated>2018-09-07T00:00:00+08:00</updated><id>http://tjysdsg.github.io/2018/09/07/cmake-notes</id><content type="html" xml:base="http://tjysdsg.github.io/2018/09/07/cmake-notes.html">&lt;h3 id=&quot;basic-template&quot;&gt;Basic Template&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-09-09T22:19:18+08:00</updated><id>http://localhost:4000/</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
+</subtitle><entry><title type="html">CMake Notes</title><link href="http://localhost:4000/2018/09/07/cmake-notes.html" rel="alternate" type="text/html" title="CMake Notes" /><published>2018-09-07T00:00:00+08:00</published><updated>2018-09-07T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/07/cmake-notes</id><content type="html" xml:base="http://localhost:4000/2018/09/07/cmake-notes.html">&lt;h3 id=&quot;basic-template&quot;&gt;Basic Template&lt;/h3&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;cmake_minimum_required (VERSION 3.0)&lt;/p&gt;
 
-  &lt;p&gt;project (&lt;your project=&quot;&quot; name=&quot;&quot; here=&quot;&quot;&gt;)&lt;/your&gt;&lt;/p&gt;
+  &lt;p&gt;project (&amp;lt;your project name here&amp;gt;)&lt;/p&gt;
 
   &lt;p&gt;include_directories (“${PROJECT_SOURCE_DIR}/include”)&lt;/p&gt;
 
   &lt;p&gt;aux_source_directory(${PROJECT_SOURCE_DIR}/src SRCS)&lt;/p&gt;
 
-  &lt;p&gt;add_executable(&lt;your project=&quot;&quot; name=&quot;&quot; here=&quot;&quot;&gt; ${SRCS})&lt;/your&gt;&lt;/p&gt;
+  &lt;p&gt;add_executable(&amp;lt;your project name here&amp;gt; ${SRCS})&lt;/p&gt;
 
-  &lt;p&gt;target_link_libraries(&lt;your project=&quot;&quot; name=&quot;&quot; here=&quot;&quot;&gt; &lt;libraries you=&quot;&quot; want=&quot;&quot; to=&quot;&quot; link=&quot;&quot;&gt;)&lt;/libraries&gt;&lt;/your&gt;&lt;/p&gt;
+  &lt;p&gt;target_link_libraries(&amp;lt;your project name here&amp;gt; &amp;lt;libraries you want to link&amp;gt;)&lt;/p&gt;
 
-&lt;/blockquote&gt;</content><author><name>TJYSDSG</name></author><summary type="html">Basic Template</summary></entry><entry><title type="html">Hello World</title><link href="http://tjysdsg.github.io/2018/09/06/hello-word.html" rel="alternate" type="text/html" title="Hello World" /><published>2018-09-06T00:00:00+08:00</published><updated>2018-09-06T00:00:00+08:00</updated><id>http://tjysdsg.github.io/2018/09/06/hello-word</id><content type="html" xml:base="http://tjysdsg.github.io/2018/09/06/hello-word.html">&lt;h1 id=&quot;hello-world&quot;&gt;Hello World!&lt;/h1&gt;
+  &lt;p&gt;set(&amp;lt;variable\ &amp;lt;value&amp;gt;&amp;gt;&lt;/p&gt;
+
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;useful-examples&quot;&gt;Useful Examples&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;set(CMAKE_EXPORT_COMPILE_COMMANDS ON)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt; This enable cmake to export informations about this project which can be utilized by other tools like cppcheck&lt;/p&gt;</content><author><name>TJYSDSG</name></author><summary type="html">Basic Template</summary></entry><entry><title type="html">Hello World</title><link href="http://localhost:4000/2018/09/06/hello-word.html" rel="alternate" type="text/html" title="Hello World" /><published>2018-09-06T00:00:00+08:00</published><updated>2018-09-06T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/06/hello-word</id><content type="html" xml:base="http://localhost:4000/2018/09/06/hello-word.html">&lt;h1 id=&quot;hello-world&quot;&gt;Hello World!&lt;/h1&gt;
 
 &lt;p&gt;&lt;em&gt;Powered by github pages&lt;/em&gt;&lt;/p&gt;</content><author><name>TJYSDSG</name></author><summary type="html">Hello World!</summary></entry></feed>

@@ -17,4 +17,11 @@ author: TJYSDSG
 > add_executable(\<your project name here\> ${SRCS})
 > 
 > target_link_libraries(\<your project name here\> \<libraries you want to link\>)
+> 
+> set(\<variable\ \<value\>>
 >
+
+### Useful Examples
+- set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+&emsp;This enable cmake to export informations about this project which can be utilized by other tools like cppcheck
