@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/pagify.js" type="text/javascript"></script>
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,11 +11,12 @@
   <meta name="description" content="how to build a blog on github with jekyll  open github.com  create a repository named &lt;username&gt;.github.io  inside the repo, go to settings, enable git...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://tjysdsg.github.io/2018/10/05/my-mom-wants-to-learn-blog.html">
+  <link rel="canonical" href="http://localhost:4000/2018/10/05/my-mom-wants-to-learn-blog.html">
 </head>
 
 
   <body>
+    
 
     <header class="site-header">
 
@@ -41,12 +43,23 @@
         
           
         
+          
+        
       </div>
     </nav>
 
   </div>
 
 </header>
+
+     <script type='text/javascript'>
+      $(document).ready(function() {
+        $('#page_holder').pagify({
+          pages: ['../_site/about/index'],
+          animation: 'fadeIn',
+        });
+      });
+    </script>
 
     <div class="page-content">
       <div class="wrapper">

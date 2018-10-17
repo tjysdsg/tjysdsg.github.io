@@ -8,7 +8,7 @@ github_username: tjysdsg
 
 # Build settings
 markdown: kramdown
-plugins:
+plugins_dir:
   - 'jekyll-feed'
   - 'jekyll-seo-tag'
   - 'jekyll-admin'
