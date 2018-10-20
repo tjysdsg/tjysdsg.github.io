@@ -1,47 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-<generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator>
-<link href="http://tjysdsg.github.io/feed.xml" rel="self" type="application/atom+xml" />
-<link href="http://tjysdsg.github.io/" rel="alternate" type="text/html" />
-<updated>2018-10-18T01:33:24+08:00</updated>
-<id>http://tjysdsg.github.io/</id>
-<subtitle>I am TJY, a programming maniac 
-</subtitle>
-<entry>
-<title>CMake Notes</title>
-<link href="http://tjysdsg.github.io/2018/09/07/cmake-notes.html" rel="alternate" type="text/html" title="CMake Notes" />
-<published>2018-09-07T00:00:00+08:00</published>
-<updated>2018-09-07T00:00:00+08:00</updated>
-<id>http://tjysdsg.github.io/2018/09/07/cmake-notes</id>
-<content type="html" xml:base="http://tjysdsg.github.io/2018/09/07/cmake-notes.html">&lt;h3 id=&quot;basic-template&quot;&gt;Basic Template&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-21T00:19:41+08:00</updated><id>http://localhost:4000/</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
+</subtitle><entry><title type="html">CMake Notes</title><link href="http://localhost:4000/2018/09/07/cmake-notes.html" rel="alternate" type="text/html" title="CMake Notes" /><published>2018-09-07T00:00:00+08:00</published><updated>2018-09-07T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/07/cmake-notes</id><content type="html" xml:base="http://localhost:4000/2018/09/07/cmake-notes.html">&lt;h1 id=&quot;cmake-cheatsheet&quot;&gt;CMake Cheatsheet&lt;/h1&gt;
+&lt;h2 id=&quot;basic-template&quot;&gt;Basic Template&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cmake_minimum_required(VERSION X.X)
+project (&amp;lt;your project name here&amp;gt;)
+add_executable(&amp;lt;your project name here&amp;gt; ${SRCS})
+target_link_libraries(&amp;lt;your project name here&amp;gt; &amp;lt;libraries you want to link&amp;gt;)
+aux_source_directory(${PROJECT_SOURCE_DIR}/src SRCS)
+include_directories(${PROJECT_SOURCE_DIR}/include)
 
-&lt;blockquote&gt;
-  &lt;p&gt;cmake_minimum_required (VERSION 3.0)&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-  &lt;p&gt;project (&amp;lt;your project name here&amp;gt;)&lt;/p&gt;
+&lt;h3 id=&quot;useful-commands&quot;&gt;Useful Commands&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set(&amp;lt;variable name&amp;gt; &amp;lt;value&amp;gt;)
+# export compile commands can help applications like cppcheck to analyze your codes
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+# output x,y are variable names
+# you can also directly write the text instead of using variables
+message(${x}${y})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-  &lt;p&gt;include_directories (“${PROJECT_SOURCE_DIR}/include”)&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SET(x 3 2)
+FOREACH(val${x})
+MESSAGE(${val})
+ENDFOREACH(val)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-  &lt;p&gt;aux_source_directory(${PROJECT_SOURCE_DIR}/src SRCS)&lt;/p&gt;
+&lt;h3 id=&quot;details&quot;&gt;Details&lt;/h3&gt;
 
-  &lt;p&gt;add_executable(&amp;lt;your project name here&amp;gt; ${SRCS})&lt;/p&gt;
+&lt;p&gt;All variable values are a text string. Text strings can be evaluated as boolean
+expressions (e.g. when used in IF() and WHILE()). The values “FALSE”,
+“OFF”, “NO”, or any string ending in “-NOTFOUND” evaluates be false -
+everything else to true.&lt;/p&gt;
 
-  &lt;p&gt;target_link_libraries(&amp;lt;your project name here&amp;gt; &amp;lt;libraries you want to link&amp;gt;)&lt;/p&gt;
+&lt;p&gt;Text strings can represent multiple values as a list by separating entities using
+a semicolon.&lt;/p&gt;
 
-  &lt;p&gt;set(&amp;lt;variable\ &amp;lt;value&amp;gt;&amp;gt;&lt;/p&gt;
-
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;useful-examples&quot;&gt;Useful Examples&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;set(CMAKE_EXPORT_COMPILE_COMMANDS ON)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt; This enable cmake to export informations about this project which can be utilized by other tools like cppcheck&lt;/p&gt;
-</content>
-<author>
-<name>TJYSDSG</name>
-</author>
-<summary>Basic Template</summary>
-</entry>
-</feed>
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SET(x 3 2 ) #x=&quot;3;2&quot;
+SET(y hello world !) # y = &quot;hello;world;!&quot;
+SET(z &quot;hello world !&quot;) # y = &quot;hello;world;!&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>TJYSDSG</name></author><summary type="html">CMake Cheatsheet Basic Template ``` cmake_minimum_required(VERSION X.X) project () add_executable( ${SRCS}) target_link_libraries( ) aux_source_directory(${PROJECT_SOURCE_DIR}/src SRCS) include_directories(${PROJECT_SOURCE_DIR}/include)</summary></entry></feed>

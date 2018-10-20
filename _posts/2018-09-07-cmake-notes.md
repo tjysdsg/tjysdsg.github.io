@@ -3,25 +3,50 @@ title: CMake Notes
 layout: post
 author: TJYSDSG
 ---
+# CMake Cheatsheet
+## Basic Template
+```
+cmake_minimum_required(VERSION X.X)
+project (<your project name here>)
+add_executable(<your project name here> ${SRCS})
+target_link_libraries(<your project name here> <libraries you want to link>)
+aux_source_directory(${PROJECT_SOURCE_DIR}/src SRCS)
+include_directories(${PROJECT_SOURCE_DIR}/include)
 
-### Basic Template
+```
 
-> cmake_minimum_required (VERSION 3.0)
-> 
-> project (\<your project name here\>)
-> 
-> include_directories ("${PROJECT_SOURCE_DIR}/include")
-> 
-> aux_source_directory(${PROJECT_SOURCE_DIR}/src SRCS)
-> 
-> add_executable(\<your project name here\> ${SRCS})
-> 
-> target_link_libraries(\<your project name here\> \<libraries you want to link\>)
-> 
-> set(\<variable\ \<value\>>
->
 
-### Useful Examples
-- set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-&emsp;This enable cmake to export informations about this project which can be utilized by other tools like cppcheck
+### Useful Commands 
+```
+set(<variable name> <value>)
+# export compile commands can help applications like cppcheck to analyze your codes
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+# output x,y are variable names
+# you can also directly write the text instead of using variables
+message(${x}${y})
+```
+
+```
+SET(x 3 2)
+FOREACH(val${x})
+MESSAGE(${val})
+ENDFOREACH(val)
+```
+
+
+### Details
+
+All variable values are a text string. Text strings can be evaluated as boolean
+expressions (e.g. when used in IF() and WHILE()). The values "FALSE",
+"OFF", "NO", or any string ending in "-NOTFOUND" evaluates be false -
+everything else to true.
+
+Text strings can represent multiple values as a list by separating entities using
+a semicolon.
+
+```
+SET(x 3 2 ) #x="3;2"
+SET(y hello world !) # y = "hello;world;!"
+SET(z "hello world !") # y = "hello;world;!"
+```

@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html>
-<script src="/js/jquery.min.js" type="text/javascript"></script>
-<script src="/js/pagify.js" type="text/javascript"></script>
+  <script src="/js/jquery.min.js" type="text/javascript"></script>
+  <script src="/js/pagify.js" type="text/javascript"></script>
+  <!-- Mathjax Support -->
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>CMake Notes</title>
-  <meta name="description" content="Basic Template">
+  <meta name="description" content="CMake CheatsheetBasic Template```cmake_minimum_required(VERSION X.X)project ()add_executable( ${SRCS})target_link_libraries( )aux_source_directory(${PROJECT_...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://tjysdsg.github.io/2018/09/07/cmake-notes.html">
+  <link rel="canonical" href="http://localhost:4000/2018/09/07/cmake-notes.html">
 </head>
 
 
@@ -43,6 +46,8 @@
         
           
         
+          
+        
       </div>
     </nav>
 
@@ -61,31 +66,46 @@
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <h3 id="basic-template">Basic Template</h3>
+    <h1 id="cmake-cheatsheet">CMake Cheatsheet</h1>
+<h2 id="basic-template">Basic Template</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake_minimum_required(VERSION X.X)
+project (&lt;your project name here&gt;)
+add_executable(&lt;your project name here&gt; ${SRCS})
+target_link_libraries(&lt;your project name here&gt; &lt;libraries you want to link&gt;)
+aux_source_directory(${PROJECT_SOURCE_DIR}/src SRCS)
+include_directories(${PROJECT_SOURCE_DIR}/include)
 
-<blockquote>
-  <p>cmake_minimum_required (VERSION 3.0)</p>
+</code></pre></div></div>
 
-  <p>project (&lt;your project name here&gt;)</p>
+<h3 id="useful-commands">Useful Commands</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set(&lt;variable name&gt; &lt;value&gt;)
+# export compile commands can help applications like cppcheck to analyze your codes
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+# output x,y are variable names
+# you can also directly write the text instead of using variables
+message(${x}${y})
+</code></pre></div></div>
 
-  <p>include_directories (“${PROJECT_SOURCE_DIR}/include”)</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SET(x 3 2)
+FOREACH(val${x})
+MESSAGE(${val})
+ENDFOREACH(val)
+</code></pre></div></div>
 
-  <p>aux_source_directory(${PROJECT_SOURCE_DIR}/src SRCS)</p>
+<h3 id="details">Details</h3>
 
-  <p>add_executable(&lt;your project name here&gt; ${SRCS})</p>
+<p>All variable values are a text string. Text strings can be evaluated as boolean
+expressions (e.g. when used in IF() and WHILE()). The values “FALSE”,
+“OFF”, “NO”, or any string ending in “-NOTFOUND” evaluates be false -
+everything else to true.</p>
 
-  <p>target_link_libraries(&lt;your project name here&gt; &lt;libraries you want to link&gt;)</p>
+<p>Text strings can represent multiple values as a list by separating entities using
+a semicolon.</p>
 
-  <p>set(&lt;variable\ &lt;value&gt;&gt;</p>
-
-</blockquote>
-
-<h3 id="useful-examples">Useful Examples</h3>
-<ul>
-  <li>set(CMAKE_EXPORT_COMPILE_COMMANDS ON)</li>
-</ul>
-
-<p> This enable cmake to export informations about this project which can be utilized by other tools like cppcheck</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SET(x 3 2 ) #x="3;2"
+SET(y hello world !) # y = "hello;world;!"
+SET(z "hello world !") # y = "hello;world;!"
+</code></pre></div></div>
 
   </div>
 
