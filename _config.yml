@@ -3,11 +3,13 @@ email: tjy1018543509@163.com
 description: >
  I am TJY, a programming maniac 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://tjysdsg.github.io" # the base hostname & protocol for your site
+url: "http://blog.jt304.website" # the base hostname & protocol for your site
 github_username: tjysdsg 
 
 # Build settings
 markdown: kramdown
+kramdown:
+  parse_block_html: true
 plugins_dir:
   - 'jekyll-feed'
   - 'jekyll-seo-tag'

@@ -1,5 +1,767 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-21T00:19:41+08:00</updated><id>http://localhost:4000/</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
-</subtitle><entry><title type="html">CMake Notes</title><link href="http://localhost:4000/2018/09/07/cmake-notes.html" rel="alternate" type="text/html" title="CMake Notes" /><published>2018-09-07T00:00:00+08:00</published><updated>2018-09-07T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/07/cmake-notes</id><content type="html" xml:base="http://localhost:4000/2018/09/07/cmake-notes.html">&lt;h1 id=&quot;cmake-cheatsheet&quot;&gt;CMake Cheatsheet&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-11-02T11:54:52+08:00</updated><id>http://localhost:4000/</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
+</subtitle><entry><title type="html">Dig into CPython</title><link href="http://localhost:4000/2018/11/02/dig-into-python.html" rel="alternate" type="text/html" title="Dig into CPython" /><published>2018-11-02T00:00:00+08:00</published><updated>2018-11-02T00:00:00+08:00</updated><id>http://localhost:4000/2018/11/02/dig-into-python</id><content type="html" xml:base="http://localhost:4000/2018/11/02/dig-into-python.html">&lt;h1 id=&quot;general-description-of-how-the-cpython-interpreter-runs&quot;&gt;General Description of How the CPython interpreter runs&lt;/h1&gt;
+&lt;p&gt;The python executable’s main program is located in the &lt;code class=&quot;highlighter-rouge&quot;&gt;./Programs/python.c&lt;/code&gt; file and it handles some initialization such as making copies of program command line arguments that were passed to the module. The main function then calls the &lt;code class=&quot;highlighter-rouge&quot;&gt;Py_Main&lt;/code&gt; function located in the &lt;code class=&quot;highlighter-rouge&quot;&gt;./Modules/main.c&lt;/code&gt; which handles the interpreter initialization process - parsing commandline arguments and setting program flags, reading environment variables, running hooks, carrying out hash randomization etc. As part of the initialization process, &lt;code class=&quot;highlighter-rouge&quot;&gt;Py_Initialize&lt;/code&gt; from &lt;code class=&quot;highlighter-rouge&quot;&gt;pylifecycle.c&lt;/code&gt; is called; this handles the initialization of the interpreter and thread state data structures - two very important data structures.&lt;/p&gt;
+
+&lt;p&gt;The interpreter state data structure&lt;/p&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;Expand Code&lt;/summary&gt;
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;typedef struct _is {
+ 
+         struct _is *next;
+         struct _ts *tstate_head;
+ 
+         PyObject *modules;
+         PyObject *modules_by_index;
+         PyObject *sysdict;
+         PyObject *builtins;
+         PyObject *importlib;
+ 
+         PyObject *codec_search_path;
+         PyObject *codec_search_cache;
+         PyObject *codec_error_registry;
+         int codecs_initialized;
+         int fscodec_initialized;
+ 
+         PyObject *builtins_copy;
+     } PyInterpreterState;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+&lt;/details&gt;
+&lt;ol&gt;
+  &lt;li&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;*next&lt;/code&gt; field is a reference to another interpreter instance as multiple python interpreters can exist within the same process.&lt;/li&gt;
+  &lt;li&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;*tstate_head&lt;/code&gt; field points to the main thread of execution - in the event that the python program is multithreaded then the interpreter is shared by all threads created by the program - the structure of a thread state is discussed shortly.&lt;/li&gt;
+  &lt;li&gt;The modules, &lt;code class=&quot;highlighter-rouge&quot;&gt;modules_by_index&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;sysdict&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;builtins&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;importlib&lt;/code&gt; are self explanatory - they are all defined as instances of &lt;code class=&quot;highlighter-rouge&quot;&gt;PyObject&lt;/code&gt; which is the root type for all python objects in the virtual machine world. Python objects are covered in more detail in the chapters that will follow.&lt;/li&gt;
+  &lt;li&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;codec*&lt;/code&gt; related fields hold information that help with the location and loading of encodings. These are very important for decoding bytes.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Part of the thread data structure&lt;/p&gt;
+&lt;details&gt;
+  &lt;summary&gt;Expand Code&lt;/summary&gt;
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;     typedef struct _ts {
+         struct _ts *prev;
+         struct _ts *next;
+         PyInterpreterState *interp;
+ 
+         struct _frame *frame;
+         int recursion_depth;
+         char overflowed; 
+                         
+         char recursion_critical; 
+         int tracing;
+         int use_tracing;
+ 
+         Py_tracefunc c_profilefunc;
+         Py_tracefunc c_tracefunc;
+         PyObject *c_profileobj;
+         PyObject *c_traceobj;
+ 
+         PyObject *curexc_type;
+         PyObject *curexc_value;
+         PyObject *curexc_traceback;
+ 
+         PyObject *exc_type;
+         PyObject *exc_value;
+         PyObject *exc_traceback;
+ 
+         PyObject *dict;  /* Stores per-thread state */
+         int gilstate_counter;
+ 
+         ... 
+     } PyThreadState;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+&lt;/details&gt;
+
+&lt;p&gt;Once all the initialization is complete, the &lt;code class=&quot;highlighter-rouge&quot;&gt;Py_Main&lt;/code&gt; function invokes the &lt;code class=&quot;highlighter-rouge&quot;&gt;run_file&lt;/code&gt; function also located in the &lt;code class=&quot;highlighter-rouge&quot;&gt;main.c&lt;/code&gt; module. The following series of function calls: &lt;code class=&quot;highlighter-rouge&quot;&gt;PyRun_AnyFileExFlags&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;PyRun_SimpleFileExFlags&lt;/code&gt;-&amp;gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;PyRun_FileExFlags&lt;/code&gt;-&amp;gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;PyParser_ASTFromFileObject&lt;/code&gt; are made to the &lt;code class=&quot;highlighter-rouge&quot;&gt;PyParser_ASTFromFileObject&lt;/code&gt; function. The &lt;code class=&quot;highlighter-rouge&quot;&gt;PyRun_SimpleFileExFlags&lt;/code&gt; function call creates the &lt;code class=&quot;highlighter-rouge&quot;&gt;__main__&lt;/code&gt; namespace in which the file contents will be executed. It also checks if a &lt;code class=&quot;highlighter-rouge&quot;&gt;.pyc&lt;/code&gt; version of the file exists - the &lt;code class=&quot;highlighter-rouge&quot;&gt;.pyc&lt;/code&gt; file is just a file containing the compiled version of the file being executed. In the case that the file has a pyc version then an attempt will be made to read it in as binary and then run it. In this case, there is no pyc file so the &lt;code class=&quot;highlighter-rouge&quot;&gt;PyRun_FileExFlags&lt;/code&gt; is called and so on. The &lt;code class=&quot;highlighter-rouge&quot;&gt;PyParser_ASTFromFileObject&lt;/code&gt; function calls the &lt;code class=&quot;highlighter-rouge&quot;&gt;PyParser_ParseFileObject&lt;/code&gt; which reads the module content and builds a parse tree from it. The parse tree created is then passed to the &lt;code class=&quot;highlighter-rouge&quot;&gt;PyParser_ASTFromNodeObject&lt;/code&gt; which then goes ahead to create an abstract syntax tree from the parse tree.&lt;/p&gt;
+
+&lt;p&gt;The AST generated is then passed to the &lt;code class=&quot;highlighter-rouge&quot;&gt;run_mod&lt;/code&gt; function. This function invokes the &lt;code class=&quot;highlighter-rouge&quot;&gt;PyAST_CompileObject&lt;/code&gt; function that creates code objects from the AST. Do note that the bytecode generated during the call to &lt;code class=&quot;highlighter-rouge&quot;&gt;PyAST_CompileObject&lt;/code&gt; is passed through a simple &lt;code class=&quot;highlighter-rouge&quot;&gt;peephole&lt;/code&gt; optimizer that carries out low hanging optimization of the generated bytecode before the code objects are created. The &lt;code class=&quot;highlighter-rouge&quot;&gt;run_mod&lt;/code&gt; function then invokes &lt;code class=&quot;highlighter-rouge&quot;&gt;PyEval_EvalCode&lt;/code&gt; from the &lt;code class=&quot;highlighter-rouge&quot;&gt;ceval.c&lt;/code&gt; file on the code object. This results in another series of function call: &lt;code class=&quot;highlighter-rouge&quot;&gt;PyEval_EvalCode&lt;/code&gt;-&amp;gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;PyEval_EvalCode&lt;/code&gt;-&amp;gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;_PyEval_EvalCodeWithName&lt;/code&gt;-&amp;gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;_PyEval_EvalFrameEx&lt;/code&gt; function calls. The code object is passed as an argument into most each of these functions in one form or another. The &lt;code class=&quot;highlighter-rouge&quot;&gt;_PyEval_EvalFrameEx&lt;/code&gt; is the atual interpreter loop that handles the execution of code objects. It is however not just invoked with a code object as argument rather a frame object with has a field that references a code object is one of its arguments. This frame object provides the context for the execution of the code object. A very simplified version of what happens here is that the interpreter loop continuously reads the next instruction pointed to by the instruction counter from an array of instructions. It then executes this instruction - adding or removing objects from the value stack in the process (where is this value stack), till there are no more instructions to be executed in the array or something exceptional that breaks this loop occurs.&lt;/p&gt;
+
+&lt;p&gt;Dissamblying a python function&lt;/p&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;Expand Code&lt;/summary&gt;
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; def square(x):
+        return x*x 
+ 
+&amp;gt;&amp;gt;&amp;gt; dis(square)
+    2           0 LOAD_FAST                0 (x)
+                2 LOAD_FAST                0 (x)
+                4 BINARY_MULTIPLY     
+                6 RETURN_VALUE     
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+&lt;/details&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;./Include/opcodes.h&lt;/code&gt; header file contains a full listing of all the instruction/opcodes for the python virtual machine.&lt;/p&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;Expand Code&lt;/summary&gt;
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/* Auto-generated by Tools/scripts/generate_opcode_h.py from Lib/opcode.py */
+#ifndef Py_OPCODE_H
+#define Py_OPCODE_H
+#ifdef __cplusplus
+extern &quot;C&quot; {
+#endif
+
+
+    /* Instruction opcodes for compiled code */
+#define POP_TOP                   1
+#define ROT_TWO                   2
+#define ROT_THREE                 3
+#define DUP_TOP                   4
+#define DUP_TOP_TWO               5
+#define ROT_FOUR                  6
+#define NOP                       9
+#define UNARY_POSITIVE           10
+#define UNARY_NEGATIVE           11
+#define UNARY_NOT                12
+#define UNARY_INVERT             15
+#define BINARY_MATRIX_MULTIPLY   16
+#define INPLACE_MATRIX_MULTIPLY  17
+#define BINARY_POWER             19
+#define BINARY_MULTIPLY          20
+#define BINARY_MODULO            22
+#define BINARY_ADD               23
+#define BINARY_SUBTRACT          24
+#define BINARY_SUBSCR            25
+#define BINARY_FLOOR_DIVIDE      26
+#define BINARY_TRUE_DIVIDE       27
+#define INPLACE_FLOOR_DIVIDE     28
+#define INPLACE_TRUE_DIVIDE      29
+#define GET_AITER                50
+#define GET_ANEXT                51
+#define BEFORE_ASYNC_WITH        52
+#define BEGIN_FINALLY            53
+#define END_ASYNC_FOR            54
+#define INPLACE_ADD              55
+#define INPLACE_SUBTRACT         56
+#define INPLACE_MULTIPLY         57
+#define INPLACE_MODULO           59
+#define STORE_SUBSCR             60
+#define DELETE_SUBSCR            61
+#define BINARY_LSHIFT            62
+#define BINARY_RSHIFT            63
+#define BINARY_AND               64
+#define BINARY_XOR               65
+#define BINARY_OR                66
+#define INPLACE_POWER            67
+#define GET_ITER                 68
+#define GET_YIELD_FROM_ITER      69
+#define PRINT_EXPR               70
+#define LOAD_BUILD_CLASS         71
+#define YIELD_FROM               72
+#define GET_AWAITABLE            73
+#define INPLACE_LSHIFT           75
+#define INPLACE_RSHIFT           76
+#define INPLACE_AND              77
+#define INPLACE_XOR              78
+#define INPLACE_OR               79
+#define WITH_CLEANUP_START       81
+#define WITH_CLEANUP_FINISH      82
+#define RETURN_VALUE             83
+#define IMPORT_STAR              84
+#define SETUP_ANNOTATIONS        85
+#define YIELD_VALUE              86
+#define POP_BLOCK                87
+#define END_FINALLY              88
+#define POP_EXCEPT               89
+#define HAVE_ARGUMENT            90
+#define STORE_NAME               90
+#define DELETE_NAME              91
+#define UNPACK_SEQUENCE          92
+#define FOR_ITER                 93
+#define UNPACK_EX                94
+#define STORE_ATTR               95
+#define DELETE_ATTR              96
+#define STORE_GLOBAL             97
+#define DELETE_GLOBAL            98
+#define LOAD_CONST              100
+#define LOAD_NAME               101
+#define BUILD_TUPLE             102
+#define BUILD_LIST              103
+#define BUILD_SET               104
+#define BUILD_MAP               105
+#define LOAD_ATTR               106
+#define COMPARE_OP              107
+#define IMPORT_NAME             108
+#define IMPORT_FROM             109
+#define JUMP_FORWARD            110
+#define JUMP_IF_FALSE_OR_POP    111
+#define JUMP_IF_TRUE_OR_POP     112
+#define JUMP_ABSOLUTE           113
+#define POP_JUMP_IF_FALSE       114
+#define POP_JUMP_IF_TRUE        115
+#define LOAD_GLOBAL             116
+#define SETUP_FINALLY           122
+#define LOAD_FAST               124
+#define STORE_FAST              125
+#define DELETE_FAST             126
+#define RAISE_VARARGS           130
+#define CALL_FUNCTION           131
+#define MAKE_FUNCTION           132
+#define BUILD_SLICE             133
+#define LOAD_CLOSURE            135
+#define LOAD_DEREF              136
+#define STORE_DEREF             137
+#define DELETE_DEREF            138
+#define CALL_FUNCTION_KW        141
+#define CALL_FUNCTION_EX        142
+#define SETUP_WITH              143
+#define EXTENDED_ARG            144
+#define LIST_APPEND             145
+#define SET_ADD                 146
+#define MAP_ADD                 147
+#define LOAD_CLASSDEREF         148
+#define BUILD_LIST_UNPACK       149
+#define BUILD_MAP_UNPACK        150
+#define BUILD_MAP_UNPACK_WITH_CALL 151
+#define BUILD_TUPLE_UNPACK      152
+#define BUILD_SET_UNPACK        153
+#define SETUP_ASYNC_WITH        154
+#define FORMAT_VALUE            155
+#define BUILD_CONST_KEY_MAP     156
+#define BUILD_STRING            157
+#define BUILD_TUPLE_UNPACK_WITH_CALL 158
+#define LOAD_METHOD             160
+#define CALL_METHOD             161
+#define CALL_FINALLY            162
+#define POP_FINALLY             163
+
+/* EXCEPT_HANDLER is a special, implicit block type which is created when
+   entering an except handler. It is not an opcode but we define it here
+   as we want it to be available to both frameobject.c and ceval.c, while
+   remaining private.*/
+#define EXCEPT_HANDLER 257
+
+
+enum cmp_op {PyCmp_LT=Py_LT, PyCmp_LE=Py_LE, PyCmp_EQ=Py_EQ, PyCmp_NE=Py_NE,
+                PyCmp_GT=Py_GT, PyCmp_GE=Py_GE, PyCmp_IN, PyCmp_NOT_IN,
+                PyCmp_IS, PyCmp_IS_NOT, PyCmp_EXC_MATCH, PyCmp_BAD};
+
+#define HAS_ARG(op) ((op) &amp;gt;= HAVE_ARGUMENT)
+
+#ifdef __cplusplus
+}
+#endif
+#endif /* !Py_OPCODE_H */
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+&lt;/details&gt;
+
+&lt;p&gt;After all the instructions have been the executed, the &lt;code class=&quot;highlighter-rouge&quot;&gt;Py_Main&lt;/code&gt; function continues its execution but this time around it starts the clean up process. Just as &lt;code class=&quot;highlighter-rouge&quot;&gt;Py_Initialize&lt;/code&gt; was called to perform initialization during the interpreter startup, &lt;code class=&quot;highlighter-rouge&quot;&gt;Py_FinalizeEx&lt;/code&gt; is invoked to do some clean-up work; this clean-up process involves waiting for threads to exit, calling any exit hooks and also freeing up any memory allocated by the interpreter that is still in use.&lt;/p&gt;
+
+&lt;h1 id=&quot;how-is-python-code-compiled-into-bytecode&quot;&gt;How is Python Code Compiled into Bytecode&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Parsing the python source code into a parse tree.&lt;/li&gt;
+  &lt;li&gt;Transforming the parse tree into an abstract syntax tree (AST).&lt;/li&gt;
+  &lt;li&gt;Generation of the symbol table.&lt;/li&gt;
+  &lt;li&gt;Generation of the code object from the AST.
+    &lt;ul&gt;
+      &lt;li&gt;Transforming the AST into a flow control graph.&lt;/li&gt;
+      &lt;li&gt;Emitting a code object from the control flow graph.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The python parser is an LL parser. The &lt;code class=&quot;highlighter-rouge&quot;&gt;Grammar/Grammar&lt;/code&gt; module contains the Extended Backus-Naur Form (EBNF) grammar specification for the Python language.&lt;/p&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;Expand Code&lt;/summary&gt;
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# https://devguide.python.org/grammar/
+
+# Start symbols for the grammar:
+#       single_input is a single interactive statement;
+#       file_input is a module or sequence of commands read from an input file;
+#       eval_input is the input for the eval() functions.
+# NB: compound_stmt in single_input is followed by extra NEWLINE!
+single_input: NEWLINE | simple_stmt | compound_stmt NEWLINE
+file_input: (NEWLINE | stmt)* ENDMARKER
+eval_input: testlist NEWLINE* ENDMARKER
+
+decorator: '@' dotted_name [ '(' [arglist] ')' ] NEWLINE
+decorators: decorator+
+decorated: decorators (classdef | funcdef | async_funcdef)
+
+async_funcdef: 'async' funcdef
+funcdef: 'def' NAME parameters ['-&amp;gt;' test] ':' suite
+
+parameters: '(' [typedargslist] ')'
+typedargslist: (tfpdef ['=' test] (',' tfpdef ['=' test])* [',' [
+        '*' [tfpdef] (',' tfpdef ['=' test])* [',' ['**' tfpdef [',']]]
+      | '**' tfpdef [',']]]
+  | '*' [tfpdef] (',' tfpdef ['=' test])* [',' ['**' tfpdef [',']]]
+  | '**' tfpdef [','])
+tfpdef: NAME [':' test]
+varargslist: (vfpdef ['=' test] (',' vfpdef ['=' test])* [',' [
+        '*' [vfpdef] (',' vfpdef ['=' test])* [',' ['**' vfpdef [',']]]
+      | '**' vfpdef [',']]]
+  | '*' [vfpdef] (',' vfpdef ['=' test])* [',' ['**' vfpdef [',']]]
+  | '**' vfpdef [',']
+)
+vfpdef: NAME
+
+stmt: simple_stmt | compound_stmt
+simple_stmt: small_stmt (';' small_stmt)* [';'] NEWLINE
+small_stmt: (expr_stmt | del_stmt | pass_stmt | flow_stmt |
+             import_stmt | global_stmt | nonlocal_stmt | assert_stmt)
+expr_stmt: testlist_star_expr (annassign | augassign (yield_expr|testlist) |
+                     ('=' (yield_expr|testlist_star_expr))*)
+annassign: ':' test ['=' test]
+testlist_star_expr: (test|star_expr) (',' (test|star_expr))* [',']
+augassign: ('+=' | '-=' | '*=' | '@=' | '/=' | '%=' | '&amp;amp;=' | '|=' | '^=' |
+            '&amp;lt;&amp;lt;=' | '&amp;gt;&amp;gt;=' | '**=' | '//=')
+# For normal and annotated assignments, additional restrictions enforced by the interpreter
+del_stmt: 'del' exprlist
+pass_stmt: 'pass'
+flow_stmt: break_stmt | continue_stmt | return_stmt | raise_stmt | yield_stmt
+break_stmt: 'break'
+continue_stmt: 'continue'
+return_stmt: 'return' [testlist_star_expr]
+yield_stmt: yield_expr
+raise_stmt: 'raise' [test ['from' test]]
+import_stmt: import_name | import_from
+import_name: 'import' dotted_as_names
+# note below: the ('.' | '...') is necessary because '...' is tokenized as ELLIPSIS
+import_from: ('from' (('.' | '...')* dotted_name | ('.' | '...')+)
+              'import' ('*' | '(' import_as_names ')' | import_as_names))
+import_as_name: NAME ['as' NAME]
+dotted_as_name: dotted_name ['as' NAME]
+import_as_names: import_as_name (',' import_as_name)* [',']
+dotted_as_names: dotted_as_name (',' dotted_as_name)*
+dotted_name: NAME ('.' NAME)*
+global_stmt: 'global' NAME (',' NAME)*
+nonlocal_stmt: 'nonlocal' NAME (',' NAME)*
+assert_stmt: 'assert' test [',' test]
+
+compound_stmt: if_stmt | while_stmt | for_stmt | try_stmt | with_stmt | funcdef | classdef | decorated | async_stmt
+async_stmt: 'async' (funcdef | with_stmt | for_stmt)
+if_stmt: 'if' test ':' suite ('elif' test ':' suite)* ['else' ':' suite]
+while_stmt: 'while' test ':' suite ['else' ':' suite]
+for_stmt: 'for' exprlist 'in' testlist ':' suite ['else' ':' suite]
+try_stmt: ('try' ':' suite
+           ((except_clause ':' suite)+
+            ['else' ':' suite]
+            ['finally' ':' suite] |
+           'finally' ':' suite))
+with_stmt: 'with' with_item (',' with_item)*  ':' suite
+with_item: test ['as' expr]
+# NB compile.c makes sure that the default except clause is last
+except_clause: 'except' [test ['as' NAME]]
+suite: simple_stmt | NEWLINE INDENT stmt+ DEDENT
+
+test: or_test ['if' or_test 'else' test] | lambdef
+test_nocond: or_test | lambdef_nocond
+lambdef: 'lambda' [varargslist] ':' test
+lambdef_nocond: 'lambda' [varargslist] ':' test_nocond
+or_test: and_test ('or' and_test)*
+and_test: not_test ('and' not_test)*
+not_test: 'not' not_test | comparison
+comparison: expr (comp_op expr)*
+# &amp;lt;&amp;gt; isn't actually a valid comparison operator in Python. It's here for the
+# sake of a __future__ import described in PEP 401 (which really works :-)
+comp_op: '&amp;lt;'|'&amp;gt;'|'=='|'&amp;gt;='|'&amp;lt;='|'&amp;lt;&amp;gt;'|'!='|'in'|'not' 'in'|'is'|'is' 'not'
+star_expr: '*' expr
+expr: xor_expr ('|' xor_expr)*
+xor_expr: and_expr ('^' and_expr)*
+and_expr: shift_expr ('&amp;amp;' shift_expr)*
+shift_expr: arith_expr (('&amp;lt;&amp;lt;'|'&amp;gt;&amp;gt;') arith_expr)*
+arith_expr: term (('+'|'-') term)*
+term: factor (('*'|'@'|'/'|'%'|'//') factor)*
+factor: ('+'|'-'|'~') factor | power
+power: atom_expr ['**' factor]
+atom_expr: ['await'] atom trailer*
+atom: ('(' [yield_expr|testlist_comp] ')' |
+       '[' [testlist_comp] ']' |
+       '{' [dictorsetmaker] '}' |
+       NAME | NUMBER | STRING+ | '...' | 'None' | 'True' | 'False')
+testlist_comp: (test|star_expr) ( comp_for | (',' (test|star_expr))* [','] )
+trailer: '(' [arglist] ')' | '[' subscriptlist ']' | '.' NAME
+subscriptlist: subscript (',' subscript)* [',']
+subscript: test | [test] ':' [test] [sliceop]
+sliceop: ':' [test]
+exprlist: (expr|star_expr) (',' (expr|star_expr))* [',']
+testlist: test (',' test)* [',']
+dictorsetmaker: ( ((test ':' test | '**' expr)
+                   (comp_for | (',' (test ':' test | '**' expr))* [','])) |
+                  ((test | star_expr)
+                   (comp_for | (',' (test | star_expr))* [','])) )
+
+classdef: 'class' NAME ['(' [arglist] ')'] ':' suite
+
+arglist: argument (',' argument)*  [',']
+
+# The reason that keywords are test nodes instead of NAME is that using NAME
+# results in an ambiguity. ast.c makes sure it's a NAME.
+# &quot;test '=' test&quot; is really &quot;keyword '=' test&quot;, but we have no such token.
+# These need to be in a single rule to avoid grammar that is ambiguous
+# to our LL(1) parser. Even though 'test' includes '*expr' in star_expr,
+# we explicitly match '*' here, too, to give it proper precedence.
+# Illegal combinations and orderings are blocked in ast.c:
+# multiple (test comp_for) arguments are blocked; keyword unpackings
+# that precede iterable unpackings are blocked; etc.
+argument: ( test [comp_for] |
+            test '=' test |
+            '**' test |
+            '*' test )
+
+comp_iter: comp_for | comp_if
+sync_comp_for: 'for' exprlist 'in' or_test [comp_iter]
+comp_for: ['async'] sync_comp_for
+comp_if: 'if' test_nocond [comp_iter]
+
+# not used in grammar, but may appear in &quot;node&quot; passed from Parser to Compiler
+encoding_decl: NAME
+
+yield_expr: 'yield' [yield_arg]
+yield_arg: 'from' test | testlist_star_expr
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+&lt;/details&gt;
+
+&lt;p&gt;When executing a module passed to the interpreter on the command line, a call to the &lt;code class=&quot;highlighter-rouge&quot;&gt;PyParser_ParseFileObject&lt;/code&gt; function initiates the parsing of the module. This function calls the tokenization function, &lt;code class=&quot;highlighter-rouge&quot;&gt;PyTokenizer_FromFile&lt;/code&gt;, passing the module file name as argument. The tokenization function breaks up the content of the module into legal python tokens or throws an exception when an illegal value is found.&lt;/p&gt;
+
+&lt;h3 id=&quot;python-tokens&quot;&gt;Python Tokens&lt;/h3&gt;
+&lt;p&gt;Python source code is made up of tokens. Python has a number of tokens such as the following:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;identifiers: These are names that defined by a programmer. They include function names, variable names, class names etc. These must conform to the rules of identifiers as specified in the python documentation.&lt;/li&gt;
+  &lt;li&gt;operators: these are special symboles such as &lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;*&lt;/code&gt; that operate on data values and produce results.&lt;/li&gt;
+  &lt;li&gt;delimiters: this group of symbols serve to group expressions, provide punctuations and assignment. Examples in this category include &lt;code class=&quot;highlighter-rouge&quot;&gt;(&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;)&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;{&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;}&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;=&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;*=&lt;/code&gt; etc.&lt;/li&gt;
+  &lt;li&gt;literals: these are symbols that provide a constant value for some type. We have the string and byte literals such as &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Fred&quot;&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;b&quot;Fred&quot;&lt;/code&gt; and numeric literals which include integer literals such as &lt;code class=&quot;highlighter-rouge&quot;&gt;2&lt;/code&gt;, floating point literal such as &lt;code class=&quot;highlighter-rouge&quot;&gt;1e100&lt;/code&gt; and imaginary literals such as &lt;code class=&quot;highlighter-rouge&quot;&gt;10j&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;comments: these are string literals that start with the hash symbol. Comment tokens always end at the end of the physical line.&lt;/li&gt;
+  &lt;li&gt;NEWLINE: this is a special token that denotes the end of a logical line.&lt;/li&gt;
+  &lt;li&gt;INDENT and DEDENT: These token are used to represent indentation levels which group compound statements.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A group of tokens delineated by the NEWLINE token make up a logical line hence we could say that a python program is made up of a sequence of logical lines with each logical line delineated by the NEWLINE token. These logical lines maps to python statements. Each of these logical lines are made up of a number of physical lines that are each terminated by an end-of-line sequence.&lt;/p&gt;
+
+&lt;p&gt;Most times logical lines map to physical line so we have logical line delimited by end-of-line characters. Compound statements can span multiple physical lines&lt;/p&gt;
+
+&lt;p&gt;Logical lines can be joined together implicitly when expression are in parentheses, square brackets or curly braces or explicitly by the use of the backslash character. Indentation also plays a central role in grouping python statements. One of lines in the python grammar is thus suite: &lt;code class=&quot;highlighter-rouge&quot;&gt;simple_stmt | NEWLINE INDENT stmt+ DEDENT&lt;/code&gt; so one of the major task of the python tokenizer is to generate indent and dedent tokens that go into the parse tree.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Python indentation algorithm for generting INDENT and DEDENT tokens&lt;/strong&gt;&lt;/p&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;Expand Code&lt;/summary&gt;
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Init the indent stack with the value 0.
+    For each logical line taking into consideration line-joining:
+        A.  If the current line's indentation is greater than the 
+        indentation at the top of the stack
+            1.  Add the current line's indentation to the top of the stack.
+            2.  Generate an INDENT token.
+        B.  If the current line's indentation is less than the indentation
+         at the top of the stack
+            1. If there is no indentation level on the stack that matches 
+            the current line's indentation report an error.
+            2.  For each value at the top of the stack that is unequal to 
+            the current line's indentation.
+                a.  Remove the value from the top of the stack.
+                b.  Generate a DEDENT token.
+        C.  Tokenize the current line.
+    For every indentation on the stack except 0, produce a DEDENT token.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+&lt;/details&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;PyTokenizer_FromFile&lt;/code&gt; function in the &lt;code class=&quot;highlighter-rouge&quot;&gt;Parser/parsetok.c&lt;/code&gt; module scans the python source file from left to right and top to bottom tokenizing the content of the file. Whitespaces characters other than terminators serve to delimit tokens but are not compulsory. Where there is some ambiguity such as in &lt;code class=&quot;highlighter-rouge&quot;&gt;2+2&lt;/code&gt;, a token comprises the the longest possible string that forms a legal token reading from right to left; in this example the tokens are the literal &lt;code class=&quot;highlighter-rouge&quot;&gt;2&lt;/code&gt;, the operator &lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt; and the literal &lt;code class=&quot;highlighter-rouge&quot;&gt;2&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The tokens generated from the tokenizer are passed to the parser which attempts to build a parse tree according to the python grammar. When the parser encounters a token that violates the grammar, a &lt;code class=&quot;highlighter-rouge&quot;&gt;SyntaxError&lt;/code&gt; exception is thrown. The output from the parser is a parse tree. The &lt;a href=&quot;https://docs.python.org/3.6/library/parser.html#module-parse&quot;&gt;parser&lt;/a&gt; python module provides limited access to the parse tree of a block of python code.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Using the parser module to obtain the parse tree of python code&lt;/strong&gt;&lt;/p&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;Expand Code&lt;/summary&gt;
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;code_str = &quot;&quot;&quot;
+def hello_world():
+    return 'hello world'
+&quot;&quot;&quot;
+&amp;gt;&amp;gt;&amp;gt; import parser
+&amp;gt;&amp;gt;&amp;gt; from pprint import pprint 
+&amp;gt;&amp;gt;&amp;gt; st = parser.suite(code_str)
+&amp;gt;&amp;gt;&amp;gt; pprint(parser.st2list(st))
+[257,
+[269,
+[294,
+[263,
+    [1, 'def'],
+    [1, 'hello_world'],
+    [264, [7, '('], [8, ')']],
+    [11, ':'],
+    [303,
+    [4, ''],
+    [5, ''],
+    [269,
+    [270,
+    [271,
+        [277,
+        [280,
+        [1, 'return'],
+        [330,
+        [304,
+            [308,
+            [309,
+            [310,
+            [311,
+                [314,
+                [315,
+                [316,
+                [317,
+                    [318,
+                    [319,
+                    [320,
+                    [321,
+                        [322, [323, [3, '&quot;hello world&quot;']]]]]]]]]]]]]]]]]]]],
+    [4, '']]],
+    [6, '']]]]],
+[4, ''],
+[0, '']]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+&lt;/details&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/dig-into-python@parse-tree.png&quot; alt=&quot;parse tree&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The first items in the lists, the integer, identifies the production rule in the python grammar. These production rules are all specified in the &lt;code class=&quot;highlighter-rouge&quot;&gt;Include/token.h&lt;/code&gt; (terminals) and &lt;code class=&quot;highlighter-rouge&quot;&gt;Include/graminit.h&lt;/code&gt; (terminals) header files.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Include/token.h&lt;/strong&gt;&lt;/p&gt;
+&lt;details&gt;
+  &lt;summary&gt;Expand Code&lt;/summary&gt;
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/* Token types */
+#ifndef Py_LIMITED_API
+#ifndef Py_TOKEN_H
+#define Py_TOKEN_H
+#ifdef __cplusplus
+extern &quot;C&quot; {
+#endif
+
+#undef TILDE   /* Prevent clash of our definition with system macro. Ex AIX, ioctl.h */
+
+#define ENDMARKER       0
+#define NAME            1
+#define NUMBER          2
+#define STRING          3
+#define NEWLINE         4
+#define INDENT          5
+#define DEDENT          6
+#define LPAR            7
+#define RPAR            8
+#define LSQB            9
+#define RSQB            10
+#define COLON           11
+#define COMMA           12
+#define SEMI            13
+#define PLUS            14
+#define MINUS           15
+#define STAR            16
+#define SLASH           17
+#define VBAR            18
+#define AMPER           19
+#define LESS            20
+#define GREATER         21
+#define EQUAL           22
+#define DOT             23
+#define PERCENT         24
+#define LBRACE          25
+#define RBRACE          26
+#define EQEQUAL         27
+#define NOTEQUAL        28
+#define LESSEQUAL       29
+#define GREATEREQUAL    30
+#define TILDE           31
+#define CIRCUMFLEX      32
+#define LEFTSHIFT       33
+#define RIGHTSHIFT      34
+#define DOUBLESTAR      35
+#define PLUSEQUAL       36
+#define MINEQUAL        37
+#define STAREQUAL       38
+#define SLASHEQUAL      39
+#define PERCENTEQUAL    40
+#define AMPEREQUAL      41
+#define VBAREQUAL       42
+#define CIRCUMFLEXEQUAL 43
+#define LEFTSHIFTEQUAL  44
+#define RIGHTSHIFTEQUAL 45
+#define DOUBLESTAREQUAL 46
+#define DOUBLESLASH     47
+#define DOUBLESLASHEQUAL 48
+#define AT              49
+#define ATEQUAL         50
+#define RARROW          51
+#define ELLIPSIS        52
+/* Don't forget to update the table _PyParser_TokenNames in tokenizer.c! */
+#define OP              53
+#define ERRORTOKEN      54
+/* These aren't used by the C tokenizer but are needed for tokenize.py */
+#define COMMENT         55
+#define NL              56
+#define ENCODING                57
+#define N_TOKENS        58
+
+/* Special definitions for cooperation with parser */
+
+#define NT_OFFSET               256
+
+#define ISTERMINAL(x)           ((x) &amp;lt; NT_OFFSET)
+#define ISNONTERMINAL(x)        ((x) &amp;gt;= NT_OFFSET)
+#define ISEOF(x)                ((x) == ENDMARKER)
+
+
+PyAPI_DATA(const char *) _PyParser_TokenNames[]; /* Token names */
+PyAPI_FUNC(int) PyToken_OneChar(int);
+PyAPI_FUNC(int) PyToken_TwoChars(int, int);
+PyAPI_FUNC(int) PyToken_ThreeChars(int, int, int);
+
+#ifdef __cplusplus
+}
+#endif
+#endif /* !Py_TOKEN_H */
+#endif /* Py_LIMITED_API */
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+
+&lt;/details&gt;
+
+&lt;p&gt;&lt;strong&gt;Include/graminit.h&lt;/strong&gt;&lt;/p&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;Expand Code&lt;/summary&gt;
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/* Generated by Parser/pgen */
+
+#define single_input 256
+#define file_input 257
+#define eval_input 258
+#define decorator 259
+#define decorators 260
+#define decorated 261
+#define async_funcdef 262
+#define funcdef 263
+#define parameters 264
+#define typedargslist 265
+#define tfpdef 266
+#define varargslist 267
+#define vfpdef 268
+#define stmt 269
+#define simple_stmt 270
+#define small_stmt 271
+#define expr_stmt 272
+#define annassign 273
+#define testlist_star_expr 274
+#define augassign 275
+#define del_stmt 276
+#define pass_stmt 277
+#define flow_stmt 278
+#define break_stmt 279
+#define continue_stmt 280
+#define return_stmt 281
+#define yield_stmt 282
+#define raise_stmt 283
+#define import_stmt 284
+#define import_name 285
+#define import_from 286
+#define import_as_name 287
+#define dotted_as_name 288
+#define import_as_names 289
+#define dotted_as_names 290
+#define dotted_name 291
+#define global_stmt 292
+#define nonlocal_stmt 293
+#define assert_stmt 294
+#define compound_stmt 295
+#define async_stmt 296
+#define if_stmt 297
+#define while_stmt 298
+#define for_stmt 299
+#define try_stmt 300
+#define with_stmt 301
+#define with_item 302
+#define except_clause 303
+#define suite 304
+#define test 305
+#define test_nocond 306
+#define lambdef 307
+#define lambdef_nocond 308
+#define or_test 309
+#define and_test 310
+#define not_test 311
+#define comparison 312
+#define comp_op 313
+#define star_expr 314
+#define expr 315
+#define xor_expr 316
+#define and_expr 317
+#define shift_expr 318
+#define arith_expr 319
+#define term 320
+#define factor 321
+#define power 322
+#define atom_expr 323
+#define atom 324
+#define testlist_comp 325
+#define trailer 326
+#define subscriptlist 327
+#define subscript 328
+#define sliceop 329
+#define exprlist 330
+#define testlist 331
+#define dictorsetmaker 332
+#define classdef 333
+#define arglist 334
+#define argument 335
+#define comp_iter 336
+#define sync_comp_for 337
+#define comp_for 338
+#define comp_if 339
+#define encoding_decl 340
+#define yield_expr 341
+#define yield_arg 342
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+&lt;/details&gt;
+
+&lt;p&gt;&lt;strong&gt;Include/node.h&lt;/strong&gt;&lt;/p&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;Expand Code&lt;/summary&gt;
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/* Parse tree node interface */
+
+#ifndef Py_NODE_H
+#define Py_NODE_H
+#ifdef __cplusplus
+extern &quot;C&quot; {
+#endif
+
+typedef struct _node {
+    short               n_type;
+    char                *n_str;
+    int                 n_lineno;
+    int                 n_col_offset;
+    int                 n_nchildren;
+    struct _node        *n_child;
+} node;
+
+PyAPI_FUNC(node *) PyNode_New(int type);
+PyAPI_FUNC(int) PyNode_AddChild(node *n, int type,
+                                      char *str, int lineno, int col_offset);
+PyAPI_FUNC(void) PyNode_Free(node *n);
+#ifndef Py_LIMITED_API
+PyAPI_FUNC(Py_ssize_t) _PyNode_SizeOf(node *n);
+#endif
+
+/* Node access functions */
+#define NCH(n)          ((n)-&amp;gt;n_nchildren)
+
+#define CHILD(n, i)     (&amp;amp;(n)-&amp;gt;n_child[i])
+#define RCHILD(n, i)    (CHILD(n, NCH(n) + i))
+#define TYPE(n)         ((n)-&amp;gt;n_type)
+#define STR(n)          ((n)-&amp;gt;n_str)
+#define LINENO(n)       ((n)-&amp;gt;n_lineno)
+
+/* Assert that the type of a node is what we expect */
+#define REQ(n, type) assert(TYPE(n) == (type))
+
+PyAPI_FUNC(void) PyNode_ListTree(node *);
+
+#ifdef __cplusplus
+}
+#endif
+#endif /* !Py_NODE_H */
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+&lt;/details&gt;</content><author><name>TJYSDSG</name></author><summary type="html">General Description of How the CPython interpreter runs The python executable’s main program is located in the ./Programs/python.c file and it handles some initialization such as making copies of program command line arguments that were passed to the module. The main function then calls the Py_Main function located in the ./Modules/main.c which handles the interpreter initialization process - parsing commandline arguments and setting program flags, reading environment variables, running hooks, carrying out hash randomization etc. As part of the initialization process, Py_Initialize from pylifecycle.c is called; this handles the initialization of the interpreter and thread state data structures - two very important data structures.</summary></entry><entry><title type="html">CMake Notes</title><link href="http://localhost:4000/2018/09/07/cmake-notes.html" rel="alternate" type="text/html" title="CMake Notes" /><published>2018-09-07T00:00:00+08:00</published><updated>2018-09-07T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/07/cmake-notes</id><content type="html" xml:base="http://localhost:4000/2018/09/07/cmake-notes.html">&lt;h1 id=&quot;cmake-cheatsheet&quot;&gt;CMake Cheatsheet&lt;/h1&gt;
 &lt;h2 id=&quot;basic-template&quot;&gt;Basic Template&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cmake_minimum_required(VERSION X.X)
 project (&amp;lt;your project name here&amp;gt;)

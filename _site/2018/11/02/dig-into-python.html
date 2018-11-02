@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html>
+  <script src="/js/jquery.min.js" type="text/javascript"></script>
+  <script src="/js/pagify.js" type="text/javascript"></script>
+  <!-- Mathjax Support -->
+</script>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Dig into CPython</title>
+  <meta name="description" content="General Description of How the CPython interpreter runsThe python executable’s main program is located in the ./Programs/python.c file and it handles some in...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/2018/11/02/dig-into-python.html">
+</head>
+
+  <body>
+    
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">TJYSDSG</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Dig into CPython</h1>
+    <p class="post-meta"><time datetime="2018-11-02T00:00:00+08:00" itemprop="datePublished">Nov 2, 2018</time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">TJYSDSG</span></span></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h1 id="general-description-of-how-the-cpython-interpreter-runs">General Description of How the CPython interpreter runs</h1>
+<p>The python executable’s main program is located in the <code class="highlighter-rouge">./Programs/python.c</code> file and it handles some initialization such as making copies of program command line arguments that were passed to the module. The main function then calls the <code class="highlighter-rouge">Py_Main</code> function located in the <code class="highlighter-rouge">./Modules/main.c</code> which handles the interpreter initialization process - parsing commandline arguments and setting program flags, reading environment variables, running hooks, carrying out hash randomization etc. As part of the initialization process, <code class="highlighter-rouge">Py_Initialize</code> from <code class="highlighter-rouge">pylifecycle.c</code> is called; this handles the initialization of the interpreter and thread state data structures - two very important data structures.</p>
+
+<p>The interpreter state data structure</p>
+
+<details>
+  <summary>Expand Code</summary>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>typedef struct _is {
+ 
+         struct _is *next;
+         struct _ts *tstate_head;
+ 
+         PyObject *modules;
+         PyObject *modules_by_index;
+         PyObject *sysdict;
+         PyObject *builtins;
+         PyObject *importlib;
+ 
+         PyObject *codec_search_path;
+         PyObject *codec_search_cache;
+         PyObject *codec_error_registry;
+         int codecs_initialized;
+         int fscodec_initialized;
+ 
+         PyObject *builtins_copy;
+     } PyInterpreterState;
+</code></pre></div>  </div>
+</details>
+<ol>
+  <li>The <code class="highlighter-rouge">*next</code> field is a reference to another interpreter instance as multiple python interpreters can exist within the same process.</li>
+  <li>The <code class="highlighter-rouge">*tstate_head</code> field points to the main thread of execution - in the event that the python program is multithreaded then the interpreter is shared by all threads created by the program - the structure of a thread state is discussed shortly.</li>
+  <li>The modules, <code class="highlighter-rouge">modules_by_index</code>, <code class="highlighter-rouge">sysdict</code>, <code class="highlighter-rouge">builtins</code> and <code class="highlighter-rouge">importlib</code> are self explanatory - they are all defined as instances of <code class="highlighter-rouge">PyObject</code> which is the root type for all python objects in the virtual machine world. Python objects are covered in more detail in the chapters that will follow.</li>
+  <li>The <code class="highlighter-rouge">codec*</code> related fields hold information that help with the location and loading of encodings. These are very important for decoding bytes.</li>
+</ol>
+
+<p>Part of the thread data structure</p>
+<details>
+  <summary>Expand Code</summary>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     typedef struct _ts {
+         struct _ts *prev;
+         struct _ts *next;
+         PyInterpreterState *interp;
+ 
+         struct _frame *frame;
+         int recursion_depth;
+         char overflowed; 
+                         
+         char recursion_critical; 
+         int tracing;
+         int use_tracing;
+ 
+         Py_tracefunc c_profilefunc;
+         Py_tracefunc c_tracefunc;
+         PyObject *c_profileobj;
+         PyObject *c_traceobj;
+ 
+         PyObject *curexc_type;
+         PyObject *curexc_value;
+         PyObject *curexc_traceback;
+ 
+         PyObject *exc_type;
+         PyObject *exc_value;
+         PyObject *exc_traceback;
+ 
+         PyObject *dict;  /* Stores per-thread state */
+         int gilstate_counter;
+ 
+         ... 
+     } PyThreadState;
+
+</code></pre></div>  </div>
+</details>
+
+<p>Once all the initialization is complete, the <code class="highlighter-rouge">Py_Main</code> function invokes the <code class="highlighter-rouge">run_file</code> function also located in the <code class="highlighter-rouge">main.c</code> module. The following series of function calls: <code class="highlighter-rouge">PyRun_AnyFileExFlags</code> -&gt; <code class="highlighter-rouge">PyRun_SimpleFileExFlags</code>-&gt;<code class="highlighter-rouge">PyRun_FileExFlags</code>-&gt;<code class="highlighter-rouge">PyParser_ASTFromFileObject</code> are made to the <code class="highlighter-rouge">PyParser_ASTFromFileObject</code> function. The <code class="highlighter-rouge">PyRun_SimpleFileExFlags</code> function call creates the <code class="highlighter-rouge">__main__</code> namespace in which the file contents will be executed. It also checks if a <code class="highlighter-rouge">.pyc</code> version of the file exists - the <code class="highlighter-rouge">.pyc</code> file is just a file containing the compiled version of the file being executed. In the case that the file has a pyc version then an attempt will be made to read it in as binary and then run it. In this case, there is no pyc file so the <code class="highlighter-rouge">PyRun_FileExFlags</code> is called and so on. The <code class="highlighter-rouge">PyParser_ASTFromFileObject</code> function calls the <code class="highlighter-rouge">PyParser_ParseFileObject</code> which reads the module content and builds a parse tree from it. The parse tree created is then passed to the <code class="highlighter-rouge">PyParser_ASTFromNodeObject</code> which then goes ahead to create an abstract syntax tree from the parse tree.</p>
+
+<p>The AST generated is then passed to the <code class="highlighter-rouge">run_mod</code> function. This function invokes the <code class="highlighter-rouge">PyAST_CompileObject</code> function that creates code objects from the AST. Do note that the bytecode generated during the call to <code class="highlighter-rouge">PyAST_CompileObject</code> is passed through a simple <code class="highlighter-rouge">peephole</code> optimizer that carries out low hanging optimization of the generated bytecode before the code objects are created. The <code class="highlighter-rouge">run_mod</code> function then invokes <code class="highlighter-rouge">PyEval_EvalCode</code> from the <code class="highlighter-rouge">ceval.c</code> file on the code object. This results in another series of function call: <code class="highlighter-rouge">PyEval_EvalCode</code>-&gt;<code class="highlighter-rouge">PyEval_EvalCode</code>-&gt;<code class="highlighter-rouge">_PyEval_EvalCodeWithName</code>-&gt;<code class="highlighter-rouge">_PyEval_EvalFrameEx</code> function calls. The code object is passed as an argument into most each of these functions in one form or another. The <code class="highlighter-rouge">_PyEval_EvalFrameEx</code> is the atual interpreter loop that handles the execution of code objects. It is however not just invoked with a code object as argument rather a frame object with has a field that references a code object is one of its arguments. This frame object provides the context for the execution of the code object. A very simplified version of what happens here is that the interpreter loop continuously reads the next instruction pointed to by the instruction counter from an array of instructions. It then executes this instruction - adding or removing objects from the value stack in the process (where is this value stack), till there are no more instructions to be executed in the array or something exceptional that breaks this loop occurs.</p>
+
+<p>Dissamblying a python function</p>
+
+<details>
+  <summary>Expand Code</summary>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; def square(x):
+        return x*x 
+ 
+&gt;&gt;&gt; dis(square)
+    2           0 LOAD_FAST                0 (x)
+                2 LOAD_FAST                0 (x)
+                4 BINARY_MULTIPLY     
+                6 RETURN_VALUE     
+</code></pre></div>  </div>
+</details>
+
+<p>The <code class="highlighter-rouge">./Include/opcodes.h</code> header file contains a full listing of all the instruction/opcodes for the python virtual machine.</p>
+
+<details>
+  <summary>Expand Code</summary>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/* Auto-generated by Tools/scripts/generate_opcode_h.py from Lib/opcode.py */
+#ifndef Py_OPCODE_H
+#define Py_OPCODE_H
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+    /* Instruction opcodes for compiled code */
+#define POP_TOP                   1
+#define ROT_TWO                   2
+#define ROT_THREE                 3
+#define DUP_TOP                   4
+#define DUP_TOP_TWO               5
+#define ROT_FOUR                  6
+#define NOP                       9
+#define UNARY_POSITIVE           10
+#define UNARY_NEGATIVE           11
+#define UNARY_NOT                12
+#define UNARY_INVERT             15
+#define BINARY_MATRIX_MULTIPLY   16
+#define INPLACE_MATRIX_MULTIPLY  17
+#define BINARY_POWER             19
+#define BINARY_MULTIPLY          20
+#define BINARY_MODULO            22
+#define BINARY_ADD               23
+#define BINARY_SUBTRACT          24
+#define BINARY_SUBSCR            25
+#define BINARY_FLOOR_DIVIDE      26
+#define BINARY_TRUE_DIVIDE       27
+#define INPLACE_FLOOR_DIVIDE     28
+#define INPLACE_TRUE_DIVIDE      29
+#define GET_AITER                50
+#define GET_ANEXT                51
+#define BEFORE_ASYNC_WITH        52
+#define BEGIN_FINALLY            53
+#define END_ASYNC_FOR            54
+#define INPLACE_ADD              55
+#define INPLACE_SUBTRACT         56
+#define INPLACE_MULTIPLY         57
+#define INPLACE_MODULO           59
+#define STORE_SUBSCR             60
+#define DELETE_SUBSCR            61
+#define BINARY_LSHIFT            62
+#define BINARY_RSHIFT            63
+#define BINARY_AND               64
+#define BINARY_XOR               65
+#define BINARY_OR                66
+#define INPLACE_POWER            67
+#define GET_ITER                 68
+#define GET_YIELD_FROM_ITER      69
+#define PRINT_EXPR               70
+#define LOAD_BUILD_CLASS         71
+#define YIELD_FROM               72
+#define GET_AWAITABLE            73
+#define INPLACE_LSHIFT           75
+#define INPLACE_RSHIFT           76
+#define INPLACE_AND              77
+#define INPLACE_XOR              78
+#define INPLACE_OR               79
+#define WITH_CLEANUP_START       81
+#define WITH_CLEANUP_FINISH      82
+#define RETURN_VALUE             83
+#define IMPORT_STAR              84
+#define SETUP_ANNOTATIONS        85
+#define YIELD_VALUE              86
+#define POP_BLOCK                87
+#define END_FINALLY              88
+#define POP_EXCEPT               89
+#define HAVE_ARGUMENT            90
+#define STORE_NAME               90
+#define DELETE_NAME              91
+#define UNPACK_SEQUENCE          92
+#define FOR_ITER                 93
+#define UNPACK_EX                94
+#define STORE_ATTR               95
+#define DELETE_ATTR              96
+#define STORE_GLOBAL             97
+#define DELETE_GLOBAL            98
+#define LOAD_CONST              100
+#define LOAD_NAME               101
+#define BUILD_TUPLE             102
+#define BUILD_LIST              103
+#define BUILD_SET               104
+#define BUILD_MAP               105
+#define LOAD_ATTR               106
+#define COMPARE_OP              107
+#define IMPORT_NAME             108
+#define IMPORT_FROM             109
+#define JUMP_FORWARD            110
+#define JUMP_IF_FALSE_OR_POP    111
+#define JUMP_IF_TRUE_OR_POP     112
+#define JUMP_ABSOLUTE           113
+#define POP_JUMP_IF_FALSE       114
+#define POP_JUMP_IF_TRUE        115
+#define LOAD_GLOBAL             116
+#define SETUP_FINALLY           122
+#define LOAD_FAST               124
+#define STORE_FAST              125
+#define DELETE_FAST             126
+#define RAISE_VARARGS           130
+#define CALL_FUNCTION           131
+#define MAKE_FUNCTION           132
+#define BUILD_SLICE             133
+#define LOAD_CLOSURE            135
+#define LOAD_DEREF              136
+#define STORE_DEREF             137
+#define DELETE_DEREF            138
+#define CALL_FUNCTION_KW        141
+#define CALL_FUNCTION_EX        142
+#define SETUP_WITH              143
+#define EXTENDED_ARG            144
+#define LIST_APPEND             145
+#define SET_ADD                 146
+#define MAP_ADD                 147
+#define LOAD_CLASSDEREF         148
+#define BUILD_LIST_UNPACK       149
+#define BUILD_MAP_UNPACK        150
+#define BUILD_MAP_UNPACK_WITH_CALL 151
+#define BUILD_TUPLE_UNPACK      152
+#define BUILD_SET_UNPACK        153
+#define SETUP_ASYNC_WITH        154
+#define FORMAT_VALUE            155
+#define BUILD_CONST_KEY_MAP     156
+#define BUILD_STRING            157
+#define BUILD_TUPLE_UNPACK_WITH_CALL 158
+#define LOAD_METHOD             160
+#define CALL_METHOD             161
+#define CALL_FINALLY            162
+#define POP_FINALLY             163
+
+/* EXCEPT_HANDLER is a special, implicit block type which is created when
+   entering an except handler. It is not an opcode but we define it here
+   as we want it to be available to both frameobject.c and ceval.c, while
+   remaining private.*/
+#define EXCEPT_HANDLER 257
+
+
+enum cmp_op {PyCmp_LT=Py_LT, PyCmp_LE=Py_LE, PyCmp_EQ=Py_EQ, PyCmp_NE=Py_NE,
+                PyCmp_GT=Py_GT, PyCmp_GE=Py_GE, PyCmp_IN, PyCmp_NOT_IN,
+                PyCmp_IS, PyCmp_IS_NOT, PyCmp_EXC_MATCH, PyCmp_BAD};
+
+#define HAS_ARG(op) ((op) &gt;= HAVE_ARGUMENT)
+
+#ifdef __cplusplus
+}
+#endif
+#endif /* !Py_OPCODE_H */
+</code></pre></div>  </div>
+</details>
+
+<p>After all the instructions have been the executed, the <code class="highlighter-rouge">Py_Main</code> function continues its execution but this time around it starts the clean up process. Just as <code class="highlighter-rouge">Py_Initialize</code> was called to perform initialization during the interpreter startup, <code class="highlighter-rouge">Py_FinalizeEx</code> is invoked to do some clean-up work; this clean-up process involves waiting for threads to exit, calling any exit hooks and also freeing up any memory allocated by the interpreter that is still in use.</p>
+
+<h1 id="how-is-python-code-compiled-into-bytecode">How is Python Code Compiled into Bytecode</h1>
+
+<ul>
+  <li>Parsing the python source code into a parse tree.</li>
+  <li>Transforming the parse tree into an abstract syntax tree (AST).</li>
+  <li>Generation of the symbol table.</li>
+  <li>Generation of the code object from the AST.
+    <ul>
+      <li>Transforming the AST into a flow control graph.</li>
+      <li>Emitting a code object from the control flow graph.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The python parser is an LL parser. The <code class="highlighter-rouge">Grammar/Grammar</code> module contains the Extended Backus-Naur Form (EBNF) grammar specification for the Python language.</p>
+
+<details>
+  <summary>Expand Code</summary>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># https://devguide.python.org/grammar/
+
+# Start symbols for the grammar:
+#       single_input is a single interactive statement;
+#       file_input is a module or sequence of commands read from an input file;
+#       eval_input is the input for the eval() functions.
+# NB: compound_stmt in single_input is followed by extra NEWLINE!
+single_input: NEWLINE | simple_stmt | compound_stmt NEWLINE
+file_input: (NEWLINE | stmt)* ENDMARKER
+eval_input: testlist NEWLINE* ENDMARKER
+
+decorator: '@' dotted_name [ '(' [arglist] ')' ] NEWLINE
+decorators: decorator+
+decorated: decorators (classdef | funcdef | async_funcdef)
+
+async_funcdef: 'async' funcdef
+funcdef: 'def' NAME parameters ['-&gt;' test] ':' suite
+
+parameters: '(' [typedargslist] ')'
+typedargslist: (tfpdef ['=' test] (',' tfpdef ['=' test])* [',' [
+        '*' [tfpdef] (',' tfpdef ['=' test])* [',' ['**' tfpdef [',']]]
+      | '**' tfpdef [',']]]
+  | '*' [tfpdef] (',' tfpdef ['=' test])* [',' ['**' tfpdef [',']]]
+  | '**' tfpdef [','])
+tfpdef: NAME [':' test]
+varargslist: (vfpdef ['=' test] (',' vfpdef ['=' test])* [',' [
+        '*' [vfpdef] (',' vfpdef ['=' test])* [',' ['**' vfpdef [',']]]
+      | '**' vfpdef [',']]]
+  | '*' [vfpdef] (',' vfpdef ['=' test])* [',' ['**' vfpdef [',']]]
+  | '**' vfpdef [',']
+)
+vfpdef: NAME
+
+stmt: simple_stmt | compound_stmt
+simple_stmt: small_stmt (';' small_stmt)* [';'] NEWLINE
+small_stmt: (expr_stmt | del_stmt | pass_stmt | flow_stmt |
+             import_stmt | global_stmt | nonlocal_stmt | assert_stmt)
+expr_stmt: testlist_star_expr (annassign | augassign (yield_expr|testlist) |
+                     ('=' (yield_expr|testlist_star_expr))*)
+annassign: ':' test ['=' test]
+testlist_star_expr: (test|star_expr) (',' (test|star_expr))* [',']
+augassign: ('+=' | '-=' | '*=' | '@=' | '/=' | '%=' | '&amp;=' | '|=' | '^=' |
+            '&lt;&lt;=' | '&gt;&gt;=' | '**=' | '//=')
+# For normal and annotated assignments, additional restrictions enforced by the interpreter
+del_stmt: 'del' exprlist
+pass_stmt: 'pass'
+flow_stmt: break_stmt | continue_stmt | return_stmt | raise_stmt | yield_stmt
+break_stmt: 'break'
+continue_stmt: 'continue'
+return_stmt: 'return' [testlist_star_expr]
+yield_stmt: yield_expr
+raise_stmt: 'raise' [test ['from' test]]
+import_stmt: import_name | import_from
+import_name: 'import' dotted_as_names
+# note below: the ('.' | '...') is necessary because '...' is tokenized as ELLIPSIS
+import_from: ('from' (('.' | '...')* dotted_name | ('.' | '...')+)
+              'import' ('*' | '(' import_as_names ')' | import_as_names))
+import_as_name: NAME ['as' NAME]
+dotted_as_name: dotted_name ['as' NAME]
+import_as_names: import_as_name (',' import_as_name)* [',']
+dotted_as_names: dotted_as_name (',' dotted_as_name)*
+dotted_name: NAME ('.' NAME)*
+global_stmt: 'global' NAME (',' NAME)*
+nonlocal_stmt: 'nonlocal' NAME (',' NAME)*
+assert_stmt: 'assert' test [',' test]
+
+compound_stmt: if_stmt | while_stmt | for_stmt | try_stmt | with_stmt | funcdef | classdef | decorated | async_stmt
+async_stmt: 'async' (funcdef | with_stmt | for_stmt)
+if_stmt: 'if' test ':' suite ('elif' test ':' suite)* ['else' ':' suite]
+while_stmt: 'while' test ':' suite ['else' ':' suite]
+for_stmt: 'for' exprlist 'in' testlist ':' suite ['else' ':' suite]
+try_stmt: ('try' ':' suite
+           ((except_clause ':' suite)+
+            ['else' ':' suite]
+            ['finally' ':' suite] |
+           'finally' ':' suite))
+with_stmt: 'with' with_item (',' with_item)*  ':' suite
+with_item: test ['as' expr]
+# NB compile.c makes sure that the default except clause is last
+except_clause: 'except' [test ['as' NAME]]
+suite: simple_stmt | NEWLINE INDENT stmt+ DEDENT
+
+test: or_test ['if' or_test 'else' test] | lambdef
+test_nocond: or_test | lambdef_nocond
+lambdef: 'lambda' [varargslist] ':' test
+lambdef_nocond: 'lambda' [varargslist] ':' test_nocond
+or_test: and_test ('or' and_test)*
+and_test: not_test ('and' not_test)*
+not_test: 'not' not_test | comparison
+comparison: expr (comp_op expr)*
+# &lt;&gt; isn't actually a valid comparison operator in Python. It's here for the
+# sake of a __future__ import described in PEP 401 (which really works :-)
+comp_op: '&lt;'|'&gt;'|'=='|'&gt;='|'&lt;='|'&lt;&gt;'|'!='|'in'|'not' 'in'|'is'|'is' 'not'
+star_expr: '*' expr
+expr: xor_expr ('|' xor_expr)*
+xor_expr: and_expr ('^' and_expr)*
+and_expr: shift_expr ('&amp;' shift_expr)*
+shift_expr: arith_expr (('&lt;&lt;'|'&gt;&gt;') arith_expr)*
+arith_expr: term (('+'|'-') term)*
+term: factor (('*'|'@'|'/'|'%'|'//') factor)*
+factor: ('+'|'-'|'~') factor | power
+power: atom_expr ['**' factor]
+atom_expr: ['await'] atom trailer*
+atom: ('(' [yield_expr|testlist_comp] ')' |
+       '[' [testlist_comp] ']' |
+       '{' [dictorsetmaker] '}' |
+       NAME | NUMBER | STRING+ | '...' | 'None' | 'True' | 'False')
+testlist_comp: (test|star_expr) ( comp_for | (',' (test|star_expr))* [','] )
+trailer: '(' [arglist] ')' | '[' subscriptlist ']' | '.' NAME
+subscriptlist: subscript (',' subscript)* [',']
+subscript: test | [test] ':' [test] [sliceop]
+sliceop: ':' [test]
+exprlist: (expr|star_expr) (',' (expr|star_expr))* [',']
+testlist: test (',' test)* [',']
+dictorsetmaker: ( ((test ':' test | '**' expr)
+                   (comp_for | (',' (test ':' test | '**' expr))* [','])) |
+                  ((test | star_expr)
+                   (comp_for | (',' (test | star_expr))* [','])) )
+
+classdef: 'class' NAME ['(' [arglist] ')'] ':' suite
+
+arglist: argument (',' argument)*  [',']
+
+# The reason that keywords are test nodes instead of NAME is that using NAME
+# results in an ambiguity. ast.c makes sure it's a NAME.
+# "test '=' test" is really "keyword '=' test", but we have no such token.
+# These need to be in a single rule to avoid grammar that is ambiguous
+# to our LL(1) parser. Even though 'test' includes '*expr' in star_expr,
+# we explicitly match '*' here, too, to give it proper precedence.
+# Illegal combinations and orderings are blocked in ast.c:
+# multiple (test comp_for) arguments are blocked; keyword unpackings
+# that precede iterable unpackings are blocked; etc.
+argument: ( test [comp_for] |
+            test '=' test |
+            '**' test |
+            '*' test )
+
+comp_iter: comp_for | comp_if
+sync_comp_for: 'for' exprlist 'in' or_test [comp_iter]
+comp_for: ['async'] sync_comp_for
+comp_if: 'if' test_nocond [comp_iter]
+
+# not used in grammar, but may appear in "node" passed from Parser to Compiler
+encoding_decl: NAME
+
+yield_expr: 'yield' [yield_arg]
+yield_arg: 'from' test | testlist_star_expr
+</code></pre></div>  </div>
+</details>
+
+<p>When executing a module passed to the interpreter on the command line, a call to the <code class="highlighter-rouge">PyParser_ParseFileObject</code> function initiates the parsing of the module. This function calls the tokenization function, <code class="highlighter-rouge">PyTokenizer_FromFile</code>, passing the module file name as argument. The tokenization function breaks up the content of the module into legal python tokens or throws an exception when an illegal value is found.</p>
+
+<h3 id="python-tokens">Python Tokens</h3>
+<p>Python source code is made up of tokens. Python has a number of tokens such as the following:</p>
+
+<ul>
+  <li>identifiers: These are names that defined by a programmer. They include function names, variable names, class names etc. These must conform to the rules of identifiers as specified in the python documentation.</li>
+  <li>operators: these are special symboles such as <code class="highlighter-rouge">+</code>, <code class="highlighter-rouge">*</code> that operate on data values and produce results.</li>
+  <li>delimiters: this group of symbols serve to group expressions, provide punctuations and assignment. Examples in this category include <code class="highlighter-rouge">(</code>, <code class="highlighter-rouge">)</code>, <code class="highlighter-rouge">{</code>,<code class="highlighter-rouge">}</code>, <code class="highlighter-rouge">=</code>, <code class="highlighter-rouge">*=</code> etc.</li>
+  <li>literals: these are symbols that provide a constant value for some type. We have the string and byte literals such as <code class="highlighter-rouge">"Fred"</code>, <code class="highlighter-rouge">b"Fred"</code> and numeric literals which include integer literals such as <code class="highlighter-rouge">2</code>, floating point literal such as <code class="highlighter-rouge">1e100</code> and imaginary literals such as <code class="highlighter-rouge">10j</code>.</li>
+  <li>comments: these are string literals that start with the hash symbol. Comment tokens always end at the end of the physical line.</li>
+  <li>NEWLINE: this is a special token that denotes the end of a logical line.</li>
+  <li>INDENT and DEDENT: These token are used to represent indentation levels which group compound statements.</li>
+</ul>
+
+<p>A group of tokens delineated by the NEWLINE token make up a logical line hence we could say that a python program is made up of a sequence of logical lines with each logical line delineated by the NEWLINE token. These logical lines maps to python statements. Each of these logical lines are made up of a number of physical lines that are each terminated by an end-of-line sequence.</p>
+
+<p>Most times logical lines map to physical line so we have logical line delimited by end-of-line characters. Compound statements can span multiple physical lines</p>
+
+<p>Logical lines can be joined together implicitly when expression are in parentheses, square brackets or curly braces or explicitly by the use of the backslash character. Indentation also plays a central role in grouping python statements. One of lines in the python grammar is thus suite: <code class="highlighter-rouge">simple_stmt | NEWLINE INDENT stmt+ DEDENT</code> so one of the major task of the python tokenizer is to generate indent and dedent tokens that go into the parse tree.</p>
+
+<p><strong>Python indentation algorithm for generting INDENT and DEDENT tokens</strong></p>
+
+<details>
+  <summary>Expand Code</summary>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Init the indent stack with the value 0.
+    For each logical line taking into consideration line-joining:
+        A.  If the current line's indentation is greater than the 
+        indentation at the top of the stack
+            1.  Add the current line's indentation to the top of the stack.
+            2.  Generate an INDENT token.
+        B.  If the current line's indentation is less than the indentation
+         at the top of the stack
+            1. If there is no indentation level on the stack that matches 
+            the current line's indentation report an error.
+            2.  For each value at the top of the stack that is unequal to 
+            the current line's indentation.
+                a.  Remove the value from the top of the stack.
+                b.  Generate a DEDENT token.
+        C.  Tokenize the current line.
+    For every indentation on the stack except 0, produce a DEDENT token.
+</code></pre></div>  </div>
+</details>
+
+<p>The <code class="highlighter-rouge">PyTokenizer_FromFile</code> function in the <code class="highlighter-rouge">Parser/parsetok.c</code> module scans the python source file from left to right and top to bottom tokenizing the content of the file. Whitespaces characters other than terminators serve to delimit tokens but are not compulsory. Where there is some ambiguity such as in <code class="highlighter-rouge">2+2</code>, a token comprises the the longest possible string that forms a legal token reading from right to left; in this example the tokens are the literal <code class="highlighter-rouge">2</code>, the operator <code class="highlighter-rouge">+</code> and the literal <code class="highlighter-rouge">2</code>.</p>
+
+<p>The tokens generated from the tokenizer are passed to the parser which attempts to build a parse tree according to the python grammar. When the parser encounters a token that violates the grammar, a <code class="highlighter-rouge">SyntaxError</code> exception is thrown. The output from the parser is a parse tree. The <a href="https://docs.python.org/3.6/library/parser.html#module-parse">parser</a> python module provides limited access to the parse tree of a block of python code.</p>
+
+<p><strong>Using the parser module to obtain the parse tree of python code</strong></p>
+
+<details>
+  <summary>Expand Code</summary>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt;code_str = """
+def hello_world():
+    return 'hello world'
+"""
+&gt;&gt;&gt; import parser
+&gt;&gt;&gt; from pprint import pprint 
+&gt;&gt;&gt; st = parser.suite(code_str)
+&gt;&gt;&gt; pprint(parser.st2list(st))
+[257,
+[269,
+[294,
+[263,
+    [1, 'def'],
+    [1, 'hello_world'],
+    [264, [7, '('], [8, ')']],
+    [11, ':'],
+    [303,
+    [4, ''],
+    [5, ''],
+    [269,
+    [270,
+    [271,
+        [277,
+        [280,
+        [1, 'return'],
+        [330,
+        [304,
+            [308,
+            [309,
+            [310,
+            [311,
+                [314,
+                [315,
+                [316,
+                [317,
+                    [318,
+                    [319,
+                    [320,
+                    [321,
+                        [322, [323, [3, '"hello world"']]]]]]]]]]]]]]]]]]]],
+    [4, '']]],
+    [6, '']]]]],
+[4, ''],
+[0, '']]
+</code></pre></div>  </div>
+</details>
+
+<p><img src="/images/dig-into-python@parse-tree.png" alt="parse tree" /></p>
+
+<p>The first items in the lists, the integer, identifies the production rule in the python grammar. These production rules are all specified in the <code class="highlighter-rouge">Include/token.h</code> (terminals) and <code class="highlighter-rouge">Include/graminit.h</code> (terminals) header files.</p>
+
+<p><strong>Include/token.h</strong></p>
+<details>
+  <summary>Expand Code</summary>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/* Token types */
+#ifndef Py_LIMITED_API
+#ifndef Py_TOKEN_H
+#define Py_TOKEN_H
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#undef TILDE   /* Prevent clash of our definition with system macro. Ex AIX, ioctl.h */
+
+#define ENDMARKER       0
+#define NAME            1
+#define NUMBER          2
+#define STRING          3
+#define NEWLINE         4
+#define INDENT          5
+#define DEDENT          6
+#define LPAR            7
+#define RPAR            8
+#define LSQB            9
+#define RSQB            10
+#define COLON           11
+#define COMMA           12
+#define SEMI            13
+#define PLUS            14
+#define MINUS           15
+#define STAR            16
+#define SLASH           17
+#define VBAR            18
+#define AMPER           19
+#define LESS            20
+#define GREATER         21
+#define EQUAL           22
+#define DOT             23
+#define PERCENT         24
+#define LBRACE          25
+#define RBRACE          26
+#define EQEQUAL         27
+#define NOTEQUAL        28
+#define LESSEQUAL       29
+#define GREATEREQUAL    30
+#define TILDE           31
+#define CIRCUMFLEX      32
+#define LEFTSHIFT       33
+#define RIGHTSHIFT      34
+#define DOUBLESTAR      35
+#define PLUSEQUAL       36
+#define MINEQUAL        37
+#define STAREQUAL       38
+#define SLASHEQUAL      39
+#define PERCENTEQUAL    40
+#define AMPEREQUAL      41
+#define VBAREQUAL       42
+#define CIRCUMFLEXEQUAL 43
+#define LEFTSHIFTEQUAL  44
+#define RIGHTSHIFTEQUAL 45
+#define DOUBLESTAREQUAL 46
+#define DOUBLESLASH     47
+#define DOUBLESLASHEQUAL 48
+#define AT              49
+#define ATEQUAL         50
+#define RARROW          51
+#define ELLIPSIS        52
+/* Don't forget to update the table _PyParser_TokenNames in tokenizer.c! */
+#define OP              53
+#define ERRORTOKEN      54
+/* These aren't used by the C tokenizer but are needed for tokenize.py */
+#define COMMENT         55
+#define NL              56
+#define ENCODING                57
+#define N_TOKENS        58
+
+/* Special definitions for cooperation with parser */
+
+#define NT_OFFSET               256
+
+#define ISTERMINAL(x)           ((x) &lt; NT_OFFSET)
+#define ISNONTERMINAL(x)        ((x) &gt;= NT_OFFSET)
+#define ISEOF(x)                ((x) == ENDMARKER)
+
+
+PyAPI_DATA(const char *) _PyParser_TokenNames[]; /* Token names */
+PyAPI_FUNC(int) PyToken_OneChar(int);
+PyAPI_FUNC(int) PyToken_TwoChars(int, int);
+PyAPI_FUNC(int) PyToken_ThreeChars(int, int, int);
+
+#ifdef __cplusplus
+}
+#endif
+#endif /* !Py_TOKEN_H */
+#endif /* Py_LIMITED_API */
+</code></pre></div>  </div>
+
+</details>
+
+<p><strong>Include/graminit.h</strong></p>
+
+<details>
+  <summary>Expand Code</summary>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/* Generated by Parser/pgen */
+
+#define single_input 256
+#define file_input 257
+#define eval_input 258
+#define decorator 259
+#define decorators 260
+#define decorated 261
+#define async_funcdef 262
+#define funcdef 263
+#define parameters 264
+#define typedargslist 265
+#define tfpdef 266
+#define varargslist 267
+#define vfpdef 268
+#define stmt 269
+#define simple_stmt 270
+#define small_stmt 271
+#define expr_stmt 272
+#define annassign 273
+#define testlist_star_expr 274
+#define augassign 275
+#define del_stmt 276
+#define pass_stmt 277
+#define flow_stmt 278
+#define break_stmt 279
+#define continue_stmt 280
+#define return_stmt 281
+#define yield_stmt 282
+#define raise_stmt 283
+#define import_stmt 284
+#define import_name 285
+#define import_from 286
+#define import_as_name 287
+#define dotted_as_name 288
+#define import_as_names 289
+#define dotted_as_names 290
+#define dotted_name 291
+#define global_stmt 292
+#define nonlocal_stmt 293
+#define assert_stmt 294
+#define compound_stmt 295
+#define async_stmt 296
+#define if_stmt 297
+#define while_stmt 298
+#define for_stmt 299
+#define try_stmt 300
+#define with_stmt 301
+#define with_item 302
+#define except_clause 303
+#define suite 304
+#define test 305
+#define test_nocond 306
+#define lambdef 307
+#define lambdef_nocond 308
+#define or_test 309
+#define and_test 310
+#define not_test 311
+#define comparison 312
+#define comp_op 313
+#define star_expr 314
+#define expr 315
+#define xor_expr 316
+#define and_expr 317
+#define shift_expr 318
+#define arith_expr 319
+#define term 320
+#define factor 321
+#define power 322
+#define atom_expr 323
+#define atom 324
+#define testlist_comp 325
+#define trailer 326
+#define subscriptlist 327
+#define subscript 328
+#define sliceop 329
+#define exprlist 330
+#define testlist 331
+#define dictorsetmaker 332
+#define classdef 333
+#define arglist 334
+#define argument 335
+#define comp_iter 336
+#define sync_comp_for 337
+#define comp_for 338
+#define comp_if 339
+#define encoding_decl 340
+#define yield_expr 341
+#define yield_arg 342
+</code></pre></div>  </div>
+</details>
+
+<p><strong>Include/node.h</strong></p>
+
+<details>
+  <summary>Expand Code</summary>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/* Parse tree node interface */
+
+#ifndef Py_NODE_H
+#define Py_NODE_H
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef struct _node {
+    short               n_type;
+    char                *n_str;
+    int                 n_lineno;
+    int                 n_col_offset;
+    int                 n_nchildren;
+    struct _node        *n_child;
+} node;
+
+PyAPI_FUNC(node *) PyNode_New(int type);
+PyAPI_FUNC(int) PyNode_AddChild(node *n, int type,
+                                      char *str, int lineno, int col_offset);
+PyAPI_FUNC(void) PyNode_Free(node *n);
+#ifndef Py_LIMITED_API
+PyAPI_FUNC(Py_ssize_t) _PyNode_SizeOf(node *n);
+#endif
+
+/* Node access functions */
+#define NCH(n)          ((n)-&gt;n_nchildren)
+
+#define CHILD(n, i)     (&amp;(n)-&gt;n_child[i])
+#define RCHILD(n, i)    (CHILD(n, NCH(n) + i))
+#define TYPE(n)         ((n)-&gt;n_type)
+#define STR(n)          ((n)-&gt;n_str)
+#define LINENO(n)       ((n)-&gt;n_lineno)
+
+/* Assert that the type of a node is what we expect */
+#define REQ(n, type) assert(TYPE(n) == (type))
+
+PyAPI_FUNC(void) PyNode_ListTree(node *);
+
+#ifdef __cplusplus
+}
+#endif
+#endif /* !Py_NODE_H */
+</code></pre></div>  </div>
+</details>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li><a href="mailto:tjy1018543509@163.com">tjy1018543509@163.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/tjysdsg"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">tjysdsg</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>I am TJY, a programming maniac 
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
