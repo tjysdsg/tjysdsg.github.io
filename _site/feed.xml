@@ -1,5 +1,76 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-11-11T02:18:07+08:00</updated><id>http://localhost:4000/</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
-</subtitle><entry><title type="html">CMake Notes</title><link href="http://localhost:4000/2018/09/07/cmake-notes.html" rel="alternate" type="text/html" title="CMake Notes" /><published>2018-09-07T00:00:00+08:00</published><updated>2018-09-07T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/07/cmake-notes</id><content type="html" xml:base="http://localhost:4000/2018/09/07/cmake-notes.html">&lt;h1 id=&quot;cmake-cheatsheet&quot;&gt;CMake Cheatsheet&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-11-12T01:02:47+08:00</updated><id>http://localhost:4000/</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
+</subtitle><entry><title type="html">Set Basic Data Type Attributes in C</title><link href="http://localhost:4000/2018/11/12/define-c-data-types.html" rel="alternate" type="text/html" title="Set Basic Data Type Attributes in C" /><published>2018-11-12T00:00:00+08:00</published><updated>2018-11-12T00:00:00+08:00</updated><id>http://localhost:4000/2018/11/12/define-c-data-types</id><content type="html" xml:base="http://localhost:4000/2018/11/12/define-c-data-types.html">&lt;p&gt;An Example&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;typedef signed int __attribute__((mode(TI)))   int128_t;
+typedef unsigned int __attribute__((mode(TI)))   uint128_t;
+typedef float __attribute__((__mode__(__SD__)))   _Decimal32;
+typedef float __attribute__((__mode__(__DD__)))   _Decimal64;
+typedef float __attribute__((__mode__(__TD__)))   _Decimal128;
+The below list describes all of the possible parameters used by the mode attribute.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;What does &lt;code class=&quot;highlighter-rouge&quot;&gt;__XXX__&lt;/code&gt; mean&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;BI: 1 Bit&lt;/li&gt;
+  &lt;li&gt;QI: Quarter Integer; 1 byte&lt;/li&gt;
+  &lt;li&gt;HI: Half Integer; 2 bytes&lt;/li&gt;
+  &lt;li&gt;PSI: Partial Single Integer; 4 bytes; not all bits used&lt;/li&gt;
+  &lt;li&gt;SI: Single Integer; 4 bytes&lt;/li&gt;
+  &lt;li&gt;PDI: Partial Double Integer; 8 bytes; not all bits used&lt;/li&gt;
+  &lt;li&gt;DI: Double Integer; 8 bytes (64-bits)&lt;/li&gt;
+  &lt;li&gt;TI: Tetra Integer; 16 bytes (128-bits)&lt;/li&gt;
+  &lt;li&gt;OI: Octa Integer; 32 bytes (256-bits)&lt;/li&gt;
+  &lt;li&gt;XI: Hexadeca Integer; 64 bytes (512-bits)&lt;/li&gt;
+  &lt;li&gt;QF: Quarter Floating; 1 byte quarter-precision float-point&lt;/li&gt;
+  &lt;li&gt;HF: Half Floating; 2 byte half-precision float-point&lt;/li&gt;
+  &lt;li&gt;TQF: Three Quarter Floating; 3 byte three-quarter-precision float-point&lt;/li&gt;
+  &lt;li&gt;SF: Single Floating; 4 byte single-precision float-point&lt;/li&gt;
+  &lt;li&gt;DF: Double Floating; 8 byte double-precision float-point&lt;/li&gt;
+  &lt;li&gt;XF: Extended Floating; 12 byte extended-precision float-point&lt;/li&gt;
+  &lt;li&gt;TF: Tetra Floating; 16 byte tetra-precision float-point&lt;/li&gt;
+  &lt;li&gt;SD: Single Decimal Floating; 4 byte (32-bit) decimal float-point&lt;/li&gt;
+  &lt;li&gt;DD: Double Decimal Floating; 8 byte (64-bit) decimal float-point&lt;/li&gt;
+  &lt;li&gt;TD: Tetra Decimal Floating; 4 byte (128-bit) decimal float-point&lt;/li&gt;
+  &lt;li&gt;CQI: Complex Quarter Integer; 1 byte&lt;/li&gt;
+  &lt;li&gt;CHI: Complex Half Integer; 2 bytes&lt;/li&gt;
+  &lt;li&gt;CSI: Complex Single Integer; 4 bytes&lt;/li&gt;
+  &lt;li&gt;CDI: Complex Double Integer; 8 bytes&lt;/li&gt;
+  &lt;li&gt;CTI: Complex Tetra Integer; 16 bytes&lt;/li&gt;
+  &lt;li&gt;COI: Complex Octa Integer; 32 bytes&lt;/li&gt;
+  &lt;li&gt;QC: Quarter Complex; 1 byte quarter-precision complex float-point&lt;/li&gt;
+  &lt;li&gt;HC: Half Complex; 2 byte half-precision complex float-point&lt;/li&gt;
+  &lt;li&gt;SC: Single Complex; 4 byte single-precision complex float-point&lt;/li&gt;
+  &lt;li&gt;DC: Double Complex; 8 byte double-precision complex float-point&lt;/li&gt;
+  &lt;li&gt;XC: Extended Complex; 12 byte extended-precision complex float-point&lt;/li&gt;
+  &lt;li&gt;TC: Tetra Complex; 16 byte tetra-precision complex float-point&lt;/li&gt;
+  &lt;li&gt;QQ: Quarter-Fractional; 1-byte signed fractional number&lt;/li&gt;
+  &lt;li&gt;HQ: Half-Fractional; 2-byte signed fractional number&lt;/li&gt;
+  &lt;li&gt;SQ: Single-Fractional; 4-byte (32-bit) signed fractional number&lt;/li&gt;
+  &lt;li&gt;DQ: Double-Fractional; 8-byte (64-bit) signed fractional number&lt;/li&gt;
+  &lt;li&gt;TQ: Tetra-Fractional; 16-byte (128-bit) signed fractional number&lt;/li&gt;
+  &lt;li&gt;UQQ: Unsigned Quarter-Fractional; 1-byte unsigned fractional number&lt;/li&gt;
+  &lt;li&gt;UHQ: Unsigned Half-Fractional; 2-byte unsigned fractional number&lt;/li&gt;
+  &lt;li&gt;USQ: Unsigned Single-Fractional; 4-byte (32-bit) unsigned fractional number&lt;/li&gt;
+  &lt;li&gt;UDQ: Unsigned Double-Fractional; 8-byte (64-bit) unsigned fractional number&lt;/li&gt;
+  &lt;li&gt;UTQ: Unsigned Tetra-Fractional; 16-byte (128-bit) unsigned fractional number&lt;/li&gt;
+  &lt;li&gt;HA: Half-Accumulator; 2-byte (16-bit) signed accumulator&lt;/li&gt;
+  &lt;li&gt;SA: Single-Accumulator; 4-byte (32-bit) signed accumulator&lt;/li&gt;
+  &lt;li&gt;DA: Double-Accumulator; 8-byte (64-bit) signed accumulator&lt;/li&gt;
+  &lt;li&gt;TA: Tetra-Accumulator; 16-byte (128-bit) signed accumulator&lt;/li&gt;
+  &lt;li&gt;UHA: Unsigned Half-Accumulator; 2-byte (16-bit) unsigned accumulator&lt;/li&gt;
+  &lt;li&gt;USA: Unsigned Single-Accumulator; 4-byte (32-bit) unsigned accumulator&lt;/li&gt;
+  &lt;li&gt;UDA: Unsigned Double-Accumulator; 8-byte (64-bit) unsigned accumulator&lt;/li&gt;
+  &lt;li&gt;UTA: Unsigned Tetra-Accumulator; 16-byte (128-bit) unsigned accumulator&lt;/li&gt;
+  &lt;li&gt;CC: Condition Code&lt;/li&gt;
+  &lt;li&gt;BLK: Block&lt;/li&gt;
+  &lt;li&gt;VOID: Void&lt;/li&gt;
+  &lt;li&gt;P: Address mode&lt;/li&gt;
+  &lt;li&gt;V4SI: Vector; 4 single integers&lt;/li&gt;
+  &lt;li&gt;V8QI: Vector; 8 single-byte integers&lt;/li&gt;
+  &lt;li&gt;BND32: 32-bit pointer bound&lt;/li&gt;
+  &lt;li&gt;BND64: 64-bit pointer bound&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>TJYSDSG</name></author><summary type="html">An Example</summary></entry><entry><title type="html">CMake Notes</title><link href="http://localhost:4000/2018/09/07/cmake-notes.html" rel="alternate" type="text/html" title="CMake Notes" /><published>2018-09-07T00:00:00+08:00</published><updated>2018-09-07T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/07/cmake-notes</id><content type="html" xml:base="http://localhost:4000/2018/09/07/cmake-notes.html">&lt;h1 id=&quot;cmake-cheatsheet&quot;&gt;CMake Cheatsheet&lt;/h1&gt;
 &lt;h2 id=&quot;basic-template&quot;&gt;Basic Template&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cmake_minimum_required(VERSION X.X)
 project (&amp;lt;your project name here&amp;gt;)
