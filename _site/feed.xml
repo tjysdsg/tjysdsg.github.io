@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-11-12T01:02:47+08:00</updated><id>http://localhost:4000/</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-11-24T16:50:34+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
 </subtitle><entry><title type="html">Set Basic Data Type Attributes in C</title><link href="http://localhost:4000/2018/11/12/define-c-data-types.html" rel="alternate" type="text/html" title="Set Basic Data Type Attributes in C" /><published>2018-11-12T00:00:00+08:00</published><updated>2018-11-12T00:00:00+08:00</updated><id>http://localhost:4000/2018/11/12/define-c-data-types</id><content type="html" xml:base="http://localhost:4000/2018/11/12/define-c-data-types.html">&lt;p&gt;An Example&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;typedef signed int __attribute__((mode(TI)))   int128_t;
@@ -6,7 +6,6 @@ typedef unsigned int __attribute__((mode(TI)))   uint128_t;
 typedef float __attribute__((__mode__(__SD__)))   _Decimal32;
 typedef float __attribute__((__mode__(__DD__)))   _Decimal64;
 typedef float __attribute__((__mode__(__TD__)))   _Decimal128;
-The below list describes all of the possible parameters used by the mode attribute.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;What does &lt;code class=&quot;highlighter-rouge&quot;&gt;__XXX__&lt;/code&gt; mean&lt;/p&gt;
@@ -90,18 +89,32 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 message(${x}${y})
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;h4 id=&quot;for-loop&quot;&gt;For-Loop&lt;/h4&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SET(x 3 2)
 FOREACH(val${x})
 MESSAGE(${val})
 ENDFOREACH(val)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;h4 id=&quot;set-output-directory&quot;&gt;Set Output Directory&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Also:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set_target_properties(&amp;lt;target-name&amp;gt;
+    PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY &quot;${CMAKE_BINARY_DIR}/lib&quot;
+    LIBRARY_OUTPUT_DIRECTORY &quot;${CMAKE_BINARY_DIR}/lib&quot;
+    RUNTIME_OUTPUT_DIRECTORY &quot;${CMAKE_BINARY_DIR}/bin&quot;
+    )
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;h3 id=&quot;details&quot;&gt;Details&lt;/h3&gt;
 
 &lt;p&gt;All variable values are a text string. Text strings can be evaluated as boolean
-expressions (e.g. when used in IF() and WHILE()). The values “FALSE”,
-“OFF”, “NO”, or any string ending in “-NOTFOUND” evaluates be false -
-everything else to true.&lt;/p&gt;
+expressions (e.g. when used in &lt;code class=&quot;highlighter-rouge&quot;&gt;IF()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;WHILE()&lt;/code&gt;). The values &lt;code class=&quot;highlighter-rouge&quot;&gt;FALSE&lt;/code&gt;,
+&lt;code class=&quot;highlighter-rouge&quot;&gt;OFF&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;NO&lt;/code&gt;, or any string ending in &lt;code class=&quot;highlighter-rouge&quot;&gt;-NOTFOUND&lt;/code&gt; evaluates be false and everything else to true.&lt;/p&gt;
 
 &lt;p&gt;Text strings can represent multiple values as a list by separating entities using
 a semicolon.&lt;/p&gt;

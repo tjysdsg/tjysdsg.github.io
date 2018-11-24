@@ -27,6 +27,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 message(${x}${y})
 ```
 
+#### For-Loop
 ```
 SET(x 3 2)
 FOREACH(val${x})
@@ -34,13 +35,27 @@ MESSAGE(${val})
 ENDFOREACH(val)
 ```
 
+#### Set Output Directory
+```
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+```
+Also:
+```
+set_target_properties(<target-name>
+    PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+    )
+```
 
 ### Details
 
 All variable values are a text string. Text strings can be evaluated as boolean
-expressions (e.g. when used in IF() and WHILE()). The values "FALSE",
-"OFF", "NO", or any string ending in "-NOTFOUND" evaluates be false -
-everything else to true.
+expressions (e.g. when used in `IF()` and `WHILE()`). The values `FALSE`,
+`OFF`, `NO`, or any string ending in `-NOTFOUND` evaluates be false and everything else to true.
 
 Text strings can represent multiple values as a list by separating entities using
 a semicolon.

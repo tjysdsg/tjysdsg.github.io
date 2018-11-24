@@ -85,18 +85,32 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 message(${x}${y})
 </code></pre></div></div>
 
+<h4 id="for-loop">For-Loop</h4>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SET(x 3 2)
 FOREACH(val${x})
 MESSAGE(${val})
 ENDFOREACH(val)
 </code></pre></div></div>
 
+<h4 id="set-output-directory">Set Output Directory</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+</code></pre></div></div>
+<p>Also:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set_target_properties(&lt;target-name&gt;
+    PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+    )
+</code></pre></div></div>
+
 <h3 id="details">Details</h3>
 
 <p>All variable values are a text string. Text strings can be evaluated as boolean
-expressions (e.g. when used in IF() and WHILE()). The values “FALSE”,
-“OFF”, “NO”, or any string ending in “-NOTFOUND” evaluates be false -
-everything else to true.</p>
+expressions (e.g. when used in <code class="highlighter-rouge">IF()</code> and <code class="highlighter-rouge">WHILE()</code>). The values <code class="highlighter-rouge">FALSE</code>,
+<code class="highlighter-rouge">OFF</code>, <code class="highlighter-rouge">NO</code>, or any string ending in <code class="highlighter-rouge">-NOTFOUND</code> evaluates be false and everything else to true.</p>
 
 <p>Text strings can represent multiple values as a list by separating entities using
 a semicolon.</p>

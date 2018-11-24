@@ -12,7 +12,6 @@ typedef unsigned int __attribute__((mode(TI)))   uint128_t;
 typedef float __attribute__((__mode__(__SD__)))   _Decimal32;
 typedef float __attribute__((__mode__(__DD__)))   _Decimal64;
 typedef float __attribute__((__mode__(__TD__)))   _Decimal128;
-The below list describes all of the possible parameters used by the mode attribute.
 ```
 
 What does `__XXX__` mean
