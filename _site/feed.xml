@@ -1,5 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-11-24T16:50:34+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
-</subtitle><entry><title type="html">Set Basic Data Type Attributes in C</title><link href="http://localhost:4000/2018/11/12/define-c-data-types.html" rel="alternate" type="text/html" title="Set Basic Data Type Attributes in C" /><published>2018-11-12T00:00:00+08:00</published><updated>2018-11-12T00:00:00+08:00</updated><id>http://localhost:4000/2018/11/12/define-c-data-types</id><content type="html" xml:base="http://localhost:4000/2018/11/12/define-c-data-types.html">&lt;p&gt;An Example&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-12-16T02:48:08+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
+</subtitle><entry><title type="html">Git Notes</title><link href="http://localhost:4000/2018/12/16/git-notes.html" rel="alternate" type="text/html" title="Git Notes" /><published>2018-12-16T00:00:00+08:00</published><updated>2018-12-16T00:00:00+08:00</updated><id>http://localhost:4000/2018/12/16/git-notes</id><content type="html" xml:base="http://localhost:4000/2018/12/16/git-notes.html">&lt;h1 id=&quot;removing-a-file-from-last-git-commit&quot;&gt;Removing a file from last Git commit&lt;/h1&gt;
+
+&lt;h2 id=&quot;purposes&quot;&gt;Purposes&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Remove the file that is commited in one commit&lt;/li&gt;
+  &lt;li&gt;DO NOT cancel its changes in the file system NOR delete it in the file system&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;how&quot;&gt;How&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git reset --soft HEAD^
+git reset HEAD &amp;lt;path/to/unwanted_file&amp;gt;
+git commit -c ORIG_HEAD
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;track-large-files-with-git-lfs-in-all-existing-commits&quot;&gt;Track large files with Git LFS in all existing commits&lt;/h1&gt;
+
+&lt;h2 id=&quot;purposes-1&quot;&gt;Purposes&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Track large files with Git LFS&lt;/li&gt;
+  &lt;li&gt;But have multiple existing commits that have not tracked the files&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;how-1&quot;&gt;How&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git lfs migrate import --include=&quot;*.&amp;lt;extension_of_the_file_you_want_to_track&amp;gt;&quot;
+# following optional, but better because it clean up the repo immediately 
+git reflog expire --expire-unreachable=now --all
+git gc --prune=now
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;clone-only-a-certain-branch-of-a-remote-repo&quot;&gt;Clone only a certain branch of a remote repo&lt;/h1&gt;
+&lt;h2 id=&quot;purposes-2&quot;&gt;Purposes&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Clone a repo&lt;/li&gt;
+  &lt;li&gt;But only clone a specific branch (maybe to reduce downloading time)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;how-2&quot;&gt;How&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone -b &amp;lt;branch_name&amp;gt; --single-branch &amp;lt;repo_url&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;update-all-submodules-to-latest-commit&quot;&gt;Update all submodules to latest commit&lt;/h1&gt;
+&lt;h2 id=&quot;how-3&quot;&gt;How&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git submodule foreach git pull origin master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>TJYSDSG</name></author><summary type="html">Removing a file from last Git commit</summary></entry><entry><title type="html">Set Basic Data Type Attributes in C</title><link href="http://localhost:4000/2018/11/12/define-c-data-types.html" rel="alternate" type="text/html" title="Set Basic Data Type Attributes in C" /><published>2018-11-12T00:00:00+08:00</published><updated>2018-11-12T00:00:00+08:00</updated><id>http://localhost:4000/2018/11/12/define-c-data-types</id><content type="html" xml:base="http://localhost:4000/2018/11/12/define-c-data-types.html">&lt;p&gt;An Example&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;typedef signed int __attribute__((mode(TI)))   int128_t;
 typedef unsigned int __attribute__((mode(TI)))   uint128_t;

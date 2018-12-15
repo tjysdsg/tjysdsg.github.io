@@ -9,12 +9,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>TJYSDSG</title>
-  <meta name="description" content="I am TJY, a programming maniac 
-">
+  <title>Git Notes</title>
+  <meta name="description" content="Removing a file from last Git commit">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/">
+  <link rel="canonical" href="http://localhost:4000/2018/12/16/git-notes.html">
   <link rel="icon" href="/tjy_logo.PNG">
 </head>
 
@@ -58,36 +57,62 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">Posts</h1>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Git Notes</h1>
+    <p class="post-meta"><time datetime="2018-12-16T00:00:00+08:00" itemprop="datePublished">Dec 16, 2018</time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">TJYSDSG</span></span></p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
+  <div class="post-content" itemprop="articleBody">
+    <h1 id="removing-a-file-from-last-git-commit">Removing a file from last Git commit</h1>
 
-        <h2>
-          <a class="post-link" href="/2018/12/16/git-notes.html">Git Notes</a>
-        </h2>
-      </li>
-    
-      <li>
+<h2 id="purposes">Purposes</h2>
+<ul>
+  <li>Remove the file that is commited in one commit</li>
+  <li>DO NOT cancel its changes in the file system NOR delete it in the file system</li>
+</ul>
 
-        <h2>
-          <a class="post-link" href="/2018/11/12/define-c-data-types.html">Set Basic Data Type Attributes in C</a>
-        </h2>
-      </li>
-    
-      <li>
+<h2 id="how">How</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset --soft HEAD^
+git reset HEAD &lt;path/to/unwanted_file&gt;
+git commit -c ORIG_HEAD
+</code></pre></div></div>
 
-        <h2>
-          <a class="post-link" href="/2018/09/07/cmake-notes.html">CMake Notes</a>
-        </h2>
-      </li>
-    
-  </ul>
+<h1 id="track-large-files-with-git-lfs-in-all-existing-commits">Track large files with Git LFS in all existing commits</h1>
 
-</div>
+<h2 id="purposes-1">Purposes</h2>
+<ul>
+  <li>Track large files with Git LFS</li>
+  <li>But have multiple existing commits that have not tracked the files</li>
+</ul>
+
+<h2 id="how-1">How</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git lfs migrate import --include="*.&lt;extension_of_the_file_you_want_to_track&gt;"
+# following optional, but better because it clean up the repo immediately 
+git reflog expire --expire-unreachable=now --all
+git gc --prune=now
+</code></pre></div></div>
+
+<h1 id="clone-only-a-certain-branch-of-a-remote-repo">Clone only a certain branch of a remote repo</h1>
+<h2 id="purposes-2">Purposes</h2>
+<ul>
+  <li>Clone a repo</li>
+  <li>But only clone a specific branch (maybe to reduce downloading time)</li>
+</ul>
+
+<h2 id="how-2">How</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone -b &lt;branch_name&gt; --single-branch &lt;repo_url&gt; 
+</code></pre></div></div>
+
+<h1 id="update-all-submodules-to-latest-commit">Update all submodules to latest commit</h1>
+<h2 id="how-3">How</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule foreach git pull origin master
+</code></pre></div></div>
+
+  </div>
+
+</article>
 
       </div>
     </div>
