@@ -17,33 +17,33 @@ cat files.txt | xargs rm -rf
 ```
 
 # Managing conda environments
-## Creating a virtual environment
+#### Creating a virtual environment
 ```
 conda create -n <myenvname> python=3.7 anaconda
 ```
 
-## Install some Python packages to a virtual environment
+#### Install some Python packages to a virtual environment
 ```
 conda install -n <myenvname> <packagename>
 ```
 
-## Delete a environment
+#### Delete a environment
 ```
 conda remove -n <myenvname> -all
 ```
 
 # Sorting a numpy array `a` in descending order
-## Sort in place
+#### Sort in place
 ```
 a[::-1].sort()
 ```
-## Create a new array
+#### Create a new array
 ```
 np.sort(a)[::-1]
 ```
 
 # Formatting strings
-## `%`-formatting
+#### `%`-formatting
 ```
 >>> name = "Eric"
 >>> "Hello, %s." % name
@@ -59,7 +59,7 @@ or
 'Hello Eric. You are 74.'
 ```
 
-## `str.format()`
+#### `str.format()`
 ```
 >>> "Hello, {}. You are {}.".format(name, age)
 'Hello, Eric. You are 74.'
@@ -72,7 +72,8 @@ or
 'Hello, Eric. You are 74.'
 ```
 
-## f-Strings
+#### f-Strings
+
 ```
 >>> name = "Eric"
 >>> age = 74
@@ -118,4 +119,5 @@ cwd = os.getcwd()
 
 # References
 [Conda Documentation](https://conda.io/docs/index.html)
+
 [Real Python](https://realpython.com/python-f-strings/)

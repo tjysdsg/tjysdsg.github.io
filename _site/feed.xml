@@ -1,5 +1,104 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-12-16T02:48:08+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
-</subtitle><entry><title type="html">Git Notes</title><link href="http://localhost:4000/2018/12/16/git-notes.html" rel="alternate" type="text/html" title="Git Notes" /><published>2018-12-16T00:00:00+08:00</published><updated>2018-12-16T00:00:00+08:00</updated><id>http://localhost:4000/2018/12/16/git-notes</id><content type="html" xml:base="http://localhost:4000/2018/12/16/git-notes.html">&lt;h1 id=&quot;removing-a-file-from-last-git-commit&quot;&gt;Removing a file from last Git commit&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-12-28T20:27:32+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
+</subtitle><entry><title type="html">Python/pip/conda Notes</title><link href="http://localhost:4000/2018/12/28/python-notes.html" rel="alternate" type="text/html" title="Python/pip/conda Notes" /><published>2018-12-28T00:00:00+08:00</published><updated>2018-12-28T00:00:00+08:00</updated><id>http://localhost:4000/2018/12/28/python-notes</id><content type="html" xml:base="http://localhost:4000/2018/12/28/python-notes.html">&lt;h1 id=&quot;uninstalling-package-that-is-installed-by-python-setuppy-install&quot;&gt;Uninstalling package that is installed by &lt;code class=&quot;highlighter-rouge&quot;&gt;python setup.py install&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;Unfortunately, there is no “vanilla” way to uninstall. However, it is still quite easy to do that in two lines of command:&lt;/p&gt;
+
+&lt;p&gt;First, save the files lists&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python setup.py install --record files.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Then, simply rm -rf them&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat files.txt | xargs rm -rf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;managing-conda-environments&quot;&gt;Managing conda environments&lt;/h1&gt;
+&lt;h4 id=&quot;creating-a-virtual-environment&quot;&gt;Creating a virtual environment&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda create -n &amp;lt;myenvname&amp;gt; python=3.7 anaconda
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;install-some-python-packages-to-a-virtual-environment&quot;&gt;Install some Python packages to a virtual environment&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda install -n &amp;lt;myenvname&amp;gt; &amp;lt;packagename&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;delete-a-environment&quot;&gt;Delete a environment&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda remove -n &amp;lt;myenvname&amp;gt; -all
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;sorting-a-numpy-array-a-in-descending-order&quot;&gt;Sorting a numpy array &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt; in descending order&lt;/h1&gt;
+&lt;h4 id=&quot;sort-in-place&quot;&gt;Sort in place&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;a[::-1].sort()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h4 id=&quot;create-a-new-array&quot;&gt;Create a new array&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;np.sort(a)[::-1]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;formatting-strings&quot;&gt;Formatting strings&lt;/h1&gt;
+&lt;h4 id=&quot;-formatting&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;%&lt;/code&gt;-formatting&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; name = &quot;Eric&quot;
+&amp;gt;&amp;gt;&amp;gt; &quot;Hello, %s.&quot; % name
+'Hello, Eric.'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; name = &quot;Eric&quot;
+&amp;gt;&amp;gt;&amp;gt; age = 74
+&amp;gt;&amp;gt;&amp;gt; &quot;Hello, %s. You are %s.&quot; % (name, age)
+'Hello Eric. You are 74.'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;strformat&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;str.format()&lt;/code&gt;&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; &quot;Hello, {}. You are {}.&quot;.format(name, age)
+'Hello, Eric. You are 74.'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; &quot;Hello, {1}. You are {0}.&quot;.format(age, name)
+'Hello, Eric. You are 74.'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;f-strings&quot;&gt;f-Strings&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; name = &quot;Eric&quot;
+&amp;gt;&amp;gt;&amp;gt; age = 74
+&amp;gt;&amp;gt;&amp;gt; f&quot;Hello, {name}. You are {age}.&quot;
+'Hello, Eric. You are 74.'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; F&quot;Hello, {name}. You are {age}.&quot;
+'Hello, Eric. You are 74.'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; name = &quot;Eric&quot;
+&amp;gt;&amp;gt;&amp;gt; profession = &quot;comedian&quot;
+&amp;gt;&amp;gt;&amp;gt; affiliation = &quot;Monty Python&quot;
+&amp;gt;&amp;gt;&amp;gt; message = (
+...     f&quot;Hi {name}. &quot;
+...     f&quot;You are a {profession}. &quot;
+...     f&quot;You were in {affiliation}.&quot;
+... )
+&amp;gt;&amp;gt;&amp;gt; message
+'Hi Eric. You are a comedian. You were in Monty Python.'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;find-current-directory-and-files-directory&quot;&gt;Find current directory and file’s directory&lt;/h1&gt;
+
+&lt;p&gt;To get the full path to the directory a Python file is contained in, write this in that file:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import os
+dir_path = os.path.dirname(os.path.realpath(__file__))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;To get the current working directory:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import os
+cwd = os.getcwd()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://conda.io/docs/index.html&quot;&gt;Conda Documentation&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://realpython.com/python-f-strings/&quot;&gt;Real Python&lt;/a&gt;&lt;/p&gt;</content><author><name>TJYSDSG</name></author><summary type="html">Uninstalling package that is installed by python setup.py install Unfortunately, there is no “vanilla” way to uninstall. However, it is still quite easy to do that in two lines of command:</summary></entry><entry><title type="html">Git Notes</title><link href="http://localhost:4000/2018/12/16/git-notes.html" rel="alternate" type="text/html" title="Git Notes" /><published>2018-12-16T00:00:00+08:00</published><updated>2018-12-16T00:00:00+08:00</updated><id>http://localhost:4000/2018/12/16/git-notes</id><content type="html" xml:base="http://localhost:4000/2018/12/16/git-notes.html">&lt;h1 id=&quot;removing-a-file-from-last-git-commit&quot;&gt;Removing a file from last Git commit&lt;/h1&gt;
 
 &lt;h2 id=&quot;purposes&quot;&gt;Purposes&lt;/h2&gt;
 &lt;ul&gt;
