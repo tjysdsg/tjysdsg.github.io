@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>CMake Notes</title>
-  <meta name="description" content="CMake CheatsheetBasic Template```cmake_minimum_required(VERSION X.X)project ()add_executable( ${SRCS})target_link_libraries( )aux_source_directory(${PROJECT_...">
+  <meta name="description" content="Basic Template```cmake_minimum_required(VERSION X.X)project ()set(CMAKE_CXX_STANDARD 11)">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="http://localhost:4000/2018/09/07/cmake-notes.html">
@@ -65,34 +65,28 @@
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <h1 id="cmake-cheatsheet">CMake Cheatsheet</h1>
-<h2 id="basic-template">Basic Template</h2>
+    <h1 id="basic-template">Basic Template</h1>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake_minimum_required(VERSION X.X)
 project (&lt;your project name here&gt;)
-add_executable(&lt;your project name here&gt; ${SRCS})
-target_link_libraries(&lt;your project name here&gt; &lt;libraries you want to link&gt;)
-aux_source_directory(${PROJECT_SOURCE_DIR}/src SRCS)
+set(CMAKE_CXX_STANDARD 11)
+
 include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories(&lt;target name&gt; PUBLIC ${PROJECT_SOURCE_DIR}/include)
+aux_source_directory(${PROJECT_SOURCE_DIR}/src SRCS)
+
+add_executable(&lt;target name&gt; ${SRCS})
+target_link_libraries(&lt;target name&gt; &lt;libraries you want to link&gt;)
 
 </code></pre></div></div>
 
-<h3 id="useful-commands">Useful Commands</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set(&lt;variable name&gt; &lt;value&gt;)
-# export compile commands can help applications like cppcheck to analyze your codes
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-# output x,y are variable names
-# you can also directly write the text instead of using variables
-message(${x}${y})
-</code></pre></div></div>
-
-<h4 id="for-loop">For-Loop</h4>
+<h2 id="for-loop">For-Loop</h2>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SET(x 3 2)
 FOREACH(val${x})
 MESSAGE(${val})
 ENDFOREACH(val)
 </code></pre></div></div>
 
-<h4 id="set-output-directory">Set Output Directory</h4>
+<h2 id="set-output-directory">Set Output Directory</h2>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -106,19 +100,26 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
     )
 </code></pre></div></div>
 
-<h3 id="details">Details</h3>
+<h2 id="common-used-variables">Common-used Variables</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set(CMAKE_BUILD_TYPE None|Debug|Release|RelWithDebInfo|MinSizeRel)
 
-<p>All variable values are a text string. Text strings can be evaluated as boolean
-expressions (e.g. when used in <code class="highlighter-rouge">IF()</code> and <code class="highlighter-rouge">WHILE()</code>). The values <code class="highlighter-rouge">FALSE</code>,
-<code class="highlighter-rouge">OFF</code>, <code class="highlighter-rouge">NO</code>, or any string ending in <code class="highlighter-rouge">-NOTFOUND</code> evaluates be false and everything else to true.</p>
+set(CMAKE_C_FLAGS|CMAKE_CXX_FLAGS "-Wall -Wextra")
 
-<p>Text strings can represent multiple values as a list by separating entities using
-a semicolon.</p>
+# gdb flag can be set here:
+set(CMAKE_C_FLAGS_DEBUG|CMAKE_CXX_FLAGS_DEBUG "-g")
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SET(x 3 2 ) #x="3;2"
-SET(y hello world !) # y = "hello;world;!"
-SET(z "hello world !") # y = "hello;world;!"
+# optimization flag can be set here:
+set(CMAKE_C_FLAGS_RELEASE|CMAKE_CXX_FLAGS_RELEASE "-O3")
 </code></pre></div></div>
+
+<h2 id="common-used-flags">Common-used Flags</h2>
+
+<p>Besides flags above, there are flags that might be useful:</p>
+
+<p><code class="highlighter-rouge">CMAKE_EXE_LINKER_FLAGS</code> - used by the linker when linking executables
+<code class="highlighter-rouge">CMAKE_SHARED_LINKER_FLAGS</code> - used by linker when linking shared object libraries
+<code class="highlighter-rouge">CMAKE_MODULE_LINKER_FLAGS</code> - used by linker when linking modules
+<code class="highlighter-rouge">CMAKE_STATIC_LINKER_FLAGS</code> - used by linker when linking static object libraries</p>
 
   </div>
 

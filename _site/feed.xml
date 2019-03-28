@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-01T18:08:05+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-28T16:43:09+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
 </subtitle><entry><title type="html">Linux Notes</title><link href="http://localhost:4000/2019/01/01/Linux-Notes.html" rel="alternate" type="text/html" title="Linux Notes" /><published>2019-01-01T00:00:00+08:00</published><updated>2019-01-01T00:00:00+08:00</updated><id>http://localhost:4000/2019/01/01/Linux-Notes</id><content type="html" xml:base="http://localhost:4000/2019/01/01/Linux-Notes.html">&lt;h1 id=&quot;list-files-bigger-than-filesize-specified&quot;&gt;List files bigger than filesize specified&lt;/h1&gt;
 
 &lt;p&gt;To find files larger than 100MB:&lt;/p&gt;
@@ -255,34 +255,28 @@ typedef float __attribute__((__mode__(__TD__)))   _Decimal128;
   &lt;li&gt;V8QI: Vector; 8 single-byte integers&lt;/li&gt;
   &lt;li&gt;BND32: 32-bit pointer bound&lt;/li&gt;
   &lt;li&gt;BND64: 64-bit pointer bound&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>TJYSDSG</name></author><summary type="html">An Example</summary></entry><entry><title type="html">CMake Notes</title><link href="http://localhost:4000/2018/09/07/cmake-notes.html" rel="alternate" type="text/html" title="CMake Notes" /><published>2018-09-07T00:00:00+08:00</published><updated>2018-09-07T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/07/cmake-notes</id><content type="html" xml:base="http://localhost:4000/2018/09/07/cmake-notes.html">&lt;h1 id=&quot;cmake-cheatsheet&quot;&gt;CMake Cheatsheet&lt;/h1&gt;
-&lt;h2 id=&quot;basic-template&quot;&gt;Basic Template&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>TJYSDSG</name></author><summary type="html">An Example</summary></entry><entry><title type="html">CMake Notes</title><link href="http://localhost:4000/2018/09/07/cmake-notes.html" rel="alternate" type="text/html" title="CMake Notes" /><published>2018-09-07T00:00:00+08:00</published><updated>2018-09-07T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/07/cmake-notes</id><content type="html" xml:base="http://localhost:4000/2018/09/07/cmake-notes.html">&lt;h1 id=&quot;basic-template&quot;&gt;Basic Template&lt;/h1&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cmake_minimum_required(VERSION X.X)
 project (&amp;lt;your project name here&amp;gt;)
-add_executable(&amp;lt;your project name here&amp;gt; ${SRCS})
-target_link_libraries(&amp;lt;your project name here&amp;gt; &amp;lt;libraries you want to link&amp;gt;)
-aux_source_directory(${PROJECT_SOURCE_DIR}/src SRCS)
+set(CMAKE_CXX_STANDARD 11)
+
 include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories(&amp;lt;target name&amp;gt; PUBLIC ${PROJECT_SOURCE_DIR}/include)
+aux_source_directory(${PROJECT_SOURCE_DIR}/src SRCS)
+
+add_executable(&amp;lt;target name&amp;gt; ${SRCS})
+target_link_libraries(&amp;lt;target name&amp;gt; &amp;lt;libraries you want to link&amp;gt;)
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;useful-commands&quot;&gt;Useful Commands&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set(&amp;lt;variable name&amp;gt; &amp;lt;value&amp;gt;)
-# export compile commands can help applications like cppcheck to analyze your codes
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-# output x,y are variable names
-# you can also directly write the text instead of using variables
-message(${x}${y})
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;for-loop&quot;&gt;For-Loop&lt;/h4&gt;
+&lt;h2 id=&quot;for-loop&quot;&gt;For-Loop&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SET(x 3 2)
 FOREACH(val${x})
 MESSAGE(${val})
 ENDFOREACH(val)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h4 id=&quot;set-output-directory&quot;&gt;Set Output Directory&lt;/h4&gt;
+&lt;h2 id=&quot;set-output-directory&quot;&gt;Set Output Directory&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -296,16 +290,23 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
     )
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;details&quot;&gt;Details&lt;/h3&gt;
+&lt;h2 id=&quot;common-used-variables&quot;&gt;Common-used Variables&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set(CMAKE_BUILD_TYPE None|Debug|Release|RelWithDebInfo|MinSizeRel)
 
-&lt;p&gt;All variable values are a text string. Text strings can be evaluated as boolean
-expressions (e.g. when used in &lt;code class=&quot;highlighter-rouge&quot;&gt;IF()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;WHILE()&lt;/code&gt;). The values &lt;code class=&quot;highlighter-rouge&quot;&gt;FALSE&lt;/code&gt;,
-&lt;code class=&quot;highlighter-rouge&quot;&gt;OFF&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;NO&lt;/code&gt;, or any string ending in &lt;code class=&quot;highlighter-rouge&quot;&gt;-NOTFOUND&lt;/code&gt; evaluates be false and everything else to true.&lt;/p&gt;
+set(CMAKE_C_FLAGS|CMAKE_CXX_FLAGS &quot;-Wall -Wextra&quot;)
 
-&lt;p&gt;Text strings can represent multiple values as a list by separating entities using
-a semicolon.&lt;/p&gt;
+# gdb flag can be set here:
+set(CMAKE_C_FLAGS_DEBUG|CMAKE_CXX_FLAGS_DEBUG &quot;-g&quot;)
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SET(x 3 2 ) #x=&quot;3;2&quot;
-SET(y hello world !) # y = &quot;hello;world;!&quot;
-SET(z &quot;hello world !&quot;) # y = &quot;hello;world;!&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>TJYSDSG</name></author><summary type="html">CMake Cheatsheet Basic Template ``` cmake_minimum_required(VERSION X.X) project () add_executable( ${SRCS}) target_link_libraries( ) aux_source_directory(${PROJECT_SOURCE_DIR}/src SRCS) include_directories(${PROJECT_SOURCE_DIR}/include)</summary></entry></feed>
+# optimization flag can be set here:
+set(CMAKE_C_FLAGS_RELEASE|CMAKE_CXX_FLAGS_RELEASE &quot;-O3&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;common-used-flags&quot;&gt;Common-used Flags&lt;/h2&gt;
+
+&lt;p&gt;Besides flags above, there are flags that might be useful:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;CMAKE_EXE_LINKER_FLAGS&lt;/code&gt; - used by the linker when linking executables
+&lt;code class=&quot;highlighter-rouge&quot;&gt;CMAKE_SHARED_LINKER_FLAGS&lt;/code&gt; - used by linker when linking shared object libraries
+&lt;code class=&quot;highlighter-rouge&quot;&gt;CMAKE_MODULE_LINKER_FLAGS&lt;/code&gt; - used by linker when linking modules
+&lt;code class=&quot;highlighter-rouge&quot;&gt;CMAKE_STATIC_LINKER_FLAGS&lt;/code&gt; - used by linker when linking static object libraries&lt;/p&gt;</content><author><name>TJYSDSG</name></author><summary type="html">Basic Template ``` cmake_minimum_required(VERSION X.X) project () set(CMAKE_CXX_STANDARD 11)</summary></entry></feed>

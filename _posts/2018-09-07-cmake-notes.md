@@ -3,31 +3,22 @@ title: CMake Notes
 layout: post
 author: TJYSDSG
 ---
-# CMake Cheatsheet
-## Basic Template
+# Basic Template
 ```
 cmake_minimum_required(VERSION X.X)
 project (<your project name here>)
-add_executable(<your project name here> ${SRCS})
-target_link_libraries(<your project name here> <libraries you want to link>)
-aux_source_directory(${PROJECT_SOURCE_DIR}/src SRCS)
+set(CMAKE_CXX_STANDARD 11)
+
 include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories(<target name> PUBLIC ${PROJECT_SOURCE_DIR}/include)
+aux_source_directory(${PROJECT_SOURCE_DIR}/src SRCS)
+
+add_executable(<target name> ${SRCS})
+target_link_libraries(<target name> <libraries you want to link>)
 
 ```
 
-
-
-### Useful Commands 
-```
-set(<variable name> <value>)
-# export compile commands can help applications like cppcheck to analyze your codes
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-# output x,y are variable names
-# you can also directly write the text instead of using variables
-message(${x}${y})
-```
-
-#### For-Loop
+## For-Loop
 ```
 SET(x 3 2)
 FOREACH(val${x})
@@ -35,7 +26,7 @@ MESSAGE(${val})
 ENDFOREACH(val)
 ```
 
-#### Set Output Directory
+## Set Output Directory
 ```
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -51,17 +42,24 @@ set_target_properties(<target-name>
     )
 ```
 
-### Details
-
-All variable values are a text string. Text strings can be evaluated as boolean
-expressions (e.g. when used in `IF()` and `WHILE()`). The values `FALSE`,
-`OFF`, `NO`, or any string ending in `-NOTFOUND` evaluates be false and everything else to true.
-
-Text strings can represent multiple values as a list by separating entities using
-a semicolon.
-
+## Common-used Variables
 ```
-SET(x 3 2 ) #x="3;2"
-SET(y hello world !) # y = "hello;world;!"
-SET(z "hello world !") # y = "hello;world;!"
+set(CMAKE_BUILD_TYPE None|Debug|Release|RelWithDebInfo|MinSizeRel)
+
+set(CMAKE_C_FLAGS|CMAKE_CXX_FLAGS "-Wall -Wextra")
+
+# gdb flag can be set here:
+set(CMAKE_C_FLAGS_DEBUG|CMAKE_CXX_FLAGS_DEBUG "-g")
+
+# optimization flag can be set here:
+set(CMAKE_C_FLAGS_RELEASE|CMAKE_CXX_FLAGS_RELEASE "-O3")
 ```
+
+## Common-used Flags
+
+Besides flags above, there are flags that might be useful:
+
+`CMAKE_EXE_LINKER_FLAGS` - used by the linker when linking executables
+`CMAKE_SHARED_LINKER_FLAGS` - used by linker when linking shared object libraries
+`CMAKE_MODULE_LINKER_FLAGS` - used by linker when linking modules
+`CMAKE_STATIC_LINKER_FLAGS` - used by linker when linking static object libraries
