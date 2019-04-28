@@ -1,5 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-20T00:13:12+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
-</subtitle><entry><title type="html">Doxygen Template</title><link href="http://localhost:4000/2019/04/09/doxygen.html" rel="alternate" type="text/html" title="Doxygen Template" /><published>2019-04-09T00:00:00+08:00</published><updated>2019-04-09T00:00:00+08:00</updated><id>http://localhost:4000/2019/04/09/doxygen</id><content type="html" xml:base="http://localhost:4000/2019/04/09/doxygen.html">&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DOXYFILE_ENCODING      = UTF-8
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-28T14:06:16+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
+</subtitle><entry><title type="html">Math Notes</title><link href="http://localhost:4000/2019/04/28/math-notes.html" rel="alternate" type="text/html" title="Math Notes" /><published>2019-04-28T00:00:00+08:00</published><updated>2019-04-28T00:00:00+08:00</updated><id>http://localhost:4000/2019/04/28/math-notes</id><content type="html" xml:base="http://localhost:4000/2019/04/28/math-notes.html">&lt;h1 id=&quot;vector&quot;&gt;Vector&lt;/h1&gt;
+
+&lt;h2 id=&quot;scalar-projection&quot;&gt;Scalar Projection&lt;/h2&gt;
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;= |\mathbf {a} |\cos \theta&lt;/script&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;vector-projection&quot;&gt;Vector Projection&lt;/h2&gt;
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;= |\mathbf{a} |\cos\theta&lt;/script&gt;
+&lt;script type=&quot;math/tex&quot;&gt;= (|\mathbf{a} |\cos\theta )\frac{\mathbf{b}}{|\mathbf{b}|}&lt;/script&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;unit-tangent-vector-unit-normal-vector-and-binormal-vector&quot;&gt;Unit Tangent Vector, Unit Normal Vector And Binormal Vector&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/images/13-3-6.png&quot; alt=&quot;13-3-6&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Unit Tangent Vector: 
+\( \mathbf{T}(t) = \frac{\mathbf{r}^{‘}(t)}{|\mathbf{r}^{‘}(t)|} \)&lt;/p&gt;
+
+&lt;p&gt;Unit Normal Vector: 
+\( \mathbf{N}(t) = \frac{\mathbf{T}^{‘}(t)}{|\mathbf{T}^{‘}(t)|} \)&lt;/p&gt;
+
+&lt;p&gt;Binormal Vector: 
+\( \mathbf{B}(t) = \mathbf{T}(t) \times \mathbf{N}(t) \)&lt;/p&gt;
+
+&lt;h2 id=&quot;normal-plane-osculating-plane-and-osculating-circle&quot;&gt;Normal Plane, Osculating Plane And Osculating Circle&lt;/h2&gt;
+&lt;p&gt;The plane determined by the normal and binormal vectors N and B is called the
+normal plane. It consists of all lines that are orthogonal to the
+tangent vector &lt;script type=&quot;math/tex&quot;&gt;\mathbf{T}&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;The plane determined by the vectors &lt;script type=&quot;math/tex&quot;&gt;\mathbf{T}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\mathbf{N}&lt;/script&gt; is called
+the osculating plane. It is the plane that comes closest to containing the part
+of the curve. (For a plane curve, the osculating plane is simply the plane that
+contains the curve.)&lt;/p&gt;
+
+&lt;p&gt;The osculating circle lies in the osculating plane has the same tangent of the
+curve, lies on the concave side of the curve (toward which &lt;script type=&quot;math/tex&quot;&gt;\mathbf{N}&lt;/script&gt;
+points), and has radius &lt;script type=&quot;math/tex&quot;&gt;\rho = \frac{1}{\kappa}&lt;/script&gt; (the reciprocal of the
+curvature). It is the circle that best describes how the curve behaves near a
+point; it shares the same tangent, normal, and curvature at that point.&lt;/p&gt;
+
+&lt;h2 id=&quot;curvature&quot;&gt;Curvature&lt;/h2&gt;
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\kappa = \left| \frac{d\mathbf{T}}{ds} \right|&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;\mathbf{T}&lt;/script&gt; is
+the unit tangent vector.&lt;/p&gt;
+
+&lt;p&gt;Also:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\kappa = \frac{|\mathbf{r}^{'}(t) \times \mathbf{r}^{''}(t)|}{|\mathbf{r}^{'}(t)|^3}&lt;/script&gt;
+
+&lt;h2 id=&quot;length-of-an-arc&quot;&gt;Length of An Arc&lt;/h2&gt;
+&lt;h3 id=&quot;length-of-an-arc-using-parametric-equations&quot;&gt;Length of An Arc Using Parametric Equations&lt;/h3&gt;
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;L = \int_{a}^{b}|\mathbf{r}^{'}(t)|dt&lt;/script&gt;&lt;/p&gt;</content><author><name>TJYSDSG</name></author><summary type="html">Vector</summary></entry><entry><title type="html">Doxygen Template</title><link href="http://localhost:4000/2019/04/09/doxygen.html" rel="alternate" type="text/html" title="Doxygen Template" /><published>2019-04-09T00:00:00+08:00</published><updated>2019-04-09T00:00:00+08:00</updated><id>http://localhost:4000/2019/04/09/doxygen</id><content type="html" xml:base="http://localhost:4000/2019/04/09/doxygen.html">&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = &quot;${PROJECT_NAME}&quot;
 OUTPUT_DIRECTORY       = docs
 CREATE_SUBDIRS         = YES

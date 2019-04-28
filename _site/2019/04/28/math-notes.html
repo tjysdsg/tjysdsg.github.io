@@ -8,11 +8,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Linux Notes</title>
-  <meta name="description" content="List files bigger than filesize specified">
+  <title>Math Notes</title>
+  <meta name="description" content="Vector">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/2019/01/01/Linux-Notes.html">
+  <link rel="canonical" href="http://localhost:4000/2019/04/28/math-notes.html">
   <link rel="icon" href="/tjy_logo.PNG">
 
   <!-- Mathjax Support -->
@@ -74,56 +74,59 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">Linux Notes</h1>
-    <p class="post-meta"><time datetime="2019-01-01T00:00:00+08:00" itemprop="datePublished">Jan 1, 2019</time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">TJYSDSG</span></span></p>
+    <h1 class="post-title" itemprop="name headline">Math Notes</h1>
+    <p class="post-meta"><time datetime="2019-04-28T00:00:00+08:00" itemprop="datePublished">Apr 28, 2019</time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">TJYSDSG</span></span></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <h1 id="list-files-bigger-than-filesize-specified">List files bigger than filesize specified</h1>
+    <h1 id="vector">Vector</h1>
 
-<p>To find files larger than 100MB:</p>
+<h2 id="scalar-projection">Scalar Projection</h2>
+<p><script type="math/tex">= |\mathbf {a} |\cos \theta</script></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find . -type f -size +100M
-</code></pre></div></div>
-<p>To find files larger than 4096 bytes:</p>
+<h2 id="vector-projection">Vector Projection</h2>
+<p><script type="math/tex">= |\mathbf{a} |\cos\theta</script>
+<script type="math/tex">= (|\mathbf{a} |\cos\theta )\frac{\mathbf{b}}{|\mathbf{b}|}</script></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find . -type f -size +4096c
-</code></pre></div></div>
-<p>or in the current dir only:</p>
+<h2 id="unit-tangent-vector-unit-normal-vector-and-binormal-vector">Unit Tangent Vector, Unit Normal Vector And Binormal Vector</h2>
+<p><img src="/images/13-3-6.png" alt="13-3-6" /></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find . -maxdepth 1 -type f -size +100M
-</code></pre></div></div>
+<p>Unit Tangent Vector: 
+\( \mathbf{T}(t) = \frac{\mathbf{r}^{‘}(t)}{|\mathbf{r}^{‘}(t)|} \)</p>
 
-<h1 id="copy-things-to-clipboard-in-command-line">Copy things to clipboard in command line</h1>
-<h4 id="prerequisite">Prerequisite</h4>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install xclip
-</code></pre></div></div>
+<p>Unit Normal Vector: 
+\( \mathbf{N}(t) = \frac{\mathbf{T}^{‘}(t)}{|\mathbf{T}^{‘}(t)|} \)</p>
 
-<h4 id="to-copy-contents-of-a-file-or-output-of-some-command-to-clipboard">To copy <em>contents of a file or output of</em> some command to clipboard</h4>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat ./myfile.txt|xclip -i
-</code></pre></div></div>
+<p>Binormal Vector: 
+\( \mathbf{B}(t) = \mathbf{T}(t) \times \mathbf{N}(t) \)</p>
 
-<h4 id="to-copy-data-to-the-clipboard-selection-so-it-can-be-pasted-into-an-application-with-ctrl-v">To copy data to the “clipboard” selection, so it can be pasted into an application with Ctrl-V</h4>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat ./myfile.txt|xclip -i -selection clipboard
-</code></pre></div></div>
+<h2 id="normal-plane-osculating-plane-and-osculating-circle">Normal Plane, Osculating Plane And Osculating Circle</h2>
+<p>The plane determined by the normal and binormal vectors N and B is called the
+normal plane. It consists of all lines that are orthogonal to the
+tangent vector <script type="math/tex">\mathbf{T}</script>.</p>
 
-<h1 id="fix-apt-get-update-the-following-signatures-couldnt-be-verified-because-the-public-key-is-not-available">Fix apt-get update “the following signatures couldn’t be verified because the public key is not available”</h1>
-<h4 id="problem">Problem</h4>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt update
-Ign http://security.ubuntu.com trusty-security InRelease
-Get:1 http://security.ubuntu.com trusty-security Release.gpg [933 B]
-...
-Fetched 21.9 MB in 14s (1,537 kB/s)
-Reading package lists... Done
-W: GPG error: http://security.ubuntu.com trusty-security Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 40976EAF437D05B5 NO_PUBKEY 3B4FE6ACC0B21F32
-W: GPG error: http://archive.canonical.com trusty Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 40976EAF437D05B5 NO_PUBKEY 3B4FE6ACC0B21F32
-W: GPG error: http://archive.ubuntu.com trusty Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 40976EAF437D05B5 NO_PUBKEY 3B4FE6ACC0B21F32
-W: GPG error: http://archive.ubuntu.com trusty-updates Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 40976EAF437D05B5 NO_PUBKEY 3B4FE6ACC0B21F32
-</code></pre></div></div>
-<h4 id="solution">Solution</h4>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40976EAF437D05B5
-$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32
-</code></pre></div></div>
+<p>The plane determined by the vectors <script type="math/tex">\mathbf{T}</script> and <script type="math/tex">\mathbf{N}</script> is called
+the osculating plane. It is the plane that comes closest to containing the part
+of the curve. (For a plane curve, the osculating plane is simply the plane that
+contains the curve.)</p>
+
+<p>The osculating circle lies in the osculating plane has the same tangent of the
+curve, lies on the concave side of the curve (toward which <script type="math/tex">\mathbf{N}</script>
+points), and has radius <script type="math/tex">\rho = \frac{1}{\kappa}</script> (the reciprocal of the
+curvature). It is the circle that best describes how the curve behaves near a
+point; it shares the same tangent, normal, and curvature at that point.</p>
+
+<h2 id="curvature">Curvature</h2>
+<p><script type="math/tex">\kappa = \left| \frac{d\mathbf{T}}{ds} \right|</script> where <script type="math/tex">\mathbf{T}</script> is
+the unit tangent vector.</p>
+
+<p>Also:</p>
+
+<script type="math/tex; mode=display">\kappa = \frac{|\mathbf{r}^{'}(t) \times \mathbf{r}^{''}(t)|}{|\mathbf{r}^{'}(t)|^3}</script>
+
+<h2 id="length-of-an-arc">Length of An Arc</h2>
+<h3 id="length-of-an-arc-using-parametric-equations">Length of An Arc Using Parametric Equations</h3>
+<p><script type="math/tex">L = \int_{a}^{b}|\mathbf{r}^{'}(t)|dt</script></p>
 
   </div>
 
