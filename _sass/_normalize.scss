@@ -15,7 +15,6 @@ html {
 /**
  * Remove default margin.
  */
-
 body {
   margin: 0;
 }
@@ -83,7 +82,6 @@ template {
 /**
  * Remove the gray background color from active links in IE 10.
  */
-
 a {
   background: transparent;
 }
@@ -91,7 +89,6 @@ a {
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
-
 a:active,
 a:hover {
   outline: 0;
@@ -111,7 +108,6 @@ abbr[title] {
 /**
  * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
  */
-
 b,
 strong {
   font-weight: bold;
@@ -120,7 +116,6 @@ strong {
 /**
  * Address styling not present in Safari and Chrome.
  */
-
 dfn {
   font-style: italic;
 }
@@ -128,7 +123,6 @@ dfn {
 /**
  * Address styling not present in IE 8/9.
  */
-
 mark {
   background: #ff0;
   color: #000;
@@ -137,7 +131,6 @@ mark {
 /**
  * Address inconsistent and variable font size in all browsers.
  */
-
 small {
   font-size: 80%;
 }
@@ -164,11 +157,9 @@ sub {
 
 /* Embedded content
    ========================================================================== */
-
 /**
  * Remove border when inside `a` element in IE 8/9/10.
  */
-
 img {
   border: 0;
 }
@@ -176,7 +167,6 @@ img {
 /**
  * Correct overflow not hidden in IE 9/10/11.
  */
-
 svg:not(:root) {
   overflow: hidden;
 }
