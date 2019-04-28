@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-28T20:15:10+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">tjysdsg’s dump</title><subtitle>programming maniac, love computer graphics and low level stuff</subtitle><entry><title type="html">Calculus Notes</title><link href="http://localhost:4000/2019/04/28/calculus-notes.html" rel="alternate" type="text/html" title="Calculus Notes" /><published>2019-04-28T00:00:00+08:00</published><updated>2019-04-28T00:00:00+08:00</updated><id>http://localhost:4000/2019/04/28/calculus-notes</id><content type="html" xml:base="http://localhost:4000/2019/04/28/calculus-notes.html">&lt;h1 id=&quot;single-variable-calculus&quot;&gt;Single-Variable Calculus&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-28T22:28:24+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">tjysdsg’s dump</title><subtitle>programming maniac, love computer graphics and low level stuff</subtitle><entry><title type="html">Calculus Notes</title><link href="http://localhost:4000/2019/04/28/calculus-notes.html" rel="alternate" type="text/html" title="Calculus Notes" /><published>2019-04-28T00:00:00+08:00</published><updated>2019-04-28T00:00:00+08:00</updated><id>http://localhost:4000/2019/04/28/calculus-notes</id><content type="html" xml:base="http://localhost:4000/2019/04/28/calculus-notes.html">&lt;h1 id=&quot;single-variable-calculus&quot;&gt;Single-Variable Calculus&lt;/h1&gt;
 &lt;hr /&gt;
 
 &lt;h2 id=&quot;scalar-projection&quot;&gt;Scalar Projection&lt;/h2&gt;
@@ -224,7 +224,198 @@ and \[ g(x,y,z) = k \]&lt;/li&gt;
   &lt;li&gt;Evaluate $f$ at all the points $(x,y,z)$ that result from step 1. The
 largest of these values is the maximum value of $f$; the smallest is the
 minimum value of $f$.&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>TJYSDSG</name></author><summary type="html">Single-Variable Calculus</summary></entry><entry><title type="html">Doxygen Template</title><link href="http://localhost:4000/2019/04/09/doxygen.html" rel="alternate" type="text/html" title="Doxygen Template" /><published>2019-04-09T00:00:00+08:00</published><updated>2019-04-09T00:00:00+08:00</updated><id>http://localhost:4000/2019/04/09/doxygen</id><content type="html" xml:base="http://localhost:4000/2019/04/09/doxygen.html">&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DOXYFILE_ENCODING      = UTF-8
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;double-integral-and-iterated-integral-over-a-rectangle&quot;&gt;Double Integral and Iterated Integral Over A Rectangle&lt;/h2&gt;
+&lt;h3 id=&quot;double-integral-of-f-over-the-rectangle-r&quot;&gt;Double integral of $f$ over the rectangle $R$&lt;/h3&gt;
+&lt;p&gt;$ \iint\limits_{R}f(x,y)dA = \lim_{n,m\to\infty } \sum_{i=1}^n \sum_{j=1}^m
+f(x_i^*,y_j^*)\Delta A $ the the limit exists.&lt;/p&gt;
+
+&lt;p&gt;$\sum_{i=1}^n \sum_{j=1}^m f(x_i^*,y_j^*)\Delta A$ is a Double Riemann Sum.&lt;/p&gt;
+
+&lt;h3 id=&quot;midpoint-rule-for-double-integrals&quot;&gt;Midpoint Rule for Double Integrals&lt;/h3&gt;
+&lt;p&gt;\[ \iint\limits_{R}f(x,y)dA \approx \sum_{i=1}^n \sum_{j=1}^m
+f(\bar{x_i},\bar{y_j})\Delta A \] where $\bar{x_i}$ is the midpoint of $[x_{i-1},x_i]$
+and $\bar{y_i}$ is the midpoint of $[y_{i-1},y_i]$.&lt;/p&gt;
+
+&lt;h3 id=&quot;fubinis-theorem&quot;&gt;Fubini’s Theorem&lt;/h3&gt;
+&lt;p&gt;If $f(x,y)$ is continuous on $R=[a,b]\times[c,d]$, then
+\[ \iint\limits_{R}f(x,y)dA =
+\int_a^b \int_c^d f(x,y)dy dx =
+\int_c^d \int_a^b f(x,y)dx dy
+\]&lt;/p&gt;
+
+&lt;p&gt;These integrals are called iterated integrals.&lt;/p&gt;
+
+&lt;h3 id=&quot;fact&quot;&gt;Fact&lt;/h3&gt;
+&lt;p&gt;If $f(x,y) = g(x)h(y)$ and we are integrating over the rectangle $R = [a,b]\times[c,d]$, then
+\[ \iint\limits_{R}f(x,y)dA = \iint\limits_{R} g(x)h(y) dA =
+\left( \int_a^bg(x)dx \right)\left( \int_c^dh(y)dy \right) \]&lt;/p&gt;
+
+&lt;h2 id=&quot;double-integral-and-iterated-integral-over-a-general-region&quot;&gt;Double Integral and Iterated Integral Over A General Region&lt;/h2&gt;
+&lt;p&gt;If $F$ is integrable over $R$, then we define the double integral of $f$ over $D$ by
+\[ \iint\limits_{D}f(x,y)dA = \iint\limits_{R}F(x,y)dA \]
+where
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+F(x,y)\begin{cases}
+\displaystyle f(x,y) &amp; \text{if } (x,y) \text{ is in } D \\\\
+\displaystyle 0 &amp; \text{if } (x,y) \text{ is in } R \text{ but not in } D \\\\
+\end{cases} %]]&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;type-i-region&quot;&gt;Type I Region&lt;/h3&gt;
+&lt;p&gt;If $f$ is continuous on a type I region $D$ such that
+\[ D = \left\{(x,y)| a \le x \le b, g_1(x) \le y \le g_2(x) \right\} \]
+then \[ \iint\limits_D f(x,y)dA = \int_a^b \int_{g_1(x)}^{g_2(x)}f(x,y) dy dx \]&lt;/p&gt;
+
+&lt;h3 id=&quot;type-ii-region&quot;&gt;Type II Region&lt;/h3&gt;
+&lt;p&gt;If $f$ is continuous on a type II region $D$ such that
+\[ D = \left\{ (x,y)|c \le y \le d, h_1(y) \le x \le h_2(y) \right\} \]
+then \[ \iint\limits_D f(x,y)dA = \int_c^d \int_{h_1(y)}^{h_2(y)}f(x,y) dx dy \]&lt;/p&gt;
+
+&lt;h2 id=&quot;properties-of-double-integrals&quot;&gt;Properties of Double Integrals&lt;/h2&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+
+&lt;h2 id=&quot;double-integrals-in-polar-coordinates&quot;&gt;Double Integrals in Polar Coordinates&lt;/h2&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+
+&lt;h2 id=&quot;surface-area&quot;&gt;Surface Area&lt;/h2&gt;
+&lt;p&gt;The area of the surface with equation $z = f(x,y)$, $(x,y) \in D$, where $f_x$ and $f_y$ are
+continuous, is
+\[ A(S) = \iint\limits_D \sqrt{[f_x(x,y)]^2 + [f_y(x,y)]^2 + 1} dA \]&lt;/p&gt;
+
+&lt;h2 id=&quot;triple-integral&quot;&gt;Triple Integral&lt;/h2&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+
+&lt;h3 id=&quot;triple-integrals-in-cylindrical-coordinates&quot;&gt;Triple Integrals in Cylindrical Coordinates&lt;/h3&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+&lt;h3 id=&quot;triple-integrals-in-spherical-coordinates&quot;&gt;Triple Integrals in Spherical Coordinates&lt;/h3&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+
+&lt;h2 id=&quot;vector-fields&quot;&gt;Vector Fields&lt;/h2&gt;
+&lt;p&gt;A vector field $F$ is called a conservative vector field if it is the gradient
+of some scalar function, that is, if there exists a function $f$ such that $F
+=\nabla f$. In this situation $f$ is called a potential function for $F$.&lt;/p&gt;
+
+&lt;h2 id=&quot;line-integral&quot;&gt;Line Integral&lt;/h2&gt;
+&lt;p&gt;If $f$ is defined on a smooth curve $C$ given by $x=x(t), y=y(t)$ where $a \le t \le b$, then the
+line integral of $f$ along $C$ is
+\[ \int_C f(x,y)ds = \lim_{n\to\infty}\sum_{i=1}^{n}f(x_i^*,y_i^*)\nabla s_i \]
+if the limit exists.&lt;/p&gt;
+
+&lt;p&gt;Also,
+\[ \int_C f(x,y)ds = \int_a^b f(x(t),y(t))\sqrt{(\frac{dx}{dt})^2 + (\frac{dy}{dt})^2}dt \]&lt;/p&gt;
+
+&lt;h3 id=&quot;line-integrals-of-f-along-c-with-respect-to-x-and-y&quot;&gt;Line integrals of $f$ along $c$ with respect to $x$ and $y$&lt;/h3&gt;
+&lt;p&gt;\[ \int_C f(x,y)dx = \int_a^b f(x(t),y(t))x’(t)dt \]
+\[ \int_C f(x,y)dy = \int_a^b f(x(t),y(t))y’(t)dt \]&lt;/p&gt;
+
+&lt;p&gt;It frequently happens that line integrals with respect to $x$ and $y$ occur
+together. When this happens, it’s customary to abbreviate by writing
+\[ \int_CP(x,y)dx + \int_CQ(x,y)dy = \int_C P(x,y)dx + Q(x,y)dy \]&lt;/p&gt;
+
+&lt;h3 id=&quot;parametrization-of-a-line-segment&quot;&gt;Parametrization of a line segment&lt;/h3&gt;
+&lt;p&gt;\[ \mathbf{r}(t) = (1-t)\mathbf{r}_0 + t\mathbf{r}_1 \] where $0\le t\le 1$&lt;/p&gt;
+
+&lt;h2 id=&quot;the-fundamental-theorem-for-line-integrals&quot;&gt;The Fundamental Theorem for Line Integrals&lt;/h2&gt;
+&lt;p&gt;Let $C$ be a smooth curve given by the vector function $\mathbf{r}(t)$, $a \le
+t \le b$. Let $f$ be a differentiable function of two or three variables whose
+gradient vector $\nabla f$ is continuous on $C$. Then
+\[ \int_C \nabla f \cdot d\mathbf{r} = f(\mathbf{r}(b) - f(\mathbf{r}(a)) \]&lt;/p&gt;
+
+&lt;h3 id=&quot;independence-of-path&quot;&gt;Independence of path&lt;/h3&gt;
+&lt;p&gt;$\int_C\mathbf{F}\cdot d\mathbf{r}$ is independent of path in $D$ if and only if
+$\int_C\mathbf{F}\cdot d\mathbf{r} = 0$ for every closed path C in D.&lt;/p&gt;
+
+&lt;h3 id=&quot;theorem-2&quot;&gt;Theorem&lt;/h3&gt;
+&lt;p&gt;Suppose $\mathbf{F}$ is a vector field that is continuous on an &lt;em&gt;open connected
+region $D$&lt;/em&gt;. If $\int_C\mathbf{F}\cdot d\mathbf{r}$ is independent of path in
+$D$, then $\mathbf{F}$ is a conservative vector field on $D$; that is, there
+exists a function $f$ such that $\nabla f = \mathbf{F}$.&lt;/p&gt;
+
+&lt;p&gt;Note: $D$ is open means that for every point $P$ in $D$ there is a disk with
+center $P$ that lies entirely in $D$. (So $D$ doesn’t contain any of its
+boundary points.) In addition, $D$ is connected means that any two points in
+$D$ can be joined by a path that lies in $D$.&lt;/p&gt;
+
+&lt;h3 id=&quot;theorem-3&quot;&gt;Theorem&lt;/h3&gt;
+&lt;p&gt;If $\mathbf{F}(x,y) = P(x,y)\mathbf{i} + Q(x,y)\mathbf{j}$ is a conservative
+vector field, where $P$ and $Q$ have continuous first-order partial derivatives on
+a domain $D$, then throughout $D$ we have
+\[ \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x} \]&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/16-3-6.png&quot; alt=&quot;16-3-6&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/16-3-7.png&quot; alt=&quot;16-3-7&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;theorem-4&quot;&gt;Theorem&lt;/h3&gt;
+&lt;p&gt;Let $\mathbf{F} = P\mathbf{i} + Q\mathbf{j}$ be a vector field on an open
+simply-connected region $D$. Suppose that $P$ and $Q$ have continuous first-order
+partial derivatives and
+\[ \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x} \] throughout D&lt;/p&gt;
+
+&lt;p&gt;Then $\mathbf{F}$ is conservative.&lt;/p&gt;
+
+&lt;h2 id=&quot;greens-theorem&quot;&gt;Green’s Theorem&lt;/h2&gt;
+&lt;p&gt;Let $C$ be a positively oriented, piecewise-smooth, simple closed curve in the
+plane and let $D$ be the region bounded by $C$. If $P$ and $Q$ have continuous
+partial derivatives on an open region that contains $D$, then
+\[ \int_C Pdx + Qdy = \iint\limits_D \left( \frac{\partial Q}{\partial x} -
+\frac{\partial P}{\partial y} \right)dA \]&lt;/p&gt;
+
+&lt;p&gt;Also,
+\[ \oint_C xdy = -\oint_Cydx = \frac{1}{2}\oint_Cxdy - ydx \]&lt;/p&gt;
+
+&lt;h2 id=&quot;curl&quot;&gt;Curl&lt;/h2&gt;
+&lt;p&gt;If $\mathbf{F} = P\mathbf{i} + Q\mathbf{j} + R\mathbf{k}$ is a vector field on
+$\mathbb{R}^3$ and the partial derivatives of $P$, $Q$, and $R$ all exist, then the curl
+of $\mathbf{F}$ is the vector field on $\mathbb{R}^3$ defined by
+\[ \text{curl }\mathbf{F} =
+(\frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z})\mathbf{i}+
+(\frac{\partial P}{\partial z} - \frac{\partial R}{\partial x})\mathbf{j}+
+(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y})\mathbf{k} =
+\nabla \times \mathbf{F} \]&lt;/p&gt;
+
+&lt;p&gt;where $\nabla = \mathbf{i}\frac{\partial}{\partial x}+
+\frac{\partial}{\partial y}\mathbf{j}+
+\frac{\partial}{\partial z}\mathbf{k}$&lt;/p&gt;
+
+&lt;h3 id=&quot;theorem-5&quot;&gt;Theorem&lt;/h3&gt;
+&lt;p&gt;If $f$ is a function of three variables that has continuous second-order
+partial derivatives, then 
+\[ \text{curl }(\nabla f) = \mathbf{0} \]&lt;/p&gt;
+
+&lt;h3 id=&quot;theorem-6&quot;&gt;Theorem&lt;/h3&gt;
+&lt;p&gt;If $\mathbf{F}$ is conservative, then
+\[ \text{curl }\mathbf{F} = \mathbf{0} \]&lt;/p&gt;
+
+&lt;h3 id=&quot;theorem-7&quot;&gt;Theorem&lt;/h3&gt;
+&lt;p&gt;If $\mathbf{F}$ is a vector field defined on all of $\mathbb{R}^3$ whostions
+have continuous partial derivatives and $ \text{curl }\mathbf{F} = \mathbf{0} $,
+then $\mathbf{F}$ is a conservative vector field.&lt;/p&gt;
+
+&lt;h2 id=&quot;divergence&quot;&gt;Divergence&lt;/h2&gt;
+&lt;p&gt;If $\mathbf{F} = P\mathbf{i} + Q\mathbf{j} + R\mathbf{k}$ is a vector field on
+$\mathbb{R}^3$ and the partial derivatives of $P$, $Q$, and $R$ all exist, then
+the divergence of $\mathbf{F}$ is the function of three variables defined by
+\[ \text{div }\mathbf{F} =
+\frac{\partial P}{\partial x} +
+\frac{\partial Q}{\partial y} +
+\frac{\partial R}{\partial z} = \nabla \cdot \mathbf{F} \]&lt;/p&gt;
+
+&lt;p&gt;where $\nabla = \mathbf{i}\frac{\partial}{\partial x}+
+\frac{\partial}{\partial y}\mathbf{j}+
+\frac{\partial}{\partial z}\mathbf{k}$&lt;/p&gt;
+
+&lt;h3 id=&quot;theorem-8&quot;&gt;Theorem&lt;/h3&gt;
+&lt;p&gt;If $\mathbf{F}$ is a vector field on $\mathbb{R}^3$ and $P$, $Q$, and $R$ has
+continuous second-order partial derivatives, then 
+\[ \text{div curl }\mathbf{F} = 0 \]&lt;/p&gt;
+
+&lt;h2 id=&quot;vector-forms-of-greens-theorem&quot;&gt;Vector Forms of Green’s Theorem&lt;/h2&gt;
+&lt;p&gt;\[ \oint_C \mathbf{F}\cdot d\mathbf{r} = \iint\limits_D(\text{curl }\mathbf{F})\cdot\mathbf{k}dA \]
+\[ \oint_C \mathbf{F}\cdot\mathbf{n} ds = \iint\limits_D\text{div }\mathbf{F}(x,y)dA \]
+where $\mathbf{n}$ is outward unit normal vector to $C$.&lt;/p&gt;</content><author><name>TJYSDSG</name></author><summary type="html">Single-Variable Calculus</summary></entry><entry><title type="html">Doxygen Template</title><link href="http://localhost:4000/2019/04/09/doxygen.html" rel="alternate" type="text/html" title="Doxygen Template" /><published>2019-04-09T00:00:00+08:00</published><updated>2019-04-09T00:00:00+08:00</updated><id>http://localhost:4000/2019/04/09/doxygen</id><content type="html" xml:base="http://localhost:4000/2019/04/09/doxygen.html">```
+DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = &quot;${PROJECT_NAME}&quot;
 OUTPUT_DIRECTORY       = docs
 CREATE_SUBDIRS         = YES
@@ -547,37 +738,44 @@ DOT_TRANSPARENT        = NO
 DOT_MULTI_TARGETS      = NO
 GENERATE_LEGEND        = YES
 DOT_CLEANUP            = YES
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>TJYSDSG</name></author><summary type="html">DOXYFILE_ENCODING = UTF-8 PROJECT_NAME = &quot;${PROJECT_NAME}&quot; OUTPUT_DIRECTORY = docs CREATE_SUBDIRS = YES ALLOW_UNICODE_NAMES = NO OUTPUT_LANGUAGE = English OUTPUT_TEXT_DIRECTION = None BRIEF_MEMBER_DESC = YES REPEAT_BRIEF = YES ABBREVIATE_BRIEF = &quot;The $name class&quot; \ &quot;The $name widget&quot; \ &quot;The $name file&quot; \ is \ provides \ specifies \ contains \ represents \ a \ an \ the ALWAYS_DETAILED_SEC = YES INLINE_INHERITED_MEMB = NO FULL_PATH_NAMES = YES STRIP_FROM_PATH = STRIP_FROM_INC_PATH = SHORT_NAMES = NO JAVADOC_AUTOBRIEF = NO QT_AUTOBRIEF = NO MULTILINE_CPP_IS_BRIEF = NO INHERIT_DOCS = YES SEPARATE_MEMBER_PAGES = NO TAB_SIZE = 4 ALIASES = TCL_SUBST = OPTIMIZE_OUTPUT_FOR_C = YES OPTIMIZE_OUTPUT_JAVA = NO OPTIMIZE_FOR_FORTRAN = NO OPTIMIZE_OUTPUT_VHDL = NO OPTIMIZE_OUTPUT_SLICE = NO EXTENSION_MAPPING = MARKDOWN_SUPPORT = YES TOC_INCLUDE_HEADINGS = 0 AUTOLINK_SUPPORT = YES BUILTIN_STL_SUPPORT = YES CPP_CLI_SUPPORT = NO SIP_SUPPORT = NO IDL_PROPERTY_SUPPORT = YES DISTRIBUTE_GROUP_DOC = NO GROUP_NESTED_COMPOUNDS = NO SUBGROUPING = YES INLINE_GROUPED_CLASSES = NO INLINE_SIMPLE_STRUCTS = NO TYPEDEF_HIDES_STRUCT = NO LOOKUP_CACHE_SIZE = 0 EXTRACT_ALL = YES EXTRACT_PRIVATE = YES EXTRACT_PACKAGE = YES EXTRACT_STATIC = YES EXTRACT_LOCAL_CLASSES = YES EXTRACT_LOCAL_METHODS = NO EXTRACT_ANON_NSPACES = YES HIDE_UNDOC_MEMBERS = NO HIDE_UNDOC_CLASSES = NO HIDE_FRIEND_COMPOUNDS = NO HIDE_IN_BODY_DOCS = NO INTERNAL_DOCS = YES CASE_SENSE_NAMES = YES HIDE_SCOPE_NAMES = NO HIDE_COMPOUND_REFERENCE= NO SHOW_INCLUDE_FILES = YES SHOW_GROUPED_MEMB_INC = YES FORCE_LOCAL_INCLUDES = NO INLINE_INFO = YES SORT_MEMBER_DOCS = YES SORT_BRIEF_DOCS = NO SORT_MEMBERS_CTORS_1ST = YES SORT_GROUP_NAMES = NO SORT_BY_SCOPE_NAME = NO STRICT_PROTO_MATCHING = YES GENERATE_TODOLIST = YES GENERATE_TESTLIST = YES GENERATE_BUGLIST = YES GENERATE_DEPRECATEDLIST= YES ENABLED_SECTIONS = MAX_INITIALIZER_LINES = 30 SHOW_USED_FILES = YES SHOW_FILES = YES SHOW_NAMESPACES = YES FILE_VERSION_FILTER = LAYOUT_FILE = CITE_BIB_FILES = QUIET = YES WARNINGS = YES WARN_IF_UNDOCUMENTED = YES WARN_IF_DOC_ERROR = YES WARN_NO_PARAMDOC = NO WARN_AS_ERROR = NO WARN_FORMAT = &quot;$file:$line: $text&quot; WARN_LOGFILE = INPUT = INPUT_ENCODING = UTF-8 FILE_PATTERNS = *.c \ *.cc \ *.cxx \ *.cpp \ *.c++ \ *.java \ *.ii \ *.ixx \ *.ipp \ *.i++ \ *.inl \ *.idl \ *.ddl \ *.odl \ *.h \ *.hh \ *.hxx \ *.hpp \ *.h++ \ *.cs \ *.d \ *.php \ *.php4 \ *.php5 \ *.phtml \ *.inc \ *.m \ *.markdown \ *.md \ *.mm \ *.dox \ *.py \ *.pyw \ *.f90 \ *.f95 \ *.f03 \ *.f08 \ *.f \ *.for \ *.tcl \ *.vhd \ *.vhdl \ *.ucf \ *.qsf \ *.ice RECURSIVE = YES EXCLUDE = EXCLUDE_SYMLINKS = NO EXCLUDE_PATTERNS = EXCLUDE_SYMBOLS = EXAMPLE_PATH = EXAMPLE_PATTERNS = * EXAMPLE_RECURSIVE = NO IMAGE_PATH = INPUT_FILTER = FILTER_PATTERNS = FILTER_SOURCE_FILES = NO FILTER_SOURCE_PATTERNS = USE_MDFILE_AS_MAINPAGE = SOURCE_BROWSER = YES INLINE_SOURCES = YES STRIP_CODE_COMMENTS = YES REFERENCED_BY_RELATION = NO REFERENCES_RELATION = NO REFERENCES_LINK_SOURCE = YES SOURCE_TOOLTIPS = YES USE_HTAGS = NO VERBATIM_HEADERS = YES ALPHABETICAL_INDEX = YES COLS_IN_ALPHA_INDEX = 5 IGNORE_PREFIX = GENERATE_HTML = YES HTML_OUTPUT = html HTML_FILE_EXTENSION = .html HTML_HEADER = HTML_FOOTER = HTML_STYLESHEET = HTML_EXTRA_STYLESHEET = HTML_EXTRA_FILES = HTML_COLORSTYLE_HUE = 220 HTML_COLORSTYLE_SAT = 100 HTML_COLORSTYLE_GAMMA = 80 HTML_TIMESTAMP = NO HTML_DYNAMIC_MENUS = YES HTML_DYNAMIC_SECTIONS = NO HTML_INDEX_NUM_ENTRIES = 100 GENERATE_DOCSET = NO DOCSET_FEEDNAME = &quot;Doxygen generated docs&quot; DOCSET_BUNDLE_ID = org.doxygen.Project DOCSET_PUBLISHER_ID = org.doxygen.Publisher DOCSET_PUBLISHER_NAME = Publisher GENERATE_HTMLHELP = NO CHM_FILE = HHC_LOCATION = GENERATE_CHI = NO CHM_INDEX_ENCODING = BINARY_TOC = NO TOC_EXPAND = NO GENERATE_QHP = NO QCH_FILE = QHP_NAMESPACE = org.doxygen.Project QHP_VIRTUAL_FOLDER = doc QHP_CUST_FILTER_NAME = QHP_CUST_FILTER_ATTRS = QHP_SECT_FILTER_ATTRS = QHG_LOCATION = GENERATE_ECLIPSEHELP = NO ECLIPSE_DOC_ID = org.doxygen.Project DISABLE_INDEX = NO GENERATE_TREEVIEW = NO ENUM_VALUES_PER_LINE = 4 TREEVIEW_WIDTH = 250 EXT_LINKS_IN_WINDOW = NO FORMULA_FONTSIZE = 10 FORMULA_TRANSPARENT = YES USE_MATHJAX = YES MATHJAX_FORMAT = HTML-CSS MATHJAX_RELPATH = https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/ MATHJAX_EXTENSIONS = MATHJAX_CODEFILE = SEARCHENGINE = YES SERVER_BASED_SEARCH = NO EXTERNAL_SEARCH = NO SEARCHENGINE_URL = SEARCHDATA_FILE = searchdata.xml EXTERNAL_SEARCH_ID = EXTRA_SEARCH_MAPPINGS = GENERATE_LATEX = NO LATEX_OUTPUT = latex LATEX_CMD_NAME = MAKEINDEX_CMD_NAME = makeindex LATEX_MAKEINDEX_CMD = \makeindex COMPACT_LATEX = NO PAPER_TYPE = a4 EXTRA_PACKAGES = LATEX_HEADER = LATEX_FOOTER = LATEX_EXTRA_STYLESHEET = LATEX_EXTRA_FILES = PDF_HYPERLINKS = YES USE_PDFLATEX = YES LATEX_BATCHMODE = NO LATEX_HIDE_INDICES = NO LATEX_SOURCE_CODE = NO LATEX_BIB_STYLE = plain LATEX_TIMESTAMP = NO LATEX_EMOJI_DIRECTORY = GENERATE_RTF = NO RTF_OUTPUT = rtf COMPACT_RTF = NO RTF_HYPERLINKS = NO RTF_STYLESHEET_FILE = RTF_EXTENSIONS_FILE = RTF_SOURCE_CODE = NO GENERATE_MAN = NO MAN_OUTPUT = man MAN_EXTENSION = .3 MAN_SUBDIR = MAN_LINKS = NO GENERATE_XML = NO XML_OUTPUT = xml XML_PROGRAMLISTING = YES XML_NS_MEMB_FILE_SCOPE = NO GENERATE_DOCBOOK = NO DOCBOOK_OUTPUT = docbook DOCBOOK_PROGRAMLISTING = NO GENERATE_AUTOGEN_DEF = NO GENERATE_PERLMOD = NO PERLMOD_LATEX = NO PERLMOD_PRETTY = YES PERLMOD_MAKEVAR_PREFIX = ENABLE_PREPROCESSING = YES MACRO_EXPANSION = NO EXPAND_ONLY_PREDEF = NO SEARCH_INCLUDES = YES INCLUDE_PATH = INCLUDE_FILE_PATTERNS = PREDEFINED = EXPAND_AS_DEFINED = SKIP_FUNCTION_MACROS = YES TAGFILES = GENERATE_TAGFILE = ALLEXTERNALS = NO EXTERNAL_GROUPS = YES EXTERNAL_PAGES = YES PERL_PATH = /usr/bin/perl CLASS_DIAGRAMS = YES MSCGEN_PATH = DIA_PATH = HIDE_UNDOC_RELATIONS = YES HAVE_DOT = NO DOT_NUM_THREADS = 0 DOT_FONTNAME = Helvetica DOT_FONTSIZE = 10 DOT_FONTPATH = CLASS_GRAPH = YES COLLABORATION_GRAPH = NO GROUP_GRAPHS = YES UML_LOOK = NO UML_LIMIT_NUM_FIELDS = 10 TEMPLATE_RELATIONS = NO INCLUDE_GRAPH = NO INCLUDED_BY_GRAPH = NO CALL_GRAPH = NO CALLER_GRAPH = NO GRAPHICAL_HIERARCHY = YES DIRECTORY_GRAPH = NO DOT_IMAGE_FORMAT = png INTERACTIVE_SVG = NO DOT_PATH = DOTFILE_DIRS = MSCFILE_DIRS = DIAFILE_DIRS = PLANTUML_JAR_PATH = PLANTUML_CFG_FILE = PLANTUML_INCLUDE_PATH = DOT_GRAPH_MAX_NODES = 50 MAX_DOT_GRAPH_DEPTH = 0 DOT_TRANSPARENT = NO DOT_MULTI_TARGETS = NO GENERATE_LEGEND = YES DOT_CLEANUP = YES</summary></entry><entry><title type="html">Linux Notes</title><link href="http://localhost:4000/2019/01/01/Linux-Notes.html" rel="alternate" type="text/html" title="Linux Notes" /><published>2019-01-01T00:00:00+08:00</published><updated>2019-01-01T00:00:00+08:00</updated><id>http://localhost:4000/2019/01/01/Linux-Notes</id><content type="html" xml:base="http://localhost:4000/2019/01/01/Linux-Notes.html">&lt;h1 id=&quot;list-files-bigger-than-filesize-specified&quot;&gt;List files bigger than filesize specified&lt;/h1&gt;
+```</content><author><name>TJYSDSG</name></author><summary type="html">DOXYFILE_ENCODING = UTF-8 PROJECT_NAME = &quot;${PROJECT_NAME}&quot; OUTPUT_DIRECTORY = docs CREATE_SUBDIRS = YES ALLOW_UNICODE_NAMES = NO OUTPUT_LANGUAGE = English OUTPUT_TEXT_DIRECTION = None BRIEF_MEMBER_DESC = YES REPEAT_BRIEF = YES ABBREVIATE_BRIEF = &quot;The $name class&quot; \ &quot;The $name widget&quot; \ &quot;The $name file&quot; \ is \ provides \ specifies \ contains \ represents \ a \ an \ the ALWAYS_DETAILED_SEC = YES INLINE_INHERITED_MEMB = NO FULL_PATH_NAMES = YES STRIP_FROM_PATH = STRIP_FROM_INC_PATH = SHORT_NAMES = NO JAVADOC_AUTOBRIEF = NO QT_AUTOBRIEF = NO MULTILINE_CPP_IS_BRIEF = NO INHERIT_DOCS = YES SEPARATE_MEMBER_PAGES = NO TAB_SIZE = 4 ALIASES = TCL_SUBST = OPTIMIZE_OUTPUT_FOR_C = YES OPTIMIZE_OUTPUT_JAVA = NO OPTIMIZE_FOR_FORTRAN = NO OPTIMIZE_OUTPUT_VHDL = NO OPTIMIZE_OUTPUT_SLICE = NO EXTENSION_MAPPING = MARKDOWN_SUPPORT = YES TOC_INCLUDE_HEADINGS = 0 AUTOLINK_SUPPORT = YES BUILTIN_STL_SUPPORT = YES CPP_CLI_SUPPORT = NO SIP_SUPPORT = NO IDL_PROPERTY_SUPPORT = YES DISTRIBUTE_GROUP_DOC = NO GROUP_NESTED_COMPOUNDS = NO SUBGROUPING = YES INLINE_GROUPED_CLASSES = NO INLINE_SIMPLE_STRUCTS = NO TYPEDEF_HIDES_STRUCT = NO LOOKUP_CACHE_SIZE = 0 EXTRACT_ALL = YES EXTRACT_PRIVATE = YES EXTRACT_PACKAGE = YES EXTRACT_STATIC = YES EXTRACT_LOCAL_CLASSES = YES EXTRACT_LOCAL_METHODS = NO EXTRACT_ANON_NSPACES = YES HIDE_UNDOC_MEMBERS = NO HIDE_UNDOC_CLASSES = NO HIDE_FRIEND_COMPOUNDS = NO HIDE_IN_BODY_DOCS = NO INTERNAL_DOCS = YES CASE_SENSE_NAMES = YES HIDE_SCOPE_NAMES = NO HIDE_COMPOUND_REFERENCE= NO SHOW_INCLUDE_FILES = YES SHOW_GROUPED_MEMB_INC = YES FORCE_LOCAL_INCLUDES = NO INLINE_INFO = YES SORT_MEMBER_DOCS = YES SORT_BRIEF_DOCS = NO SORT_MEMBERS_CTORS_1ST = YES SORT_GROUP_NAMES = NO SORT_BY_SCOPE_NAME = NO STRICT_PROTO_MATCHING = YES GENERATE_TODOLIST = YES GENERATE_TESTLIST = YES GENERATE_BUGLIST = YES GENERATE_DEPRECATEDLIST= YES ENABLED_SECTIONS = MAX_INITIALIZER_LINES = 30 SHOW_USED_FILES = YES SHOW_FILES = YES SHOW_NAMESPACES = YES FILE_VERSION_FILTER = LAYOUT_FILE = CITE_BIB_FILES = QUIET = YES WARNINGS = YES WARN_IF_UNDOCUMENTED = YES WARN_IF_DOC_ERROR = YES WARN_NO_PARAMDOC = NO WARN_AS_ERROR = NO WARN_FORMAT = &quot;$file:$line: $text&quot; WARN_LOGFILE = INPUT = INPUT_ENCODING = UTF-8 FILE_PATTERNS = *.c \ *.cc \ *.cxx \ *.cpp \ *.c++ \ *.java \ *.ii \ *.ixx \ *.ipp \ *.i++ \ *.inl \ *.idl \ *.ddl \ *.odl \ *.h \ *.hh \ *.hxx \ *.hpp \ *.h++ \ *.cs \ *.d \ *.php \ *.php4 \ *.php5 \ *.phtml \ *.inc \ *.m \ *.markdown \ *.md \ *.mm \ *.dox \ *.py \ *.pyw \ *.f90 \ *.f95 \ *.f03 \ *.f08 \ *.f \ *.for \ *.tcl \ *.vhd \ *.vhdl \ *.ucf \ *.qsf \ *.ice RECURSIVE = YES EXCLUDE = EXCLUDE_SYMLINKS = NO EXCLUDE_PATTERNS = EXCLUDE_SYMBOLS = EXAMPLE_PATH = EXAMPLE_PATTERNS = * EXAMPLE_RECURSIVE = NO IMAGE_PATH = INPUT_FILTER = FILTER_PATTERNS = FILTER_SOURCE_FILES = NO FILTER_SOURCE_PATTERNS = USE_MDFILE_AS_MAINPAGE = SOURCE_BROWSER = YES INLINE_SOURCES = YES STRIP_CODE_COMMENTS = YES REFERENCED_BY_RELATION = NO REFERENCES_RELATION = NO REFERENCES_LINK_SOURCE = YES SOURCE_TOOLTIPS = YES USE_HTAGS = NO VERBATIM_HEADERS = YES ALPHABETICAL_INDEX = YES COLS_IN_ALPHA_INDEX = 5 IGNORE_PREFIX = GENERATE_HTML = YES HTML_OUTPUT = html HTML_FILE_EXTENSION = .html HTML_HEADER = HTML_FOOTER = HTML_STYLESHEET = HTML_EXTRA_STYLESHEET = HTML_EXTRA_FILES = HTML_COLORSTYLE_HUE = 220 HTML_COLORSTYLE_SAT = 100 HTML_COLORSTYLE_GAMMA = 80 HTML_TIMESTAMP = NO HTML_DYNAMIC_MENUS = YES HTML_DYNAMIC_SECTIONS = NO HTML_INDEX_NUM_ENTRIES = 100 GENERATE_DOCSET = NO DOCSET_FEEDNAME = &quot;Doxygen generated docs&quot; DOCSET_BUNDLE_ID = org.doxygen.Project DOCSET_PUBLISHER_ID = org.doxygen.Publisher DOCSET_PUBLISHER_NAME = Publisher GENERATE_HTMLHELP = NO CHM_FILE = HHC_LOCATION = GENERATE_CHI = NO CHM_INDEX_ENCODING = BINARY_TOC = NO TOC_EXPAND = NO GENERATE_QHP = NO QCH_FILE = QHP_NAMESPACE = org.doxygen.Project QHP_VIRTUAL_FOLDER = doc QHP_CUST_FILTER_NAME = QHP_CUST_FILTER_ATTRS = QHP_SECT_FILTER_ATTRS = QHG_LOCATION = GENERATE_ECLIPSEHELP = NO ECLIPSE_DOC_ID = org.doxygen.Project DISABLE_INDEX = NO GENERATE_TREEVIEW = NO ENUM_VALUES_PER_LINE = 4 TREEVIEW_WIDTH = 250 EXT_LINKS_IN_WINDOW = NO FORMULA_FONTSIZE = 10 FORMULA_TRANSPARENT = YES USE_MATHJAX = YES MATHJAX_FORMAT = HTML-CSS MATHJAX_RELPATH = https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/ MATHJAX_EXTENSIONS = MATHJAX_CODEFILE = SEARCHENGINE = YES SERVER_BASED_SEARCH = NO EXTERNAL_SEARCH = NO SEARCHENGINE_URL = SEARCHDATA_FILE = searchdata.xml EXTERNAL_SEARCH_ID = EXTRA_SEARCH_MAPPINGS = GENERATE_LATEX = NO LATEX_OUTPUT = latex LATEX_CMD_NAME = MAKEINDEX_CMD_NAME = makeindex LATEX_MAKEINDEX_CMD = \makeindex COMPACT_LATEX = NO PAPER_TYPE = a4 EXTRA_PACKAGES = LATEX_HEADER = LATEX_FOOTER = LATEX_EXTRA_STYLESHEET = LATEX_EXTRA_FILES = PDF_HYPERLINKS = YES USE_PDFLATEX = YES LATEX_BATCHMODE = NO LATEX_HIDE_INDICES = NO LATEX_SOURCE_CODE = NO LATEX_BIB_STYLE = plain LATEX_TIMESTAMP = NO LATEX_EMOJI_DIRECTORY = GENERATE_RTF = NO RTF_OUTPUT = rtf COMPACT_RTF = NO RTF_HYPERLINKS = NO RTF_STYLESHEET_FILE = RTF_EXTENSIONS_FILE = RTF_SOURCE_CODE = NO GENERATE_MAN = NO MAN_OUTPUT = man MAN_EXTENSION = .3 MAN_SUBDIR = MAN_LINKS = NO GENERATE_XML = NO XML_OUTPUT = xml XML_PROGRAMLISTING = YES XML_NS_MEMB_FILE_SCOPE = NO GENERATE_DOCBOOK = NO DOCBOOK_OUTPUT = docbook DOCBOOK_PROGRAMLISTING = NO GENERATE_AUTOGEN_DEF = NO GENERATE_PERLMOD = NO PERLMOD_LATEX = NO PERLMOD_PRETTY = YES PERLMOD_MAKEVAR_PREFIX = ENABLE_PREPROCESSING = YES MACRO_EXPANSION = NO EXPAND_ONLY_PREDEF = NO SEARCH_INCLUDES = YES INCLUDE_PATH = INCLUDE_FILE_PATTERNS = PREDEFINED = EXPAND_AS_DEFINED = SKIP_FUNCTION_MACROS = YES TAGFILES = GENERATE_TAGFILE = ALLEXTERNALS = NO EXTERNAL_GROUPS = YES EXTERNAL_PAGES = YES PERL_PATH = /usr/bin/perl CLASS_DIAGRAMS = YES MSCGEN_PATH = DIA_PATH = HIDE_UNDOC_RELATIONS = YES HAVE_DOT = NO DOT_NUM_THREADS = 0 DOT_FONTNAME = Helvetica DOT_FONTSIZE = 10 DOT_FONTPATH = CLASS_GRAPH = YES COLLABORATION_GRAPH = NO GROUP_GRAPHS = YES UML_LOOK = NO UML_LIMIT_NUM_FIELDS = 10 TEMPLATE_RELATIONS = NO INCLUDE_GRAPH = NO INCLUDED_BY_GRAPH = NO CALL_GRAPH = NO CALLER_GRAPH = NO GRAPHICAL_HIERARCHY = YES DIRECTORY_GRAPH = NO DOT_IMAGE_FORMAT = png INTERACTIVE_SVG = NO DOT_PATH = DOTFILE_DIRS = MSCFILE_DIRS = DIAFILE_DIRS = PLANTUML_JAR_PATH = PLANTUML_CFG_FILE = PLANTUML_INCLUDE_PATH = DOT_GRAPH_MAX_NODES = 50 MAX_DOT_GRAPH_DEPTH = 0 DOT_TRANSPARENT = NO DOT_MULTI_TARGETS = NO GENERATE_LEGEND = YES DOT_CLEANUP = YES</summary></entry><entry><title type="html">Linux Notes</title><link href="http://localhost:4000/2019/01/01/Linux-Notes.html" rel="alternate" type="text/html" title="Linux Notes" /><published>2019-01-01T00:00:00+08:00</published><updated>2019-01-01T00:00:00+08:00</updated><id>http://localhost:4000/2019/01/01/Linux-Notes</id><content type="html" xml:base="http://localhost:4000/2019/01/01/Linux-Notes.html"># List files bigger than filesize specified
 
-&lt;p&gt;To find files larger than 100MB:&lt;/p&gt;
+To find files larger than 100MB:
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;find . -type f -size +100M
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;To find files larger than 4096 bytes:&lt;/p&gt;
+```
+find . -type f -size +100M
+```
+To find files larger than 4096 bytes:
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;find . -type f -size +4096c
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;or in the current dir only:&lt;/p&gt;
+```
+find . -type f -size +4096c
+```
+or in the current dir only:
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;find . -maxdepth 1 -type f -size +100M
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
+find . -maxdepth 1 -type f -size +100M
+```
 
-&lt;h1 id=&quot;copy-things-to-clipboard-in-command-line&quot;&gt;Copy things to clipboard in command line&lt;/h1&gt;
-&lt;h4 id=&quot;prerequisite&quot;&gt;Prerequisite&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt install xclip
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+# Copy things to clipboard in command line
+#### Prerequisite
+```
+sudo apt install xclip
+```
 
-&lt;h4 id=&quot;to-copy-contents-of-a-file-or-output-of-some-command-to-clipboard&quot;&gt;To copy &lt;em&gt;contents of a file or output of&lt;/em&gt; some command to clipboard&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat ./myfile.txt|xclip -i
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+#### To copy *contents of a file or output of* some command to clipboard
+```
+cat ./myfile.txt|xclip -i
+```
 
-&lt;h4 id=&quot;to-copy-data-to-the-clipboard-selection-so-it-can-be-pasted-into-an-application-with-ctrl-v&quot;&gt;To copy data to the “clipboard” selection, so it can be pasted into an application with Ctrl-V&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat ./myfile.txt|xclip -i -selection clipboard
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+#### To copy data to the &quot;clipboard&quot; selection, so it can be pasted into an application with Ctrl-V
+```
+cat ./myfile.txt|xclip -i -selection clipboard
+```
 
-&lt;h1 id=&quot;fix-apt-get-update-the-following-signatures-couldnt-be-verified-because-the-public-key-is-not-available&quot;&gt;Fix apt-get update “the following signatures couldn’t be verified because the public key is not available”&lt;/h1&gt;
-&lt;h4 id=&quot;problem&quot;&gt;Problem&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt update
+# Fix apt-get update “the following signatures couldn’t be verified because the public key is not available”
+#### Problem
+```
+$ sudo apt update
 Ign http://security.ubuntu.com trusty-security InRelease
 Get:1 http://security.ubuntu.com trusty-security Release.gpg [933 B]
 ...
@@ -587,259 +785,279 @@ W: GPG error: http://security.ubuntu.com trusty-security Release: The following 
 W: GPG error: http://archive.canonical.com trusty Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 40976EAF437D05B5 NO_PUBKEY 3B4FE6ACC0B21F32
 W: GPG error: http://archive.ubuntu.com trusty Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 40976EAF437D05B5 NO_PUBKEY 3B4FE6ACC0B21F32
 W: GPG error: http://archive.ubuntu.com trusty-updates Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 40976EAF437D05B5 NO_PUBKEY 3B4FE6ACC0B21F32
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h4 id=&quot;solution&quot;&gt;Solution&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40976EAF437D05B5
+```
+#### Solution
+```
+$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40976EAF437D05B5
 $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>TJYSDSG</name></author><summary type="html">List files bigger than filesize specified</summary></entry><entry><title type="html">Python/pip/conda Notes</title><link href="http://localhost:4000/2018/12/28/python-notes.html" rel="alternate" type="text/html" title="Python/pip/conda Notes" /><published>2018-12-28T00:00:00+08:00</published><updated>2018-12-28T00:00:00+08:00</updated><id>http://localhost:4000/2018/12/28/python-notes</id><content type="html" xml:base="http://localhost:4000/2018/12/28/python-notes.html">&lt;h1 id=&quot;uninstalling-package-that-is-installed-by-python-setuppy-install&quot;&gt;Uninstalling package that is installed by &lt;code class=&quot;highlighter-rouge&quot;&gt;python setup.py install&lt;/code&gt;&lt;/h1&gt;
-&lt;p&gt;Unfortunately, there is no “vanilla” way to uninstall. However, it is still quite easy to do that in two lines of command:&lt;/p&gt;
+```</content><author><name>TJYSDSG</name></author><summary type="html">List files bigger than filesize specified</summary></entry><entry><title type="html">Python/pip/conda Notes</title><link href="http://localhost:4000/2018/12/28/python-notes.html" rel="alternate" type="text/html" title="Python/pip/conda Notes" /><published>2018-12-28T00:00:00+08:00</published><updated>2018-12-28T00:00:00+08:00</updated><id>http://localhost:4000/2018/12/28/python-notes</id><content type="html" xml:base="http://localhost:4000/2018/12/28/python-notes.html"># Uninstalling package that is installed by `python setup.py install`
+Unfortunately, there is no &quot;vanilla&quot; way to uninstall. However, it is still quite easy to do that in two lines of command:
 
-&lt;p&gt;First, save the files lists&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python setup.py install --record files.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Then, simply rm -rf them&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat files.txt | xargs rm -rf
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+First, save the files lists
+```
+python setup.py install --record files.txt
+```
+Then, simply rm -rf them
+```
+cat files.txt | xargs rm -rf
+```
 
-&lt;h1 id=&quot;managing-conda-environments&quot;&gt;Managing conda environments&lt;/h1&gt;
-&lt;h4 id=&quot;creating-a-virtual-environment&quot;&gt;Creating a virtual environment&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda create -n &amp;lt;myenvname&amp;gt; python=3.7 anaconda
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+# Managing conda environments
+#### Creating a virtual environment
+```
+conda create -n &lt;myenvname&gt; python=3.7 anaconda
+```
 
-&lt;h4 id=&quot;install-some-python-packages-to-a-virtual-environment&quot;&gt;Install some Python packages to a virtual environment&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda install -n &amp;lt;myenvname&amp;gt; &amp;lt;packagename&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+#### Install some Python packages to a virtual environment
+```
+conda install -n &lt;myenvname&gt; &lt;packagename&gt;
+```
 
-&lt;h4 id=&quot;delete-a-environment&quot;&gt;Delete a environment&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda remove -n &amp;lt;myenvname&amp;gt; -all
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+#### Delete a environment
+```
+conda remove -n &lt;myenvname&gt; -all
+```
 
-&lt;h1 id=&quot;sorting-a-numpy-array-a-in-descending-order&quot;&gt;Sorting a numpy array &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt; in descending order&lt;/h1&gt;
-&lt;h4 id=&quot;sort-in-place&quot;&gt;Sort in place&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;a[::-1].sort()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h4 id=&quot;create-a-new-array&quot;&gt;Create a new array&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;np.sort(a)[::-1]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+# Sorting a numpy array `a` in descending order
+#### Sort in place
+```
+a[::-1].sort()
+```
+#### Create a new array
+```
+np.sort(a)[::-1]
+```
 
-&lt;h1 id=&quot;formatting-strings&quot;&gt;Formatting strings&lt;/h1&gt;
-&lt;h4 id=&quot;-formatting&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;%&lt;/code&gt;-formatting&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; name = &quot;Eric&quot;
-&amp;gt;&amp;gt;&amp;gt; &quot;Hello, %s.&quot; % name
+# Formatting strings
+#### `%`-formatting
+```
+&gt;&gt;&gt; name = &quot;Eric&quot;
+&gt;&gt;&gt; &quot;Hello, %s.&quot; % name
 'Hello, Eric.'
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
 
-&lt;p&gt;or&lt;/p&gt;
+or
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; name = &quot;Eric&quot;
-&amp;gt;&amp;gt;&amp;gt; age = 74
-&amp;gt;&amp;gt;&amp;gt; &quot;Hello, %s. You are %s.&quot; % (name, age)
+```
+&gt;&gt;&gt; name = &quot;Eric&quot;
+&gt;&gt;&gt; age = 74
+&gt;&gt;&gt; &quot;Hello, %s. You are %s.&quot; % (name, age)
 'Hello Eric. You are 74.'
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
 
-&lt;h4 id=&quot;strformat&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;str.format()&lt;/code&gt;&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; &quot;Hello, {}. You are {}.&quot;.format(name, age)
+#### `str.format()`
+```
+&gt;&gt;&gt; &quot;Hello, {}. You are {}.&quot;.format(name, age)
 'Hello, Eric. You are 74.'
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
 
-&lt;p&gt;or&lt;/p&gt;
+or
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; &quot;Hello, {1}. You are {0}.&quot;.format(age, name)
+```
+&gt;&gt;&gt; &quot;Hello, {1}. You are {0}.&quot;.format(age, name)
 'Hello, Eric. You are 74.'
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
 
-&lt;h4 id=&quot;f-strings&quot;&gt;f-Strings&lt;/h4&gt;
+#### f-Strings
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; name = &quot;Eric&quot;
-&amp;gt;&amp;gt;&amp;gt; age = 74
-&amp;gt;&amp;gt;&amp;gt; f&quot;Hello, {name}. You are {age}.&quot;
+```
+&gt;&gt;&gt; name = &quot;Eric&quot;
+&gt;&gt;&gt; age = 74
+&gt;&gt;&gt; f&quot;Hello, {name}. You are {age}.&quot;
 'Hello, Eric. You are 74.'
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
 
-&lt;p&gt;or&lt;/p&gt;
+or
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; F&quot;Hello, {name}. You are {age}.&quot;
+```
+&gt;&gt;&gt; F&quot;Hello, {name}. You are {age}.&quot;
 'Hello, Eric. You are 74.'
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
 
-&lt;p&gt;or&lt;/p&gt;
+or
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; name = &quot;Eric&quot;
-&amp;gt;&amp;gt;&amp;gt; profession = &quot;comedian&quot;
-&amp;gt;&amp;gt;&amp;gt; affiliation = &quot;Monty Python&quot;
-&amp;gt;&amp;gt;&amp;gt; message = (
+```
+&gt;&gt;&gt; name = &quot;Eric&quot;
+&gt;&gt;&gt; profession = &quot;comedian&quot;
+&gt;&gt;&gt; affiliation = &quot;Monty Python&quot;
+&gt;&gt;&gt; message = (
 ...     f&quot;Hi {name}. &quot;
 ...     f&quot;You are a {profession}. &quot;
 ...     f&quot;You were in {affiliation}.&quot;
 ... )
-&amp;gt;&amp;gt;&amp;gt; message
+&gt;&gt;&gt; message
 'Hi Eric. You are a comedian. You were in Monty Python.'
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
 
-&lt;h1 id=&quot;find-current-directory-and-files-directory&quot;&gt;Find current directory and file’s directory&lt;/h1&gt;
+# Find current directory and file's directory
 
-&lt;p&gt;To get the full path to the directory a Python file is contained in, write this in that file:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import os
+
+To get the full path to the directory a Python file is contained in, write this in that file:
+```
+import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;To get the current working directory:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import os
+```
+To get the current working directory:
+```
+import os
 cwd = os.getcwd()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
 
-&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://conda.io/docs/index.html&quot;&gt;Conda Documentation&lt;/a&gt;&lt;/p&gt;
+# References
+[Conda Documentation](https://conda.io/docs/index.html)
 
-&lt;p&gt;&lt;a href=&quot;https://realpython.com/python-f-strings/&quot;&gt;Real Python&lt;/a&gt;&lt;/p&gt;</content><author><name>TJYSDSG</name></author><summary type="html">Uninstalling package that is installed by python setup.py install Unfortunately, there is no “vanilla” way to uninstall. However, it is still quite easy to do that in two lines of command:</summary></entry><entry><title type="html">Git Notes</title><link href="http://localhost:4000/2018/12/16/git-notes.html" rel="alternate" type="text/html" title="Git Notes" /><published>2018-12-16T00:00:00+08:00</published><updated>2018-12-16T00:00:00+08:00</updated><id>http://localhost:4000/2018/12/16/git-notes</id><content type="html" xml:base="http://localhost:4000/2018/12/16/git-notes.html">&lt;h1 id=&quot;removing-a-file-from-last-git-commit&quot;&gt;Removing a file from last Git commit&lt;/h1&gt;
+[Real Python](https://realpython.com/python-f-strings/)</content><author><name>TJYSDSG</name></author><summary type="html">Uninstalling package that is installed by python setup.py install Unfortunately, there is no “vanilla” way to uninstall. However, it is still quite easy to do that in two lines of command:</summary></entry><entry><title type="html">Git Notes</title><link href="http://localhost:4000/2018/12/16/git-notes.html" rel="alternate" type="text/html" title="Git Notes" /><published>2018-12-16T00:00:00+08:00</published><updated>2018-12-16T00:00:00+08:00</updated><id>http://localhost:4000/2018/12/16/git-notes</id><content type="html" xml:base="http://localhost:4000/2018/12/16/git-notes.html"># Removing a file from last Git commit
 
-&lt;h2 id=&quot;purposes&quot;&gt;Purposes&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Remove the file that is commited in one commit&lt;/li&gt;
-  &lt;li&gt;DO NOT cancel its changes in the file system NOR delete it in the file system&lt;/li&gt;
-&lt;/ul&gt;
+## Purposes
+- Remove the file that is commited in one commit
+- DO NOT cancel its changes in the file system NOR delete it in the file system
 
-&lt;h2 id=&quot;how&quot;&gt;How&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git reset --soft HEAD^
-git reset HEAD &amp;lt;path/to/unwanted_file&amp;gt;
+## How
+```
+git reset --soft HEAD^
+git reset HEAD &lt;path/to/unwanted_file&gt;
 git commit -c ORIG_HEAD
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
 
-&lt;h1 id=&quot;track-large-files-with-git-lfs-in-all-existing-commits&quot;&gt;Track large files with Git LFS in all existing commits&lt;/h1&gt;
+# Track large files with Git LFS in all existing commits
 
-&lt;h2 id=&quot;purposes-1&quot;&gt;Purposes&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Track large files with Git LFS&lt;/li&gt;
-  &lt;li&gt;But have multiple existing commits that have not tracked the files&lt;/li&gt;
-&lt;/ul&gt;
+## Purposes
+- Track large files with Git LFS
+- But have multiple existing commits that have not tracked the files
 
-&lt;h2 id=&quot;how-1&quot;&gt;How&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git lfs migrate import --include=&quot;*.&amp;lt;extension_of_the_file_you_want_to_track&amp;gt;&quot;
+## How
+```
+git lfs migrate import --include=&quot;*.&lt;extension_of_the_file_you_want_to_track&gt;&quot;
 # following optional, but better because it clean up the repo immediately 
 git reflog expire --expire-unreachable=now --all
 git gc --prune=now
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
 
-&lt;h1 id=&quot;clone-only-a-certain-branch-of-a-remote-repo&quot;&gt;Clone only a certain branch of a remote repo&lt;/h1&gt;
-&lt;h2 id=&quot;purposes-2&quot;&gt;Purposes&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Clone a repo&lt;/li&gt;
-  &lt;li&gt;But only clone a specific branch (maybe to reduce downloading time)&lt;/li&gt;
-&lt;/ul&gt;
+# Clone only a certain branch of a remote repo
+## Purposes
+- Clone a repo
+- But only clone a specific branch (maybe to reduce downloading time) 
 
-&lt;h2 id=&quot;how-2&quot;&gt;How&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone -b &amp;lt;branch_name&amp;gt; --single-branch &amp;lt;repo_url&amp;gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+## How
+```
+git clone -b &lt;branch_name&gt; --single-branch &lt;repo_url&gt; 
+```
 
-&lt;h1 id=&quot;update-all-submodules-to-latest-commit&quot;&gt;Update all submodules to latest commit&lt;/h1&gt;
-&lt;h2 id=&quot;how-3&quot;&gt;How&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git submodule foreach git pull origin master
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>TJYSDSG</name></author><summary type="html">Removing a file from last Git commit</summary></entry><entry><title type="html">Set Basic Data Type Attributes in C</title><link href="http://localhost:4000/2018/11/12/define-c-data-types.html" rel="alternate" type="text/html" title="Set Basic Data Type Attributes in C" /><published>2018-11-12T00:00:00+08:00</published><updated>2018-11-12T00:00:00+08:00</updated><id>http://localhost:4000/2018/11/12/define-c-data-types</id><content type="html" xml:base="http://localhost:4000/2018/11/12/define-c-data-types.html">&lt;p&gt;An Example&lt;/p&gt;
+# Update all submodules to latest commit
+## How
+```
+git submodule foreach git pull origin master
+```</content><author><name>TJYSDSG</name></author><summary type="html">Removing a file from last Git commit</summary></entry><entry><title type="html">Set Basic Data Type Attributes in C</title><link href="http://localhost:4000/2018/11/12/define-c-data-types.html" rel="alternate" type="text/html" title="Set Basic Data Type Attributes in C" /><published>2018-11-12T00:00:00+08:00</published><updated>2018-11-12T00:00:00+08:00</updated><id>http://localhost:4000/2018/11/12/define-c-data-types</id><content type="html" xml:base="http://localhost:4000/2018/11/12/define-c-data-types.html">An Example
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;typedef signed int __attribute__((mode(TI)))   int128_t;
+```
+typedef signed int __attribute__((mode(TI)))   int128_t;
 typedef unsigned int __attribute__((mode(TI)))   uint128_t;
 typedef float __attribute__((__mode__(__SD__)))   _Decimal32;
 typedef float __attribute__((__mode__(__DD__)))   _Decimal64;
 typedef float __attribute__((__mode__(__TD__)))   _Decimal128;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
 
-&lt;p&gt;What does &lt;code class=&quot;highlighter-rouge&quot;&gt;__XXX__&lt;/code&gt; mean&lt;/p&gt;
+What does `__XXX__` mean
 
-&lt;ul&gt;
-  &lt;li&gt;BI: 1 Bit&lt;/li&gt;
-  &lt;li&gt;QI: Quarter Integer; 1 byte&lt;/li&gt;
-  &lt;li&gt;HI: Half Integer; 2 bytes&lt;/li&gt;
-  &lt;li&gt;PSI: Partial Single Integer; 4 bytes; not all bits used&lt;/li&gt;
-  &lt;li&gt;SI: Single Integer; 4 bytes&lt;/li&gt;
-  &lt;li&gt;PDI: Partial Double Integer; 8 bytes; not all bits used&lt;/li&gt;
-  &lt;li&gt;DI: Double Integer; 8 bytes (64-bits)&lt;/li&gt;
-  &lt;li&gt;TI: Tetra Integer; 16 bytes (128-bits)&lt;/li&gt;
-  &lt;li&gt;OI: Octa Integer; 32 bytes (256-bits)&lt;/li&gt;
-  &lt;li&gt;XI: Hexadeca Integer; 64 bytes (512-bits)&lt;/li&gt;
-  &lt;li&gt;QF: Quarter Floating; 1 byte quarter-precision float-point&lt;/li&gt;
-  &lt;li&gt;HF: Half Floating; 2 byte half-precision float-point&lt;/li&gt;
-  &lt;li&gt;TQF: Three Quarter Floating; 3 byte three-quarter-precision float-point&lt;/li&gt;
-  &lt;li&gt;SF: Single Floating; 4 byte single-precision float-point&lt;/li&gt;
-  &lt;li&gt;DF: Double Floating; 8 byte double-precision float-point&lt;/li&gt;
-  &lt;li&gt;XF: Extended Floating; 12 byte extended-precision float-point&lt;/li&gt;
-  &lt;li&gt;TF: Tetra Floating; 16 byte tetra-precision float-point&lt;/li&gt;
-  &lt;li&gt;SD: Single Decimal Floating; 4 byte (32-bit) decimal float-point&lt;/li&gt;
-  &lt;li&gt;DD: Double Decimal Floating; 8 byte (64-bit) decimal float-point&lt;/li&gt;
-  &lt;li&gt;TD: Tetra Decimal Floating; 4 byte (128-bit) decimal float-point&lt;/li&gt;
-  &lt;li&gt;CQI: Complex Quarter Integer; 1 byte&lt;/li&gt;
-  &lt;li&gt;CHI: Complex Half Integer; 2 bytes&lt;/li&gt;
-  &lt;li&gt;CSI: Complex Single Integer; 4 bytes&lt;/li&gt;
-  &lt;li&gt;CDI: Complex Double Integer; 8 bytes&lt;/li&gt;
-  &lt;li&gt;CTI: Complex Tetra Integer; 16 bytes&lt;/li&gt;
-  &lt;li&gt;COI: Complex Octa Integer; 32 bytes&lt;/li&gt;
-  &lt;li&gt;QC: Quarter Complex; 1 byte quarter-precision complex float-point&lt;/li&gt;
-  &lt;li&gt;HC: Half Complex; 2 byte half-precision complex float-point&lt;/li&gt;
-  &lt;li&gt;SC: Single Complex; 4 byte single-precision complex float-point&lt;/li&gt;
-  &lt;li&gt;DC: Double Complex; 8 byte double-precision complex float-point&lt;/li&gt;
-  &lt;li&gt;XC: Extended Complex; 12 byte extended-precision complex float-point&lt;/li&gt;
-  &lt;li&gt;TC: Tetra Complex; 16 byte tetra-precision complex float-point&lt;/li&gt;
-  &lt;li&gt;QQ: Quarter-Fractional; 1-byte signed fractional number&lt;/li&gt;
-  &lt;li&gt;HQ: Half-Fractional; 2-byte signed fractional number&lt;/li&gt;
-  &lt;li&gt;SQ: Single-Fractional; 4-byte (32-bit) signed fractional number&lt;/li&gt;
-  &lt;li&gt;DQ: Double-Fractional; 8-byte (64-bit) signed fractional number&lt;/li&gt;
-  &lt;li&gt;TQ: Tetra-Fractional; 16-byte (128-bit) signed fractional number&lt;/li&gt;
-  &lt;li&gt;UQQ: Unsigned Quarter-Fractional; 1-byte unsigned fractional number&lt;/li&gt;
-  &lt;li&gt;UHQ: Unsigned Half-Fractional; 2-byte unsigned fractional number&lt;/li&gt;
-  &lt;li&gt;USQ: Unsigned Single-Fractional; 4-byte (32-bit) unsigned fractional number&lt;/li&gt;
-  &lt;li&gt;UDQ: Unsigned Double-Fractional; 8-byte (64-bit) unsigned fractional number&lt;/li&gt;
-  &lt;li&gt;UTQ: Unsigned Tetra-Fractional; 16-byte (128-bit) unsigned fractional number&lt;/li&gt;
-  &lt;li&gt;HA: Half-Accumulator; 2-byte (16-bit) signed accumulator&lt;/li&gt;
-  &lt;li&gt;SA: Single-Accumulator; 4-byte (32-bit) signed accumulator&lt;/li&gt;
-  &lt;li&gt;DA: Double-Accumulator; 8-byte (64-bit) signed accumulator&lt;/li&gt;
-  &lt;li&gt;TA: Tetra-Accumulator; 16-byte (128-bit) signed accumulator&lt;/li&gt;
-  &lt;li&gt;UHA: Unsigned Half-Accumulator; 2-byte (16-bit) unsigned accumulator&lt;/li&gt;
-  &lt;li&gt;USA: Unsigned Single-Accumulator; 4-byte (32-bit) unsigned accumulator&lt;/li&gt;
-  &lt;li&gt;UDA: Unsigned Double-Accumulator; 8-byte (64-bit) unsigned accumulator&lt;/li&gt;
-  &lt;li&gt;UTA: Unsigned Tetra-Accumulator; 16-byte (128-bit) unsigned accumulator&lt;/li&gt;
-  &lt;li&gt;CC: Condition Code&lt;/li&gt;
-  &lt;li&gt;BLK: Block&lt;/li&gt;
-  &lt;li&gt;VOID: Void&lt;/li&gt;
-  &lt;li&gt;P: Address mode&lt;/li&gt;
-  &lt;li&gt;V4SI: Vector; 4 single integers&lt;/li&gt;
-  &lt;li&gt;V8QI: Vector; 8 single-byte integers&lt;/li&gt;
-  &lt;li&gt;BND32: 32-bit pointer bound&lt;/li&gt;
-  &lt;li&gt;BND64: 64-bit pointer bound&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>TJYSDSG</name></author><summary type="html">An Example</summary></entry><entry><title type="html">CMake Notes</title><link href="http://localhost:4000/2018/09/07/cmake-notes.html" rel="alternate" type="text/html" title="CMake Notes" /><published>2018-09-07T00:00:00+08:00</published><updated>2018-09-07T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/07/cmake-notes</id><content type="html" xml:base="http://localhost:4000/2018/09/07/cmake-notes.html">&lt;h1 id=&quot;basic-template&quot;&gt;Basic Template&lt;/h1&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cmake_minimum_required(VERSION X.X)
-project (&amp;lt;your project name here&amp;gt;)
+- BI: 1 Bit
+- QI: Quarter Integer; 1 byte
+- HI: Half Integer; 2 bytes
+- PSI: Partial Single Integer; 4 bytes; not all bits used
+- SI: Single Integer; 4 bytes
+- PDI: Partial Double Integer; 8 bytes; not all bits used
+- DI: Double Integer; 8 bytes (64-bits)
+- TI: Tetra Integer; 16 bytes (128-bits)
+- OI: Octa Integer; 32 bytes (256-bits)
+- XI: Hexadeca Integer; 64 bytes (512-bits)
+- QF: Quarter Floating; 1 byte quarter-precision float-point
+- HF: Half Floating; 2 byte half-precision float-point
+- TQF: Three Quarter Floating; 3 byte three-quarter-precision float-point
+- SF: Single Floating; 4 byte single-precision float-point
+- DF: Double Floating; 8 byte double-precision float-point
+- XF: Extended Floating; 12 byte extended-precision float-point
+- TF: Tetra Floating; 16 byte tetra-precision float-point
+- SD: Single Decimal Floating; 4 byte (32-bit) decimal float-point
+- DD: Double Decimal Floating; 8 byte (64-bit) decimal float-point
+- TD: Tetra Decimal Floating; 4 byte (128-bit) decimal float-point
+- CQI: Complex Quarter Integer; 1 byte
+- CHI: Complex Half Integer; 2 bytes
+- CSI: Complex Single Integer; 4 bytes
+- CDI: Complex Double Integer; 8 bytes
+- CTI: Complex Tetra Integer; 16 bytes
+- COI: Complex Octa Integer; 32 bytes
+- QC: Quarter Complex; 1 byte quarter-precision complex float-point
+- HC: Half Complex; 2 byte half-precision complex float-point
+- SC: Single Complex; 4 byte single-precision complex float-point
+- DC: Double Complex; 8 byte double-precision complex float-point
+- XC: Extended Complex; 12 byte extended-precision complex float-point
+- TC: Tetra Complex; 16 byte tetra-precision complex float-point
+- QQ: Quarter-Fractional; 1-byte signed fractional number
+- HQ: Half-Fractional; 2-byte signed fractional number
+- SQ: Single-Fractional; 4-byte (32-bit) signed fractional number
+- DQ: Double-Fractional; 8-byte (64-bit) signed fractional number
+- TQ: Tetra-Fractional; 16-byte (128-bit) signed fractional number
+- UQQ: Unsigned Quarter-Fractional; 1-byte unsigned fractional number
+- UHQ: Unsigned Half-Fractional; 2-byte unsigned fractional number
+- USQ: Unsigned Single-Fractional; 4-byte (32-bit) unsigned fractional number
+- UDQ: Unsigned Double-Fractional; 8-byte (64-bit) unsigned fractional number
+- UTQ: Unsigned Tetra-Fractional; 16-byte (128-bit) unsigned fractional number
+- HA: Half-Accumulator; 2-byte (16-bit) signed accumulator
+- SA: Single-Accumulator; 4-byte (32-bit) signed accumulator
+- DA: Double-Accumulator; 8-byte (64-bit) signed accumulator
+- TA: Tetra-Accumulator; 16-byte (128-bit) signed accumulator
+- UHA: Unsigned Half-Accumulator; 2-byte (16-bit) unsigned accumulator
+- USA: Unsigned Single-Accumulator; 4-byte (32-bit) unsigned accumulator
+- UDA: Unsigned Double-Accumulator; 8-byte (64-bit) unsigned accumulator
+- UTA: Unsigned Tetra-Accumulator; 16-byte (128-bit) unsigned accumulator
+- CC: Condition Code
+- BLK: Block
+- VOID: Void
+- P: Address mode
+- V4SI: Vector; 4 single integers
+- V8QI: Vector; 8 single-byte integers
+- BND32: 32-bit pointer bound
+- BND64: 64-bit pointer bound</content><author><name>TJYSDSG</name></author><summary type="html">An Example</summary></entry><entry><title type="html">CMake Notes</title><link href="http://localhost:4000/2018/09/07/cmake-notes.html" rel="alternate" type="text/html" title="CMake Notes" /><published>2018-09-07T00:00:00+08:00</published><updated>2018-09-07T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/07/cmake-notes</id><content type="html" xml:base="http://localhost:4000/2018/09/07/cmake-notes.html"># Basic Template
+```
+cmake_minimum_required(VERSION X.X)
+project (&lt;your project name here&gt;)
 set(CMAKE_CXX_STANDARD 11)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
-include_directories(&amp;lt;target name&amp;gt; PUBLIC ${PROJECT_SOURCE_DIR}/include)
+include_directories(&lt;target name&gt; PUBLIC ${PROJECT_SOURCE_DIR}/include)
 aux_source_directory(${PROJECT_SOURCE_DIR}/src SRCS)
 
-add_executable(&amp;lt;target name&amp;gt; ${SRCS})
-target_link_libraries(&amp;lt;target name&amp;gt; &amp;lt;libraries you want to link&amp;gt;)
+add_executable(&lt;target name&gt; ${SRCS})
+target_link_libraries(&lt;target name&gt; &lt;libraries you want to link&gt;)
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
 
-&lt;h2 id=&quot;for-loop&quot;&gt;For-Loop&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SET(x 3 2)
+## For-Loop
+```
+SET(x 3 2)
 FOREACH(val${x})
 MESSAGE(${val})
 ENDFOREACH(val)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
 
-&lt;h2 id=&quot;set-output-directory&quot;&gt;Set Output Directory&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+## Set Output Directory
+```
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Also:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set_target_properties(&amp;lt;target-name&amp;gt;
+```
+Also:
+```
+set_target_properties(&lt;target-name&gt;
     PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY &quot;${CMAKE_BINARY_DIR}/lib&quot;
     LIBRARY_OUTPUT_DIRECTORY &quot;${CMAKE_BINARY_DIR}/lib&quot;
     RUNTIME_OUTPUT_DIRECTORY &quot;${CMAKE_BINARY_DIR}/bin&quot;
     )
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
 
-&lt;h2 id=&quot;common-used-variables&quot;&gt;Common-used Variables&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set(CMAKE_BUILD_TYPE None|Debug|Release|RelWithDebInfo|MinSizeRel)
+## Common-used Variables
+```
+set(CMAKE_BUILD_TYPE None|Debug|Release|RelWithDebInfo|MinSizeRel)
 
 set(CMAKE_C_FLAGS|CMAKE_CXX_FLAGS &quot;-Wall -Wextra&quot;)
 
@@ -848,13 +1066,13 @@ set(CMAKE_C_FLAGS_DEBUG|CMAKE_CXX_FLAGS_DEBUG &quot;-g&quot;)
 
 # optimization flag can be set here:
 set(CMAKE_C_FLAGS_RELEASE|CMAKE_CXX_FLAGS_RELEASE &quot;-O3&quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+```
 
-&lt;h2 id=&quot;common-used-flags&quot;&gt;Common-used Flags&lt;/h2&gt;
+## Common-used Flags
 
-&lt;p&gt;Besides flags above, there are flags that might be useful:&lt;/p&gt;
+Besides flags above, there are flags that might be useful:
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;CMAKE_EXE_LINKER_FLAGS&lt;/code&gt; - used by the linker when linking executables
-&lt;code class=&quot;highlighter-rouge&quot;&gt;CMAKE_SHARED_LINKER_FLAGS&lt;/code&gt; - used by linker when linking shared object libraries
-&lt;code class=&quot;highlighter-rouge&quot;&gt;CMAKE_MODULE_LINKER_FLAGS&lt;/code&gt; - used by linker when linking modules
-&lt;code class=&quot;highlighter-rouge&quot;&gt;CMAKE_STATIC_LINKER_FLAGS&lt;/code&gt; - used by linker when linking static object libraries&lt;/p&gt;</content><author><name>TJYSDSG</name></author><summary type="html">Basic Template ``` cmake_minimum_required(VERSION X.X) project () set(CMAKE_CXX_STANDARD 11)</summary></entry></feed>
+`CMAKE_EXE_LINKER_FLAGS` - used by the linker when linking executables
+`CMAKE_SHARED_LINKER_FLAGS` - used by linker when linking shared object libraries
+`CMAKE_MODULE_LINKER_FLAGS` - used by linker when linking modules
+`CMAKE_STATIC_LINKER_FLAGS` - used by linker when linking static object libraries</content><author><name>TJYSDSG</name></author><summary type="html">Basic Template ``` cmake_minimum_required(VERSION X.X) project () set(CMAKE_CXX_STANDARD 11)</summary></entry></feed>
