@@ -16,11 +16,11 @@
   <link rel="icon" href="/tjy_logo.PNG">
 
   <!-- Mathjax Support -->
-  <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
        <script type="text/x-mathjax-config">
          MathJax.Hub.Config({
            tex2jax: {
              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+             displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
              processEscapes: true
            }
          });
@@ -80,53 +80,110 @@
 
   <div class="post-content" itemprop="articleBody">
     <h1 id="vector">Vector</h1>
+<hr />
 
 <h2 id="scalar-projection">Scalar Projection</h2>
-<p><script type="math/tex">= |\mathbf {a} |\cos \theta</script></p>
+<p>\[ = |\mathbf {a} |\cos \theta \]</p>
 
 <h2 id="vector-projection">Vector Projection</h2>
-<p><script type="math/tex">= |\mathbf{a} |\cos\theta</script>
-<script type="math/tex">= (|\mathbf{a} |\cos\theta )\frac{\mathbf{b}}{|\mathbf{b}|}</script></p>
+<p>\[ = |\mathbf{a} |\cos\theta \]
+\[ = (|\mathbf{a} |\cos\theta )\frac{\mathbf{b}}{|\mathbf{b}|} \]</p>
 
 <h2 id="unit-tangent-vector-unit-normal-vector-and-binormal-vector">Unit Tangent Vector, Unit Normal Vector And Binormal Vector</h2>
 <p><img src="/images/13-3-6.png" alt="13-3-6" /></p>
 
 <p>Unit Tangent Vector: 
-\( \mathbf{T}(t) = \frac{\mathbf{r}^{‘}(t)}{|\mathbf{r}^{‘}(t)|} \)</p>
+\[ \mathbf{T}(t) = \frac{\mathbf{r}’(t)}{|\mathbf{r}’(t)|} \]</p>
 
 <p>Unit Normal Vector: 
-\( \mathbf{N}(t) = \frac{\mathbf{T}^{‘}(t)}{|\mathbf{T}^{‘}(t)|} \)</p>
+\[ \mathbf{N}(t) = \frac{\mathbf{T}’(t)}{|\mathbf{T}’(t)|} \]</p>
 
 <p>Binormal Vector: 
-\( \mathbf{B}(t) = \mathbf{T}(t) \times \mathbf{N}(t) \)</p>
+\[ \mathbf{B}(t) = \mathbf{T}(t) \times \mathbf{N}(t) \]</p>
 
 <h2 id="normal-plane-osculating-plane-and-osculating-circle">Normal Plane, Osculating Plane And Osculating Circle</h2>
 <p>The plane determined by the normal and binormal vectors N and B is called the
 normal plane. It consists of all lines that are orthogonal to the
-tangent vector <script type="math/tex">\mathbf{T}</script>.</p>
+tangent vector $\mathbf{T}$.</p>
 
-<p>The plane determined by the vectors <script type="math/tex">\mathbf{T}</script> and <script type="math/tex">\mathbf{N}</script> is called
+<p>The plane determined by the vectors $\mathbf{T}$ and $\mathbf{N}$ is called
 the osculating plane. It is the plane that comes closest to containing the part
 of the curve. (For a plane curve, the osculating plane is simply the plane that
 contains the curve.)</p>
 
 <p>The osculating circle lies in the osculating plane has the same tangent of the
-curve, lies on the concave side of the curve (toward which <script type="math/tex">\mathbf{N}</script>
-points), and has radius <script type="math/tex">\rho = \frac{1}{\kappa}</script> (the reciprocal of the
+curve, lies on the concave side of the curve (toward which $\mathbf{N}$
+points), and has radius $\rho = \frac{1}{\kappa}$ (the reciprocal of the
 curvature). It is the circle that best describes how the curve behaves near a
 point; it shares the same tangent, normal, and curvature at that point.</p>
 
 <h2 id="curvature">Curvature</h2>
-<p><script type="math/tex">\kappa = \left| \frac{d\mathbf{T}}{ds} \right|</script> where <script type="math/tex">\mathbf{T}</script> is
+<p>\[ \kappa = \left| \frac{d\mathbf{T}}{ds} \right| \] where $\mathbf{T} $ is
 the unit tangent vector.</p>
 
-<p>Also:</p>
+<p>Also:
+\[ \kappa = \frac{|\mathbf{r}’(t) \times \mathbf{r}^{\prime\prime}(t)|}{|\mathbf{r}’(t)|^3} \]</p>
 
-<script type="math/tex; mode=display">\kappa = \frac{|\mathbf{r}^{'}(t) \times \mathbf{r}^{''}(t)|}{|\mathbf{r}^{'}(t)|^3}</script>
+<h1 id="multivariable-calculus">Multivariable Calculus</h1>
+<hr />
+
+<h2 id="limit">Limit</h2>
+<h3 id="definition-on-mathbbr2">Definition (on $\mathbb{R}^2$)</h3>
+<p>Let $f$ be a function of two variables whose domain $\mathbf{D}$ includes
+points arbitrarily close to $(a,b)$. Then we say that the limit of $f(x,y)$ as
+$(x,y)$ approaches $(a,b)$ is $L$ and we write</p>
+
+<p>\[ \lim_{(x,y)\to (a,b)}f(x,y) = L \]</p>
+
+<p>if for every number $ \varepsilon &gt; 0$ there is a corresponding number
+$\delta&gt;0$ such that if $(x,y)\in D$ and $0&lt;\sqrt{(x-a)^2+(y-b)^2}&lt;\delta$ then
+$|f(x,y)-L|&lt;\varepsilon$</p>
+
+<p>If $f(x,y) \to L_1$ as $(x,y)\to(a,b)$ along a path $C_1$ and $f(x,y)\to L_2$ as
+$(x,y)\to(a,b)$ along a path $C_2$, where $L_1\ne L_2$, then
+$\lim_{(x,y)\to(a,b)}f(x,y)$ does
+not exist.</p>
+
+<h3 id="continuity-on-mathbbr2">Continuity (on $\mathbb{R}^2$)</h3>
+<p>A function $f$ of two variables is called continuous at $(a,b)$ if
+\[ \lim_{(x,y)\to (a,b)}f(x,y) = f(a,b) \]</p>
+
+<p>If $f$ is continuous on $D$, $f$ is continuous at every point $(a,b)$ in $D$.</p>
+
+<h4 id="facts">Facts</h4>
+<p>All polynomials and rational functions are continuous on $\mathbb{R}^2$.</p>
+
+<h3 id="definition-on-mathbbrn">Definition (on $\mathbb{R}^n$)</h3>
+<p>If $f$ is defined on a subset $D$ of $\mathbb{R}^n$, then $lim_{\mathbf{x} \to
+\mathbf{a}}f(\mathbf{x}) = L$ means that for every number $\varepsilon&gt;0$ there is a
+corresponding number $\delta &gt; 0$ such that</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>if $x\in D$ and $0&lt;</td>
+      <td>\mathbf{x} - \mathbf{a}</td>
+      <td>$ then $</td>
+      <td>f(\mathbf{x}) - L</td>
+      <td>&lt;\varepsilon$</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="continuity-on-mathbbrn">Continuity (on $\mathbb{R}^n$)</h3>
+<p>A function $f$ of $n$ variables is called continuous at $\mathbf{a}$ if
+\[ \lim_{\mathbf{x} \to \mathbf{a}}f(\mathbf{x}) = f(\mathbf{a}) \]</p>
+
+<h2 id="clairauts-theorem">Clairaut’s Theorem</h2>
+<p>Suppose $f$ is defined on a disk $D$ that contains the point $(a,b)$. If the
+functions $f_{xy}$ and $f_{yx}$ are both continuous on $D$, then $f_{xy}(a,b) =
+f_{yx}(a,b)$</p>
+
+<p>Also, $f_{xyy} = f_{yxy} = f_{yyx}$</p>
 
 <h2 id="length-of-an-arc">Length of An Arc</h2>
 <h3 id="length-of-an-arc-using-parametric-equations">Length of An Arc Using Parametric Equations</h3>
-<p><script type="math/tex">L = \int_{a}^{b}|\mathbf{r}^{'}(t)|dt</script></p>
+<p>\[ L = \int_{a}^{b}|\mathbf{r}’(t)|dt \]</p>
 
   </div>
 

@@ -1,52 +1,109 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-28T14:06:16+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-28T14:59:26+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">TJYSDSG</title><subtitle>I am TJY, a programming maniac 
 </subtitle><entry><title type="html">Math Notes</title><link href="http://localhost:4000/2019/04/28/math-notes.html" rel="alternate" type="text/html" title="Math Notes" /><published>2019-04-28T00:00:00+08:00</published><updated>2019-04-28T00:00:00+08:00</updated><id>http://localhost:4000/2019/04/28/math-notes</id><content type="html" xml:base="http://localhost:4000/2019/04/28/math-notes.html">&lt;h1 id=&quot;vector&quot;&gt;Vector&lt;/h1&gt;
+&lt;hr /&gt;
 
 &lt;h2 id=&quot;scalar-projection&quot;&gt;Scalar Projection&lt;/h2&gt;
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;= |\mathbf {a} |\cos \theta&lt;/script&gt;&lt;/p&gt;
+&lt;p&gt;\[ = |\mathbf {a} |\cos \theta \]&lt;/p&gt;
 
 &lt;h2 id=&quot;vector-projection&quot;&gt;Vector Projection&lt;/h2&gt;
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;= |\mathbf{a} |\cos\theta&lt;/script&gt;
-&lt;script type=&quot;math/tex&quot;&gt;= (|\mathbf{a} |\cos\theta )\frac{\mathbf{b}}{|\mathbf{b}|}&lt;/script&gt;&lt;/p&gt;
+&lt;p&gt;\[ = |\mathbf{a} |\cos\theta \]
+\[ = (|\mathbf{a} |\cos\theta )\frac{\mathbf{b}}{|\mathbf{b}|} \]&lt;/p&gt;
 
 &lt;h2 id=&quot;unit-tangent-vector-unit-normal-vector-and-binormal-vector&quot;&gt;Unit Tangent Vector, Unit Normal Vector And Binormal Vector&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;/images/13-3-6.png&quot; alt=&quot;13-3-6&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Unit Tangent Vector: 
-\( \mathbf{T}(t) = \frac{\mathbf{r}^{‘}(t)}{|\mathbf{r}^{‘}(t)|} \)&lt;/p&gt;
+\[ \mathbf{T}(t) = \frac{\mathbf{r}’(t)}{|\mathbf{r}’(t)|} \]&lt;/p&gt;
 
 &lt;p&gt;Unit Normal Vector: 
-\( \mathbf{N}(t) = \frac{\mathbf{T}^{‘}(t)}{|\mathbf{T}^{‘}(t)|} \)&lt;/p&gt;
+\[ \mathbf{N}(t) = \frac{\mathbf{T}’(t)}{|\mathbf{T}’(t)|} \]&lt;/p&gt;
 
 &lt;p&gt;Binormal Vector: 
-\( \mathbf{B}(t) = \mathbf{T}(t) \times \mathbf{N}(t) \)&lt;/p&gt;
+\[ \mathbf{B}(t) = \mathbf{T}(t) \times \mathbf{N}(t) \]&lt;/p&gt;
 
 &lt;h2 id=&quot;normal-plane-osculating-plane-and-osculating-circle&quot;&gt;Normal Plane, Osculating Plane And Osculating Circle&lt;/h2&gt;
 &lt;p&gt;The plane determined by the normal and binormal vectors N and B is called the
 normal plane. It consists of all lines that are orthogonal to the
-tangent vector &lt;script type=&quot;math/tex&quot;&gt;\mathbf{T}&lt;/script&gt;.&lt;/p&gt;
+tangent vector $\mathbf{T}$.&lt;/p&gt;
 
-&lt;p&gt;The plane determined by the vectors &lt;script type=&quot;math/tex&quot;&gt;\mathbf{T}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\mathbf{N}&lt;/script&gt; is called
+&lt;p&gt;The plane determined by the vectors $\mathbf{T}$ and $\mathbf{N}$ is called
 the osculating plane. It is the plane that comes closest to containing the part
 of the curve. (For a plane curve, the osculating plane is simply the plane that
 contains the curve.)&lt;/p&gt;
 
 &lt;p&gt;The osculating circle lies in the osculating plane has the same tangent of the
-curve, lies on the concave side of the curve (toward which &lt;script type=&quot;math/tex&quot;&gt;\mathbf{N}&lt;/script&gt;
-points), and has radius &lt;script type=&quot;math/tex&quot;&gt;\rho = \frac{1}{\kappa}&lt;/script&gt; (the reciprocal of the
+curve, lies on the concave side of the curve (toward which $\mathbf{N}$
+points), and has radius $\rho = \frac{1}{\kappa}$ (the reciprocal of the
 curvature). It is the circle that best describes how the curve behaves near a
 point; it shares the same tangent, normal, and curvature at that point.&lt;/p&gt;
 
 &lt;h2 id=&quot;curvature&quot;&gt;Curvature&lt;/h2&gt;
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\kappa = \left| \frac{d\mathbf{T}}{ds} \right|&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;\mathbf{T}&lt;/script&gt; is
+&lt;p&gt;\[ \kappa = \left| \frac{d\mathbf{T}}{ds} \right| \] where $\mathbf{T} $ is
 the unit tangent vector.&lt;/p&gt;
 
-&lt;p&gt;Also:&lt;/p&gt;
+&lt;p&gt;Also:
+\[ \kappa = \frac{|\mathbf{r}’(t) \times \mathbf{r}^{\prime\prime}(t)|}{|\mathbf{r}’(t)|^3} \]&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\kappa = \frac{|\mathbf{r}^{'}(t) \times \mathbf{r}^{''}(t)|}{|\mathbf{r}^{'}(t)|^3}&lt;/script&gt;
+&lt;h1 id=&quot;multivariable-calculus&quot;&gt;Multivariable Calculus&lt;/h1&gt;
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;limit&quot;&gt;Limit&lt;/h2&gt;
+&lt;h3 id=&quot;definition-on-mathbbr2&quot;&gt;Definition (on $\mathbb{R}^2$)&lt;/h3&gt;
+&lt;p&gt;Let $f$ be a function of two variables whose domain $\mathbf{D}$ includes
+points arbitrarily close to $(a,b)$. Then we say that the limit of $f(x,y)$ as
+$(x,y)$ approaches $(a,b)$ is $L$ and we write&lt;/p&gt;
+
+&lt;p&gt;\[ \lim_{(x,y)\to (a,b)}f(x,y) = L \]&lt;/p&gt;
+
+&lt;p&gt;if for every number $ \varepsilon &amp;gt; 0$ there is a corresponding number
+$\delta&amp;gt;0$ such that if $(x,y)\in D$ and $0&amp;lt;\sqrt{(x-a)^2+(y-b)^2}&amp;lt;\delta$ then
+$|f(x,y)-L|&amp;lt;\varepsilon$&lt;/p&gt;
+
+&lt;p&gt;If $f(x,y) \to L_1$ as $(x,y)\to(a,b)$ along a path $C_1$ and $f(x,y)\to L_2$ as
+$(x,y)\to(a,b)$ along a path $C_2$, where $L_1\ne L_2$, then
+$\lim_{(x,y)\to(a,b)}f(x,y)$ does
+not exist.&lt;/p&gt;
+
+&lt;h3 id=&quot;continuity-on-mathbbr2&quot;&gt;Continuity (on $\mathbb{R}^2$)&lt;/h3&gt;
+&lt;p&gt;A function $f$ of two variables is called continuous at $(a,b)$ if
+\[ \lim_{(x,y)\to (a,b)}f(x,y) = f(a,b) \]&lt;/p&gt;
+
+&lt;p&gt;If $f$ is continuous on $D$, $f$ is continuous at every point $(a,b)$ in $D$.&lt;/p&gt;
+
+&lt;h4 id=&quot;facts&quot;&gt;Facts&lt;/h4&gt;
+&lt;p&gt;All polynomials and rational functions are continuous on $\mathbb{R}^2$.&lt;/p&gt;
+
+&lt;h3 id=&quot;definition-on-mathbbrn&quot;&gt;Definition (on $\mathbb{R}^n$)&lt;/h3&gt;
+&lt;p&gt;If $f$ is defined on a subset $D$ of $\mathbb{R}^n$, then $lim_{\mathbf{x} \to
+\mathbf{a}}f(\mathbf{x}) = L$ means that for every number $\varepsilon&amp;gt;0$ there is a
+corresponding number $\delta &amp;gt; 0$ such that&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;if $x\in D$ and $0&amp;lt;&lt;/td&gt;
+      &lt;td&gt;\mathbf{x} - \mathbf{a}&lt;/td&gt;
+      &lt;td&gt;$ then $&lt;/td&gt;
+      &lt;td&gt;f(\mathbf{x}) - L&lt;/td&gt;
+      &lt;td&gt;&amp;lt;\varepsilon$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;continuity-on-mathbbrn&quot;&gt;Continuity (on $\mathbb{R}^n$)&lt;/h3&gt;
+&lt;p&gt;A function $f$ of $n$ variables is called continuous at $\mathbf{a}$ if
+\[ \lim_{\mathbf{x} \to \mathbf{a}}f(\mathbf{x}) = f(\mathbf{a}) \]&lt;/p&gt;
+
+&lt;h2 id=&quot;clairauts-theorem&quot;&gt;Clairaut’s Theorem&lt;/h2&gt;
+&lt;p&gt;Suppose $f$ is defined on a disk $D$ that contains the point $(a,b)$. If the
+functions $f_{xy}$ and $f_{yx}$ are both continuous on $D$, then $f_{xy}(a,b) =
+f_{yx}(a,b)$&lt;/p&gt;
+
+&lt;p&gt;Also, $f_{xyy} = f_{yxy} = f_{yyx}$&lt;/p&gt;
 
 &lt;h2 id=&quot;length-of-an-arc&quot;&gt;Length of An Arc&lt;/h2&gt;
 &lt;h3 id=&quot;length-of-an-arc-using-parametric-equations&quot;&gt;Length of An Arc Using Parametric Equations&lt;/h3&gt;
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;L = \int_{a}^{b}|\mathbf{r}^{'}(t)|dt&lt;/script&gt;&lt;/p&gt;</content><author><name>TJYSDSG</name></author><summary type="html">Vector</summary></entry><entry><title type="html">Doxygen Template</title><link href="http://localhost:4000/2019/04/09/doxygen.html" rel="alternate" type="text/html" title="Doxygen Template" /><published>2019-04-09T00:00:00+08:00</published><updated>2019-04-09T00:00:00+08:00</updated><id>http://localhost:4000/2019/04/09/doxygen</id><content type="html" xml:base="http://localhost:4000/2019/04/09/doxygen.html">&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DOXYFILE_ENCODING      = UTF-8
+&lt;p&gt;\[ L = \int_{a}^{b}|\mathbf{r}’(t)|dt \]&lt;/p&gt;</content><author><name>TJYSDSG</name></author><summary type="html">Vector</summary></entry><entry><title type="html">Doxygen Template</title><link href="http://localhost:4000/2019/04/09/doxygen.html" rel="alternate" type="text/html" title="Doxygen Template" /><published>2019-04-09T00:00:00+08:00</published><updated>2019-04-09T00:00:00+08:00</updated><id>http://localhost:4000/2019/04/09/doxygen</id><content type="html" xml:base="http://localhost:4000/2019/04/09/doxygen.html">&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = &quot;${PROJECT_NAME}&quot;
 OUTPUT_DIRECTORY       = docs
 CREATE_SUBDIRS         = YES
