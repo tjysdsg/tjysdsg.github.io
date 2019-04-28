@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-28T17:03:24+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">tjysdsg’s dump</title><subtitle>programming maniac, love computer graphics and low level stuff</subtitle><entry><title type="html">Math Notes</title><link href="http://localhost:4000/2019/04/28/math-notes.html" rel="alternate" type="text/html" title="Math Notes" /><published>2019-04-28T00:00:00+08:00</published><updated>2019-04-28T00:00:00+08:00</updated><id>http://localhost:4000/2019/04/28/math-notes</id><content type="html" xml:base="http://localhost:4000/2019/04/28/math-notes.html">&lt;h1 id=&quot;vector&quot;&gt;Vector&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-28T20:15:10+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">tjysdsg’s dump</title><subtitle>programming maniac, love computer graphics and low level stuff</subtitle><entry><title type="html">Calculus Notes</title><link href="http://localhost:4000/2019/04/28/calculus-notes.html" rel="alternate" type="text/html" title="Calculus Notes" /><published>2019-04-28T00:00:00+08:00</published><updated>2019-04-28T00:00:00+08:00</updated><id>http://localhost:4000/2019/04/28/calculus-notes</id><content type="html" xml:base="http://localhost:4000/2019/04/28/calculus-notes.html">&lt;h1 id=&quot;single-variable-calculus&quot;&gt;Single-Variable Calculus&lt;/h1&gt;
 &lt;hr /&gt;
 
 &lt;h2 id=&quot;scalar-projection&quot;&gt;Scalar Projection&lt;/h2&gt;
@@ -8,7 +8,7 @@
 &lt;p&gt;\[ = |\mathbf{a} |\cos\theta \]
 \[ = (|\mathbf{a} |\cos\theta )\frac{\mathbf{b}}{|\mathbf{b}|} \]&lt;/p&gt;
 
-&lt;h2 id=&quot;unit-tangent-vector-unit-normal-vector-and-binormal-vector&quot;&gt;Unit Tangent Vector, Unit Normal Vector And Binormal Vector&lt;/h2&gt;
+&lt;h2 id=&quot;unit-tangent-vector-unit-normal-vector-and-binormal-vector&quot;&gt;Unit Tangent Vector, Unit Normal Vector and Binormal Vector&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;/images/13-3-6.png&quot; alt=&quot;13-3-6&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Unit Tangent Vector: 
@@ -20,7 +20,7 @@
 &lt;p&gt;Binormal Vector: 
 \[ \mathbf{B}(t) = \mathbf{T}(t) \times \mathbf{N}(t) \]&lt;/p&gt;
 
-&lt;h2 id=&quot;normal-plane-osculating-plane-and-osculating-circle&quot;&gt;Normal Plane, Osculating Plane And Osculating Circle&lt;/h2&gt;
+&lt;h2 id=&quot;normal-plane-osculating-plane-and-osculating-circle&quot;&gt;Normal Plane, Osculating Plane and Osculating Circle&lt;/h2&gt;
 &lt;p&gt;The plane determined by the normal and binormal vectors N and B is called the
 normal plane. It consists of all lines that are orthogonal to the
 tangent vector $\mathbf{T}$.&lt;/p&gt;
@@ -102,7 +102,129 @@ f_{yx}(a,b)$&lt;/p&gt;
 
 &lt;h2 id=&quot;length-of-an-arc&quot;&gt;Length of An Arc&lt;/h2&gt;
 &lt;h3 id=&quot;length-of-an-arc-using-parametric-equations&quot;&gt;Length of An Arc Using Parametric Equations&lt;/h3&gt;
-&lt;p&gt;\[ L = \int_{a}^{b}|\mathbf{r}’(t)|dt \]&lt;/p&gt;</content><author><name>TJYSDSG</name></author><summary type="html">Vector</summary></entry><entry><title type="html">Doxygen Template</title><link href="http://localhost:4000/2019/04/09/doxygen.html" rel="alternate" type="text/html" title="Doxygen Template" /><published>2019-04-09T00:00:00+08:00</published><updated>2019-04-09T00:00:00+08:00</updated><id>http://localhost:4000/2019/04/09/doxygen</id><content type="html" xml:base="http://localhost:4000/2019/04/09/doxygen.html">&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DOXYFILE_ENCODING      = UTF-8
+&lt;p&gt;\[ L = \int_{a}^{b}|\mathbf{r}’(t)|dt \]&lt;/p&gt;
+
+&lt;h2 id=&quot;tangent-plane&quot;&gt;Tangent Plane&lt;/h2&gt;
+&lt;p&gt;Suppose $f$ has continuous partial derivatives. An equation of the tangent
+plane to the surface $z=f(x,y)$ at the point $P(x_0,y_0,z_0)$ is
+\[ z-z_0 = f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0) \]&lt;/p&gt;
+
+&lt;h2 id=&quot;tangent-planes-to-level-surfaces&quot;&gt;Tangent Planes to Level Surfaces&lt;/h2&gt;
+&lt;p&gt;For a level surface $S$ which equation is $F(x(t),y(t),z(t))=k$, the tangent plane to $S$
+at $P(x_0,y_0,z_0)$ is
+\[ F_x(x_0,y_0,z_0)(x-x_0) + F_y(x_0,y_0,z_0)(y-y_0) + F_z(x_0,y_0,z_0)(z-z_0) = 0 \]
+if $\nabla F(x_0,y_0,z_0) \ne \mathbf{0}$.&lt;/p&gt;
+
+&lt;h2 id=&quot;linear-approximationtangent-plane-approximation&quot;&gt;Linear Approximation/Tangent Plane Approximation&lt;/h2&gt;
+&lt;p&gt;\[f(x,y) \approx L(x,y) = f(a,b) + f_x(a,b)(x-a) + f_y(a,b)(y-b) \]&lt;/p&gt;
+
+&lt;h2 id=&quot;differentiability-of-fxy&quot;&gt;Differentiability of $f(x,y)$&lt;/h2&gt;
+&lt;h3 id=&quot;formal-definition&quot;&gt;Formal Definition&lt;/h3&gt;
+&lt;p&gt;If $z=f(x,y)$, then $f$ is differentiable at $(a,b)$ if $\Delta z$ can be expressed in the
+form
+\[ \Delta z = f_x(a,b)\Delta x + f_y(a,b)\Delta y + \varepsilon_1\Delta x + \varepsilon_2 \Delta y \]
+where $\varepsilon_1$ and $\varepsilon_2$ as $(\Delta x, \Delta y)\to (0,0)$.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-convenient-sufficient-condition&quot;&gt;A Convenient &lt;strong&gt;Sufficient&lt;/strong&gt; Condition&lt;/h3&gt;
+&lt;p&gt;If the partial derivatives $f_x$ and $f_y$ exist near $(a,b)$ and are continuous at $(a,b)$,
+then $f$ is differentiable at $(a,b)$.&lt;/p&gt;
+
+&lt;h2 id=&quot;differentials&quot;&gt;Differentials&lt;/h2&gt;
+&lt;p&gt;For a differentiable function of two variables, $z=f(x,y)$, we define the
+differentials $dx$ and $dy$ to be independent variables; that is, they can be
+given any values. Then the differential $dz$, also called the total
+differential, is defined by
+\[ dz = f_x(x,y)dx + f_y(x,y)dy = \frac{\partial z}{\partial x}dx +
+\frac{\partial z}{\partial y}dy \]&lt;/p&gt;
+
+&lt;h2 id=&quot;the-chain-rule-of-multivariable-function&quot;&gt;The Chain Rule of Multivariable Function&lt;/h2&gt;
+&lt;p&gt;Suppose that $u$ is a differentiable function
+of the $n$ variables $x_1,x_2,\dots,x_n$ and each $x_j$ is a differentiable
+function of the $m$ variables $t_1,t_2,\dots,t_m$. Then and
+\[ \frac{\partial u}{\partial t_i} = \frac{\partial u}{\partial x_1}
+\frac{\partial x_1}{\partial t_i}+
+\frac{\partial u}{\partial x_2}
+\frac{\partial x_2}{\partial t_i}+
+\dots +
+\frac{\partial u}{\partial x_n}
+\frac{\partial x_n}{\partial t_i}
+\]
+for each $i = 1,2,\dots,m$.&lt;/p&gt;
+
+&lt;h2 id=&quot;implicit-differentiation-of-multivariable-function&quot;&gt;Implicit Differentiation of Multivariable Function&lt;/h2&gt;
+&lt;p&gt;\[ \frac{dy}{dx} = -\frac{\frac{\partial F}{\partial x}}{\frac{\partial F}{\partial y}}=
+-\frac{F_x}{F_y} \]&lt;/p&gt;
+
+&lt;h2 id=&quot;directional-derivative&quot;&gt;Directional Derivative&lt;/h2&gt;
+&lt;h3 id=&quot;definition&quot;&gt;Definition&lt;/h3&gt;
+&lt;p&gt;The directional derivative of $f$ at $(x_0,y_0)$ in the direction of a unit
+vector $\mathbf{u}=\langle a,b\rangle$ is \[ D_u f(x_0,y_0) =
+\lim_{h\to0}\frac{f(x_0+ha,y_0+hb)-f(x_0,y_0)}{h} \] if this limit exists.&lt;/p&gt;
+
+&lt;h3 id=&quot;theorem&quot;&gt;Theorem&lt;/h3&gt;
+&lt;p&gt;If $f$ is a differentiable function of $x$ and $y$, then $f$ has a directional derivative in the
+direction of any unit vector $\mathbf{u}=\langle a,b\rangle$ and
+\[ D_uf(x,y)=f_x(x,y)a + f_y(x,y)b \]&lt;/p&gt;
+
+&lt;p&gt;Note: The directional derivative of a function is a &lt;strong&gt;scalar&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-gradient-vector&quot;&gt;The Gradient Vector&lt;/h3&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+
+&lt;h2 id=&quot;maximum-and-minimum-values&quot;&gt;Maximum and Minimum Values&lt;/h2&gt;
+&lt;h3 id=&quot;theorem-1&quot;&gt;Theorem&lt;/h3&gt;
+&lt;p&gt;If $f$ has a local maximum or minimum at $(a,b)$ and the first-order
+partial derivatives of $f$ exist there, then $f_x(a, b) = 0$ and $f_y(a,b) = 0$.&lt;/p&gt;
+
+&lt;h3 id=&quot;critical-point&quot;&gt;Critical Point&lt;/h3&gt;
+&lt;p&gt;A point $(a,b)$ is called a critical point (or stationary point) of $f$ if
+$f_x(a,b)=0$ and $f_y(a,b)=0$, or if one of these partial derivatives does
+not exist.&lt;/p&gt;
+
+&lt;h3 id=&quot;second-derivatives-test&quot;&gt;Second Derivatives Test&lt;/h3&gt;
+&lt;p&gt;Suppose the second partial derivatives of $f$
+are continuous on a disk with center $(a,b)$, and suppose that $f_x(a,b)=0$ and
+$f_y(a,b)=0$ (that is, $(a,b)$ is a critical point of $f$). Let
+\[ D = D(a,b) = f_{xx}(a, b) f_{yy}(a,b) - [f_{xy}(a,b)]^2 \]&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;If $D &amp;gt; 0$, and $f_{xx}(a,b)&amp;gt;0$, then $f(a, b)$ is a local minimum.&lt;/li&gt;
+  &lt;li&gt;If $D &amp;gt; 0$, and $f_{xx}(a,b)&amp;lt;0$, then $f(a, b)$ is a local maximum.&lt;/li&gt;
+  &lt;li&gt;If $D &amp;lt; 0$, then $f(a,b)$ is not a local maximum or minimum. In this case
+$(a,b)$ is called a saddle point of $f$.&lt;/li&gt;
+  &lt;li&gt;If $D = 0$, the test gives no information: $f$ could have a local maximum or
+local minimum at $(a,b)$, or $(a,b)$ could be a saddle point.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;absolute-maximum-and-minimum-values&quot;&gt;Absolute Maximum and Minimum Values&lt;/h3&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+
+&lt;h3 id=&quot;extreme-value-theorem-for-functions-of-two-variables&quot;&gt;Extreme Value Theorem for Functions of Two Variables&lt;/h3&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+
+&lt;h3 id=&quot;closed-interval-method&quot;&gt;Closed Interval Method&lt;/h3&gt;
+&lt;p&gt;To find the absolute maximum and minimum values of a continuous function $f$ on
+a closed, bounded set $D$:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Find the values of $f$ at the critical points of $f$ in $D$.&lt;/li&gt;
+  &lt;li&gt;Find the extreme values of $f$ on the boundary of $D$.&lt;/li&gt;
+  &lt;li&gt;The largest of the values from steps 1 and 2 is the absolute maximum value;
+the smallest of these values is the absolute minimum value.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;method-of-lagrange-multipliers&quot;&gt;Method of Lagrange Multipliers&lt;/h2&gt;
+&lt;p&gt;To find the maximum and minimum values of $f(x,y,z)$ subject to the constraint
+$g(x,y,z) = k$ (assuming that these extreme values exist and $\nabla g \ne \mathbf{0}$
+on the surface $g(x,y,z) = k$):&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Find all values of $x$, $y$, $z$, and $\lambda$ such that
+\[ \nabla f(x,y,z) = \lambda \nabla g(x,y,z) \]
+and \[ g(x,y,z) = k \]&lt;/li&gt;
+  &lt;li&gt;Evaluate $f$ at all the points $(x,y,z)$ that result from step 1. The
+largest of these values is the maximum value of $f$; the smallest is the
+minimum value of $f$.&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>TJYSDSG</name></author><summary type="html">Single-Variable Calculus</summary></entry><entry><title type="html">Doxygen Template</title><link href="http://localhost:4000/2019/04/09/doxygen.html" rel="alternate" type="text/html" title="Doxygen Template" /><published>2019-04-09T00:00:00+08:00</published><updated>2019-04-09T00:00:00+08:00</updated><id>http://localhost:4000/2019/04/09/doxygen</id><content type="html" xml:base="http://localhost:4000/2019/04/09/doxygen.html">&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = &quot;${PROJECT_NAME}&quot;
 OUTPUT_DIRECTORY       = docs
 CREATE_SUBDIRS         = YES

@@ -7,11 +7,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Math Notes</title>
-  <meta name="description" content="Vector">
+  <title>Calculus Notes</title>
+  <meta name="description" content="Single-Variable Calculus">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/2019/04/28/math-notes.html">
+  <link rel="canonical" href="http://localhost:4000/2019/04/28/calculus-notes.html">
   <link rel="icon" href="/tjy_logo.PNG">
 
   <!-- Mathjax Support -->
@@ -66,12 +66,12 @@
                 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">Math Notes</h1>
+    <h1 class="post-title" itemprop="name headline">Calculus Notes</h1>
     <p class="post-meta"><time datetime="2019-04-28T00:00:00+08:00" itemprop="datePublished">Apr 28, 2019</time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">TJYSDSG</span></span></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <h1 id="vector">Vector</h1>
+    <h1 id="single-variable-calculus">Single-Variable Calculus</h1>
 <hr />
 
 <h2 id="scalar-projection">Scalar Projection</h2>
@@ -81,7 +81,7 @@
 <p>\[ = |\mathbf{a} |\cos\theta \]
 \[ = (|\mathbf{a} |\cos\theta )\frac{\mathbf{b}}{|\mathbf{b}|} \]</p>
 
-<h2 id="unit-tangent-vector-unit-normal-vector-and-binormal-vector">Unit Tangent Vector, Unit Normal Vector And Binormal Vector</h2>
+<h2 id="unit-tangent-vector-unit-normal-vector-and-binormal-vector">Unit Tangent Vector, Unit Normal Vector and Binormal Vector</h2>
 <p><img src="/images/13-3-6.png" alt="13-3-6" /></p>
 
 <p>Unit Tangent Vector: 
@@ -93,7 +93,7 @@
 <p>Binormal Vector: 
 \[ \mathbf{B}(t) = \mathbf{T}(t) \times \mathbf{N}(t) \]</p>
 
-<h2 id="normal-plane-osculating-plane-and-osculating-circle">Normal Plane, Osculating Plane And Osculating Circle</h2>
+<h2 id="normal-plane-osculating-plane-and-osculating-circle">Normal Plane, Osculating Plane and Osculating Circle</h2>
 <p>The plane determined by the normal and binormal vectors N and B is called the
 normal plane. It consists of all lines that are orthogonal to the
 tangent vector $\mathbf{T}$.</p>
@@ -176,6 +176,128 @@ f_{yx}(a,b)$</p>
 <h2 id="length-of-an-arc">Length of An Arc</h2>
 <h3 id="length-of-an-arc-using-parametric-equations">Length of An Arc Using Parametric Equations</h3>
 <p>\[ L = \int_{a}^{b}|\mathbf{r}’(t)|dt \]</p>
+
+<h2 id="tangent-plane">Tangent Plane</h2>
+<p>Suppose $f$ has continuous partial derivatives. An equation of the tangent
+plane to the surface $z=f(x,y)$ at the point $P(x_0,y_0,z_0)$ is
+\[ z-z_0 = f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0) \]</p>
+
+<h2 id="tangent-planes-to-level-surfaces">Tangent Planes to Level Surfaces</h2>
+<p>For a level surface $S$ which equation is $F(x(t),y(t),z(t))=k$, the tangent plane to $S$
+at $P(x_0,y_0,z_0)$ is
+\[ F_x(x_0,y_0,z_0)(x-x_0) + F_y(x_0,y_0,z_0)(y-y_0) + F_z(x_0,y_0,z_0)(z-z_0) = 0 \]
+if $\nabla F(x_0,y_0,z_0) \ne \mathbf{0}$.</p>
+
+<h2 id="linear-approximationtangent-plane-approximation">Linear Approximation/Tangent Plane Approximation</h2>
+<p>\[f(x,y) \approx L(x,y) = f(a,b) + f_x(a,b)(x-a) + f_y(a,b)(y-b) \]</p>
+
+<h2 id="differentiability-of-fxy">Differentiability of $f(x,y)$</h2>
+<h3 id="formal-definition">Formal Definition</h3>
+<p>If $z=f(x,y)$, then $f$ is differentiable at $(a,b)$ if $\Delta z$ can be expressed in the
+form
+\[ \Delta z = f_x(a,b)\Delta x + f_y(a,b)\Delta y + \varepsilon_1\Delta x + \varepsilon_2 \Delta y \]
+where $\varepsilon_1$ and $\varepsilon_2$ as $(\Delta x, \Delta y)\to (0,0)$.</p>
+
+<h3 id="a-convenient-sufficient-condition">A Convenient <strong>Sufficient</strong> Condition</h3>
+<p>If the partial derivatives $f_x$ and $f_y$ exist near $(a,b)$ and are continuous at $(a,b)$,
+then $f$ is differentiable at $(a,b)$.</p>
+
+<h2 id="differentials">Differentials</h2>
+<p>For a differentiable function of two variables, $z=f(x,y)$, we define the
+differentials $dx$ and $dy$ to be independent variables; that is, they can be
+given any values. Then the differential $dz$, also called the total
+differential, is defined by
+\[ dz = f_x(x,y)dx + f_y(x,y)dy = \frac{\partial z}{\partial x}dx +
+\frac{\partial z}{\partial y}dy \]</p>
+
+<h2 id="the-chain-rule-of-multivariable-function">The Chain Rule of Multivariable Function</h2>
+<p>Suppose that $u$ is a differentiable function
+of the $n$ variables $x_1,x_2,\dots,x_n$ and each $x_j$ is a differentiable
+function of the $m$ variables $t_1,t_2,\dots,t_m$. Then and
+\[ \frac{\partial u}{\partial t_i} = \frac{\partial u}{\partial x_1}
+\frac{\partial x_1}{\partial t_i}+
+\frac{\partial u}{\partial x_2}
+\frac{\partial x_2}{\partial t_i}+
+\dots +
+\frac{\partial u}{\partial x_n}
+\frac{\partial x_n}{\partial t_i}
+\]
+for each $i = 1,2,\dots,m$.</p>
+
+<h2 id="implicit-differentiation-of-multivariable-function">Implicit Differentiation of Multivariable Function</h2>
+<p>\[ \frac{dy}{dx} = -\frac{\frac{\partial F}{\partial x}}{\frac{\partial F}{\partial y}}=
+-\frac{F_x}{F_y} \]</p>
+
+<h2 id="directional-derivative">Directional Derivative</h2>
+<h3 id="definition">Definition</h3>
+<p>The directional derivative of $f$ at $(x_0,y_0)$ in the direction of a unit
+vector $\mathbf{u}=\langle a,b\rangle$ is \[ D_u f(x_0,y_0) =
+\lim_{h\to0}\frac{f(x_0+ha,y_0+hb)-f(x_0,y_0)}{h} \] if this limit exists.</p>
+
+<h3 id="theorem">Theorem</h3>
+<p>If $f$ is a differentiable function of $x$ and $y$, then $f$ has a directional derivative in the
+direction of any unit vector $\mathbf{u}=\langle a,b\rangle$ and
+\[ D_uf(x,y)=f_x(x,y)a + f_y(x,y)b \]</p>
+
+<p>Note: The directional derivative of a function is a <strong>scalar</strong>.</p>
+
+<h3 id="the-gradient-vector">The Gradient Vector</h3>
+<p>TODO</p>
+
+<h2 id="maximum-and-minimum-values">Maximum and Minimum Values</h2>
+<h3 id="theorem-1">Theorem</h3>
+<p>If $f$ has a local maximum or minimum at $(a,b)$ and the first-order
+partial derivatives of $f$ exist there, then $f_x(a, b) = 0$ and $f_y(a,b) = 0$.</p>
+
+<h3 id="critical-point">Critical Point</h3>
+<p>A point $(a,b)$ is called a critical point (or stationary point) of $f$ if
+$f_x(a,b)=0$ and $f_y(a,b)=0$, or if one of these partial derivatives does
+not exist.</p>
+
+<h3 id="second-derivatives-test">Second Derivatives Test</h3>
+<p>Suppose the second partial derivatives of $f$
+are continuous on a disk with center $(a,b)$, and suppose that $f_x(a,b)=0$ and
+$f_y(a,b)=0$ (that is, $(a,b)$ is a critical point of $f$). Let
+\[ D = D(a,b) = f_{xx}(a, b) f_{yy}(a,b) - [f_{xy}(a,b)]^2 \]</p>
+
+<ol>
+  <li>If $D &gt; 0$, and $f_{xx}(a,b)&gt;0$, then $f(a, b)$ is a local minimum.</li>
+  <li>If $D &gt; 0$, and $f_{xx}(a,b)&lt;0$, then $f(a, b)$ is a local maximum.</li>
+  <li>If $D &lt; 0$, then $f(a,b)$ is not a local maximum or minimum. In this case
+$(a,b)$ is called a saddle point of $f$.</li>
+  <li>If $D = 0$, the test gives no information: $f$ could have a local maximum or
+local minimum at $(a,b)$, or $(a,b)$ could be a saddle point.</li>
+</ol>
+
+<h3 id="absolute-maximum-and-minimum-values">Absolute Maximum and Minimum Values</h3>
+<p>TODO</p>
+
+<h3 id="extreme-value-theorem-for-functions-of-two-variables">Extreme Value Theorem for Functions of Two Variables</h3>
+<p>TODO</p>
+
+<h3 id="closed-interval-method">Closed Interval Method</h3>
+<p>To find the absolute maximum and minimum values of a continuous function $f$ on
+a closed, bounded set $D$:</p>
+<ol>
+  <li>Find the values of $f$ at the critical points of $f$ in $D$.</li>
+  <li>Find the extreme values of $f$ on the boundary of $D$.</li>
+  <li>The largest of the values from steps 1 and 2 is the absolute maximum value;
+the smallest of these values is the absolute minimum value.</li>
+</ol>
+
+<h2 id="method-of-lagrange-multipliers">Method of Lagrange Multipliers</h2>
+<p>To find the maximum and minimum values of $f(x,y,z)$ subject to the constraint
+$g(x,y,z) = k$ (assuming that these extreme values exist and $\nabla g \ne \mathbf{0}$
+on the surface $g(x,y,z) = k$):</p>
+
+<ol>
+  <li>Find all values of $x$, $y$, $z$, and $\lambda$ such that
+\[ \nabla f(x,y,z) = \lambda \nabla g(x,y,z) \]
+and \[ g(x,y,z) = k \]</li>
+  <li>Evaluate $f$ at all the points $(x,y,z)$ that result from step 1. The
+largest of these values is the maximum value of $f$; the smallest is the
+minimum value of $f$.</li>
+</ol>
 
   </div>
 
