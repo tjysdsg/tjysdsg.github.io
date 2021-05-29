@@ -26,7 +26,42 @@ baseurl: ""
 url: "https://tjysdsg.github.io"
 timezone: CN
 
-# configs for jekyll-seo-tag
+################ minimal-mistakes-jekyll ################
+
+# default front matters
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+      toc: true
+
+
+# author
+author:
+  name: "Jiyang Tang"
+  avatar: "/assets/images/logo.jpeg"
+  bio: " "
+  location: "China"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/tjysdsg"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin-in"
+      url: "https://www.linkedin.com/in/tjy"
+    - label: "Facebook"
+      icon: "fab fa-fw fa-facebook"
+      url: "https://www.facebook.com/tjysdsg"
+
+
+################ jekyll-seo-tag ################
 logo: /assets/images/logo.jpeg
 social:
   name: Jiyang Tang

@@ -1,5 +1,4 @@
 ---
-layout: posts
 title:  "Hello World"
 date:   2021-05-29 12:35:33 +0800
 permalink: /hello-world
