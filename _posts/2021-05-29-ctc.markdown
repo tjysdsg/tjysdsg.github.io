@@ -1,0 +1,95 @@
+---
+title:  "Understanding the Math Behind CTC"
+date:   2021-05-29 18:05:00 +0800
+excerpt_separator: <!--more-->
+permalink: /tan
+---
+
+In this post, I'm writing down my thought process of understanding the math behind 
+Connectionist Temporal Classification (CTC) [TODO reference].
+
+<!--more-->
+
+This article assumes that you understand the intuition behind CTC.
+
+# Definitions
+
+## Input and Output Sequences
+
+The input of a CTC network (an audio signal) is a sequence denoted as
+$$
+\boldsymbol{x} =
+\begin{bmatrix}
+x_1 & x_2 & \cdots & x_m \\
+\end{bmatrix}
+$$
+while the target sequence (a list of phonemes) is
+$$
+\boldsymbol{z} =
+\begin{bmatrix}
+x_1 & x_2 & \cdots & x_n \\
+\end{bmatrix}
+$$.
+
+The target sequence consists of any symbols drawn from an alphabet $L$.
+
+Note that the length of $\boldsymbol{x}$, $T$, is larger than the length of
+$\boldsymbol{z}$, $U$.
+
+## Operations and Values
+
+The output of the neural network, $\boldsymbol{y}$, is a matrix, where
+$y_k^t$ is the probability of observing label $k$ at time $t$.
+$\boldsymbol{y}$ consists of symbols drawn from another alphabet $L'$,
+which has one more symbol called "blank", denoted as $\%$, than $L$.
+
+Also, we define an operation $\mathcal{B}: L'^{T} \mapsto L^{\le T}$ that
+
+1. Merge consecutive identical symbols
+2. Remove the blank symbol
+
+For example,
+$$
+\mathcal{B}(aaa\%b\%cc\%d) = abc
+$$
+
+## Derivation
+
+### The Objective
+
+Assuming the output $z_1,z_2,\dots$ is conditionally independence
+w.r.t the input $\boldsymbol{x}$,
+we define
+$$
+y = p(\boldsymbol{\pi}|\boldsymbol{x}) = \prod y_{\boldsymbol{\pi}_t}^{t}
+$$
+where $\boldsymbol{\pi} =
+\begin{bmatrix}
+\pi_1 & \pi_2 & \cdots & \pi_n \\
+\end{bmatrix}
+$ is a possible sequence that can be mapped to $\boldsymbol{z}$ by $\mathcal{B}$.
+
+Then, the objective of CTC is to find a sequence $\boldsymbol{l}$ 
+that maximize the probability
+
+$$
+p(\boldsymbol{l}|\boldsymbol{x}) = \sum_{\pi\in\mathcal{B}^{-1}}
+p(\boldsymbol{\pi}|\boldsymbol{x})
+$$
+
+*in an efficient way*.
+
+Here $L^{\le T}$ refers to a sequence that has a length smaller than $T$.
+
+In other words, the objective of CTC is to find:
+
+$$
+h(x) = \arg\max_{l\in L^{\le T}} p(\boldsymbol{l}|\boldsymbol{x})
+$$
+
+### Decoding
+
+To estimate $p(\boldsymbol{l}|\boldsymbol{x})$, we use a method similar to
+Viterbi decoding or the forward-backward algorithm.
+
+### Back Propagation
