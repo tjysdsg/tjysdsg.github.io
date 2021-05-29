@@ -2,7 +2,7 @@
 title:  "tan: A Programming Language"
 date:   2021-05-29 13:50:00 +0800
 excerpt_separator: <!--more-->
-permalink: /tan
+permalink: /tan-blog
 ---
 
 I'm currently working on a programming language called [`tan`](https://github.com/tjysdsg/tan).
