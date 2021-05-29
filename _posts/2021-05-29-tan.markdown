@@ -1,0 +1,67 @@
+---
+layout: posts
+title:  "tan: A Programming Language"
+date:   2021-05-29 13:50:00 +0800
+excerpt_separator: <!--more-->
+---
+
+I'm currently working on a programming language called [`tan`](https://github.com/tjysdsg/tan).
+
+# The Aim
+
+The aim is to have a low-level language that makes coding comfortable for most developers. I define "comfortable" as the
+opposite of the moments we all had, when encountering a small problem, the current tools just weren't able to provide us
+a clean and easy solution.
+
+<!--more-->
+
+An example is, if we want to make sure that a class cannot be copied in any situation, in `C++`. A naive way of doing it
+is
+
+```c++
+class A {
+    A(A other) = delete; // copy constructor
+};
+```
+
+Well, if you are familiar with [the rule of five](https://en.cppreference.com/w/cpp/language/rule_of_three), you know
+that the code above only disable the copy constructor, while there are several other copy-related member functions:
+
+```c++
+class A {
+    A(const A& other); // copy constructor
+    A(A&& other); // move constructor
+    A& operator=(const A& other); // copy assignment
+    A& operator=(A&& other); // move assignment
+};
+```
+
+The question is: which functions out of the above we must mark as deleted in order to make sure that `A` is not
+copyable, *at minimal*?
+
+To be honest, I don't know, and I'm too lazy to find out. I just mark any of them that I could remember in my head as
+deleted in my code.
+
+TODO: other aspects
+
+Therefore, `tan` should at least has
+
+- A clean and unified syntax
+- Have as few ambiguities as possible
+- Have a powerful standard library utilizing the features of the language itself instead of compiler tricks
+- Have a simple but powerful metaprogramming mechanism, without creating another language on top of `tan`
+  (unlike C++ preprocessor and template programming)
+- Allow the user to control very low-level details, without sacrificing the ability to create very high-level
+  abstractions
+
+The language draws inspirations from `d`, `rust`, `jai`, `zig`, etc. Currently, the compiler is at a very early stage.
+Many basic features aren't even implemented. I'll continue updating this post.
+
+# Roadmap to 1.0
+
+0. Complete the design of this language
+1. Implement a basic compiler in `C++`
+2. Test the language design and implementation by writing some real-world applications, and improve the design
+3. Rewrite the compiler in `tan`
+
+Currently, step 0 and step 1 are in progress in the same time.
