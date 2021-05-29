@@ -12,8 +12,6 @@
 
 <script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
-
-
 </script>
 
 
@@ -33,8 +31,6 @@
       right: 0;
       height: 100%;
     }
-
-
 </style>
 <![endif]-->
 
@@ -47,5 +43,17 @@
 <!-- above is based on https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/head.html -->
 <script data-ad-client="ca-pub-4089436984613364" async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<!-- mathjax -->
+<script>
+MathJax = {
+    tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+    }
+};
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 {% seo %} <!-- https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/installation.md -->
