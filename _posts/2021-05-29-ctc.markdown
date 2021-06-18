@@ -116,10 +116,10 @@ its *forward variable* at time $t$ for symbols before the $s$-th symbol is
 
 $$
 \alpha_t(s) = \sum_{
-\begin{align}
+\begin{align*}
     &\pi\in N^T \\
     &\mathcal{B}(\pi_{1:t}) = \boldsymbol{l}_{1:s} \\
-\end{align}
+\end{align*}
 }
 \prod_{t'=1}^t y_{\pi_{t}'}^{t'}
 $$
@@ -131,10 +131,10 @@ Similarly, *the backward variable* at time $t$ for symbols after the $s$-th symb
 
 $$
 \beta_t(s) = \sum_{
-\begin{align}
+\begin{align*}
 &\pi\in N^T \\
 &\mathcal{B}(\pi_{t:T}) = \boldsymbol{l}_{s:|\boldsymbol{l}|} \\
-\end{align}
+\end{align*}
 }
 \prod_{t'=t}^T y_{\pi_{t}'}^{t'}
 $$
@@ -157,14 +157,14 @@ between every two labels.
 Thus, the initialization of $\alpha$ and $\beta$ is:
 
 $$
-\begin{align}
+\begin{align*}
     \alpha_1(1) &= y_b^1 \\
     \alpha_1(2) &= y_{\boldsymbol{l}_1}^1 \\
     \alpha_1(s) &= 0, \forall s > 2 \\
     \beta_T(|\boldsymbol{l}'|) &= y_b^T \\
     \beta_T(|\boldsymbol{l}'| - 1) &= y_{\boldsymbol{l}_{|\boldsymbol{l}|}}^T \\
     \beta_T(s) &= 0, \forall s < |\boldsymbol{l}'| - 1 \\
-\end{align}
+\end{align*}
 $$
 
 #### Recursion
@@ -277,10 +277,10 @@ the symbol $s$ at time $t$, we have:
 $$
 \alpha_t(s)\beta_t(s) =
 \sum_{
-\begin{align}
+\begin{align*}
     &\pi\in \mathcal{B}^{-1}(\boldsymbol{l}): \\
     &\pi_t = \boldsymbol{l}_s' \\
-\end{align}
+\end{align*}
 }
 y_{\boldsymbol{l}_s'}^t \prod_{t'=1}^T y_{\pi_{t'}}^{t'}
 $$
@@ -291,35 +291,37 @@ $p(\boldsymbol{\pi}|\boldsymbol{x}) = \prod y_{\boldsymbol{\pi}_t}^{t}$
 $$
 \frac{\alpha_t(s)\beta_t(s)}{y_{\boldsymbol{l}_s'}^t} =
 \sum_{
-\begin{align}
+\begin{align*}
 &\pi\in \mathcal{B}^{-1}(\boldsymbol{l}): \\
 &\pi_t = \boldsymbol{l}_s' \\
-\end{align}
+\end{align*}
 }
 p(\boldsymbol{\pi}|\boldsymbol{x})
 $$
 
 Then
 
-$$
-p(\boldsymbol{l}|\boldsymbol{x}) =
-\sum_{s=1}^{|\boldsymbol{l}'|}
-\frac{\alpha_t(s)\beta_t(s)}{y_{\boldsymbol{l}_s'}^t}
-$$
+\begin{equation} 
+    p(\boldsymbol{l}|\boldsymbol{x}) =
+    \sum_{s=1}^{|\boldsymbol{l}'|}
+    \frac{\alpha_t(s)\beta_t(s)}{y_{\boldsymbol{l}_s'}^t}
+    \label{eq:plx}
+\end{equation}
 
 Since the a label in $\boldsymbol{l}$ might corresponds to multiple labels
 in $\boldsymbol{\pi}$, we use
 $$\text{lab}(\boldsymbol{l},k) = \{s: \boldsymbol{l}_s' = k\}$$ to denote
 the set of positions where label $k$ occurs. Note that this set can be empty.
 
-$$
+\begin{equation}
 \frac{
 \partial p(\boldsymbol{l}|\boldsymbol{x})
 }{
 \partial y_k^t
 } =
 \frac{1}{(y_k^t)^2} \sum_{s\in\text{lab}(\boldsymbol{l},k)} \alpha_t(s)\beta_t(s)
-$$
+\label{eq:grad_plx}
+\end{equation}
 
 Let $\boldsymbol{l} = \boldsymbol{z}$,
 then
@@ -331,12 +333,14 @@ $$
     }{\partial y_k^t}
     &= -\frac{
     \partial\ln(p(\boldsymbol{z}|\boldsymbol{x}))
-    }{\partial y_k^t} \\
+    }{\partial y_k^t} \notag \\
     &= -\frac{1}{p(\boldsymbol{z}|\boldsymbol{x})}
     \frac{
     \partial p(\boldsymbol{z}|\boldsymbol{x})
-    }{\partial y_k^t} \\
+    }{\partial y_k^t} \label{eq:obj_func} \\
 \end{align}
 $$
+
+Using \eqref{eq:plx}, \eqref{eq:grad_plx}, and \eqref{eq:obj_func}, we can perform back propagation.
 
 ### Decoding
