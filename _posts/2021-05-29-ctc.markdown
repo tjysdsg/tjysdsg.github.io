@@ -1,6 +1,6 @@
 ---
 title:  "Understanding the Math Behind CTC"
-date:   2021-05-29 18:05:00 +0800
+date:   2021-06-18 10:56:00 +0800
 excerpt_separator: <!--more-->
 permalink: /ctc
 ---
@@ -55,7 +55,7 @@ $$
 
 ## Derivation
 
-### The Objective
+### The Goal
 
 Assuming the output $z_1,z_2,\dots$ is conditionally independence
 w.r.t the input $\boldsymbol{x}$,
@@ -69,7 +69,7 @@ where $\boldsymbol{\pi} =
 \end{bmatrix}
 $ is a possible sequence that can be mapped to $\boldsymbol{z}$ by $\mathcal{B}$.
 
-Then, the objective of CTC is to find a sequence $\boldsymbol{l}$ 
+Then, the ultimate goal of CTC is to find a sequence $\boldsymbol{l}$ 
 that maximize the probability
 
 $$
@@ -81,11 +81,14 @@ $$
 
 Here $L^{\le T}$ refers to a sequence that has a length smaller than $T$.
 
-In other words, the objective of CTC is to find:
+In other words, the goal of CTC is to find:
 
 $$
 h(x) = \arg\max_{l\in L^{\le T}} p(\boldsymbol{l}|\boldsymbol{x})
 $$
+
+To achieve the goal, 1) we need some way of training the model, and 2) we need to figure out
+how to find the best sequence when decoding
 
 
 ### Training
@@ -205,10 +208,21 @@ NOTE that the formula actually implies some rules of transitions in addition to 
 1. ...
 2. ...
 3. ...
-4. TODO
-5. TODO
+4. Transitions can only occur from the previous symbol to the next symbol, not the other way around
+5. Transitions cannot occur between two identical symbols without going through a blank in between them
+6. Transitions cannot skip a non-blank symbol
 
-As a result, the probability of $\boldsymbol{l}$, expressed using $\alpha$,
+Here is an example of all possible paths for "apple" in the following graph
+I "borrowed" from [this blog](https://xiaodu.io/ctc-explained/):
+
+![ctc_path_apple](assets/images/ctc_path_apple.webp)
+
+Note that the nodes in the graph without any connections have a probability of $0$, since
+it is impossible to reach them within $[0, T]$.
+
+TODO: details
+
+The probability of $\boldsymbol{l}$, expressed using $\alpha$,
 is the sum of the total probabilities
 of $\boldsymbol{l}'$ with and without the final blank at time $T$:
 
@@ -224,7 +238,105 @@ $$
 p(\boldsymbol{l}|\boldsymbol{x}) = \beta_T(1) + \beta_T(2)
 $$
 
+Note that since there are frequent multiplication between numerical values smaller than $1.0$, underflow
+is bound to happen. Therefore we should rescale the forward and backward variable in our calculation.
+However, I'm covering this here.
+
 #### MLE
 
+To train the neural network, we need to derive an objective function that is differentiable.
+Our objective function is simply the sum of the log of $p(\boldsymbol{z}|\boldsymbol{x})$:
+
+$$
+O^{ML}(S,\mathcal{N}_{\omega}) = -\sum_{(\boldsymbol{x},\boldsymbol{z})\in S} \ln(p(\boldsymbol{z}|\boldsymbol{x}))
+$$
+
+where $p(\boldsymbol{z}|\boldsymbol{x})$ is the posterior of $\boldsymbol{z}$, the target sequences
+in the training data $S$, and $\mathcal{N}_{\omega}$ is the output of the neural network.
+
+The next step is to differentiate the objective function.
+For each data sample $$\{\boldsymbol{x},\boldsymbol{z}\}$$ we have:
+
+$$
+\frac{
+\partial O^{ML}(\{\boldsymbol{x},\boldsymbol{z}\}, \mathcal{N}_{\omega})
+}{
+\partial y_k^t
+} =
+-\frac{
+\partial \ln(p(\boldsymbol{z}|\boldsymbol{x}))
+}{
+\partial y_k^t
+}
+$$
+
+Since for a labelling $\boldsymbol{l}$ the product of the forward and backward variables at a given $s$
+and $t$ is the probability of all the paths corresponding to $\boldsymbol{l}$ that go through
+the symbol $s$ at time $t$, we have:
+
+$$
+\alpha_t(s)\beta_t(s) =
+\sum_{
+\begin{align}
+    &\pi\in \mathcal{B}^{-1}(\boldsymbol{l}): \\
+    &\pi_t = \boldsymbol{l}_s' \\
+\end{align}
+}
+y_{\boldsymbol{l}_s'}^t \prod_{t'=1}^T y_{\pi_{t'}}^{t'}
+$$
+
+Since
+$p(\boldsymbol{\pi}|\boldsymbol{x}) = \prod y_{\boldsymbol{\pi}_t}^{t}$
+
+$$
+\frac{\alpha_t(s)\beta_t(s)}{y_{\boldsymbol{l}_s'}^t} =
+\sum_{
+\begin{align}
+&\pi\in \mathcal{B}^{-1}(\boldsymbol{l}): \\
+&\pi_t = \boldsymbol{l}_s' \\
+\end{align}
+}
+p(\boldsymbol{\pi}|\boldsymbol{x})
+$$
+
+Then
+
+$$
+p(\boldsymbol{l}|\boldsymbol{x}) =
+\sum_{s=1}^{|\boldsymbol{l}'|}
+\frac{\alpha_t(s)\beta_t(s)}{y_{\boldsymbol{l}_s'}^t}
+$$
+
+Since the a label in $\boldsymbol{l}$ might corresponds to multiple labels
+in $\boldsymbol{\pi}$, we use
+$$\text{lab}(\boldsymbol{l},k) = \{s: \boldsymbol{l}_s' = k\}$$ to denote
+the set of positions where label $k$ occurs. Note that this set can be empty.
+
+$$
+\frac{
+\partial p(\boldsymbol{l}|\boldsymbol{x})
+}{
+\partial y_k^t
+} =
+\frac{1}{(y_k^t)^2} \sum_{s\in\text{lab}(\boldsymbol{l},k)} \alpha_t(s)\beta_t(s)
+$$
+
+Let $\boldsymbol{l} = \boldsymbol{z}$,
+then
+
+$$
+\begin{align}
+    \frac{
+    \partial O^{ML}(\{\boldsymbol{x},\boldsymbol{z}\}, \mathcal{N}_{\omega})
+    }{\partial y_k^t}
+    &= -\frac{
+    \partial\ln(p(\boldsymbol{z}|\boldsymbol{x}))
+    }{\partial y_k^t} \\
+    &= -\frac{1}{p(\boldsymbol{z}|\boldsymbol{x})}
+    \frac{
+    \partial p(\boldsymbol{z}|\boldsymbol{x})
+    }{\partial y_k^t} \\
+\end{align}
+$$
 
 ### Decoding
