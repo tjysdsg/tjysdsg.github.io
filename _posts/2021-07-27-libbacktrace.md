@@ -38,10 +38,11 @@ The SO answer said that libbacktrace could provide the functionalities I needed.
 it and made [a simple wrapper](https://github.com/tjysdsg/tan/tree/master/src/backtrace) around it.
 
 The final API is very simple
-```C++
+
+{% highlight C++ %}
 void init_back_trace(const char *filename);
 void print_back_trace();
-```
+{% endhighlight %}
 
 `init_back_trace` should be used at the beginning of the program. It is responsible for loading the debug information
 of a binary (use `argv[0]` for the program itself) and it is quite an expensive routine.
@@ -54,7 +55,7 @@ so I'm not copying and pasting them here.
 For anyone that just wants to copy and paste my code (**note that this code only works on linux and has only been
 tested using gcc and clang**):
 
-```C++
+{% highlight C++ %}
 #include <cxxabi.h>
 #include <cstdio>
 #include <cstdlib>
@@ -98,4 +99,4 @@ void print_back_trace() {
   }
   backtrace_full((backtrace_state *) __bt_state, 0, bt_callback, bt_error_callback, nullptr);
 }
-```
+{% endhighlight %}
