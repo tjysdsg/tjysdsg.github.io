@@ -73,19 +73,13 @@ Then, the ultimate goal of CTC is to find a sequence $\boldsymbol{l}$
 that maximize the probability
 
 $$
-p(\boldsymbol{l}|\boldsymbol{x}) = \sum_{\pi\in\mathcal{B}^{-1}}
+p(\boldsymbol{z}|\boldsymbol{x}) = \sum_{\pi\in\mathcal{B}^{-1}(\boldsymbol{z})}
 p(\boldsymbol{\pi}|\boldsymbol{x})
 $$
 
 *in an efficient way*.
 
-Here $L^{\le T}$ refers to a sequence that has a length smaller than $T$.
-
-In other words, the goal of CTC is to find:
-
-$$
-h(x) = \arg\max_{l\in L^{\le T}} p(\boldsymbol{l}|\boldsymbol{x})
-$$
+where $\boldsymbol{z} \in L^{\le T}$ meaning it has a length smaller than $T$.
 
 To achieve the goal, 1) we need some way of training the model, and 2) we need to figure out
 how to find the best sequence when decoding
@@ -238,9 +232,9 @@ $$
 p(\boldsymbol{l}|\boldsymbol{x}) = \beta_T(1) + \beta_T(2)
 $$
 
-Note that since there are frequent multiplication between numerical values smaller than $1.0$, underflow
-is bound to happen. Therefore we should rescale the forward and backward variable in our calculation.
-However, I'm covering this here.
+Note that underflow is bound to happen in the recursive process.
+Therefore we should rescale the forward and backward variable in our calculation.
+However, I'm not covering the details here.
 
 #### MLE
 
@@ -248,7 +242,7 @@ To train the neural network, we need to derive an objective function that is dif
 Our objective function is simply the sum of the log of $p(\boldsymbol{z}|\boldsymbol{x})$:
 
 $$
-O^{ML}(S,\mathcal{N}_{\omega}) = -\sum_{(\boldsymbol{x},\boldsymbol{z})\in S} \ln(p(\boldsymbol{z}|\boldsymbol{x}))
+O(S,\mathcal{N}_{\omega}) = -\sum_{(\boldsymbol{x},\boldsymbol{z})\in S} \ln(p(\boldsymbol{z}|\boldsymbol{x}))
 $$
 
 where $p(\boldsymbol{z}|\boldsymbol{x})$ is the posterior of $\boldsymbol{z}$, the target sequences
@@ -259,7 +253,7 @@ For each data sample $$\{\boldsymbol{x},\boldsymbol{z}\}$$ we have:
 
 $$
 \frac{
-\partial O^{ML}(\{\boldsymbol{x},\boldsymbol{z}\}, \mathcal{N}_{\omega})
+\partial O(\{\boldsymbol{x},\boldsymbol{z}\}, \mathcal{N}_{\omega})
 }{
 \partial y_k^t
 } =
@@ -270,7 +264,7 @@ $$
 }
 $$
 
-Since for a labelling $\boldsymbol{l}$ the product of the forward and backward variables at a given $s$
+Since for a labeling $\boldsymbol{l}$ the product of the forward and backward variables at a given $s$
 and $t$ is the probability of all the paths corresponding to $\boldsymbol{l}$ that go through
 the symbol $s$ at time $t$, we have:
 
@@ -286,7 +280,12 @@ y_{\boldsymbol{l}_s'}^t \prod_{t'=1}^T y_{\pi_{t'}}^{t'}
 $$
 
 Since
-$p(\boldsymbol{\pi}|\boldsymbol{x}) = \prod y_{\boldsymbol{\pi}_t}^{t}$
+
+$$
+p(\boldsymbol{\pi}|\boldsymbol{x}) = \prod_t y_{\boldsymbol{\pi}_t}^{t}
+$$
+
+we get
 
 $$
 \frac{\alpha_t(s)\beta_t(s)}{y_{\boldsymbol{l}_s'}^t} =
@@ -311,7 +310,8 @@ Then
 Since the a label in $\boldsymbol{l}$ might corresponds to multiple labels
 in $\boldsymbol{\pi}$, we use
 $$\text{lab}(\boldsymbol{l},k) = \{s: \boldsymbol{l}_s' = k\}$$ to denote
-the set of positions where label $k$ occurs. Note that this set can be empty.
+the set of positions where label $k$ occurs (note that this set can be empty).
+Now we have:
 
 \begin{equation}
 \frac{
@@ -329,7 +329,7 @@ then
 $$
 \begin{align}
     \frac{
-    \partial O^{ML}(\{\boldsymbol{x},\boldsymbol{z}\}, \mathcal{N}_{\omega})
+    \partial O(\{\boldsymbol{x},\boldsymbol{z}\}, \mathcal{N}_{\omega})
     }{\partial y_k^t}
     &= -\frac{
     \partial\ln(p(\boldsymbol{z}|\boldsymbol{x}))
