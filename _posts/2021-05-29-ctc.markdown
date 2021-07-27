@@ -72,10 +72,11 @@ $ is a possible sequence that can be mapped to $\boldsymbol{z}$ by $\mathcal{B}$
 Then, the ultimate goal of CTC is to find a sequence $\boldsymbol{l}$ 
 that maximize the probability
 
-$$
+\begin{equation}
 p(\boldsymbol{z}|\boldsymbol{x}) = \sum_{\pi\in\mathcal{B}^{-1}(\boldsymbol{z})}
 p(\boldsymbol{\pi}|\boldsymbol{x})
-$$
+\label{eq:prob_z}
+\end{equation}
 
 *in an efficient way*.
 
@@ -172,11 +173,14 @@ $f_i$ by simply summing $f_{i-1}$ and $f_{i-2}$.
 The formula for calculating $\alpha$ and $\beta$ recursively given in the paper is:
 
 $$
-\alpha_t(s) =
-\begin{cases}
-    \bar{\alpha}_t(s)y_{\boldsymbol{l}_{s}'}^t & \boldsymbol{l}_{s}' = b \text{ or } \boldsymbol{l}_{s-2}' = \boldsymbol{l}_{s}' \\
-    (\bar{\alpha}_t(s) + \alpha_{t-1}(s-2)) y_{\boldsymbol{l}_{s}'}^t & \text{otherwise} \\
-\end{cases}
+\begin{equation}
+    \alpha_t(s) =
+    \begin{cases}
+        \bar{\alpha}_t(s)y_{\boldsymbol{l}_{s}'}^t & \boldsymbol{l}_{s}' = b \text{ or } \boldsymbol{l}_{s-2}' = \boldsymbol{l}_{s}' \\
+        (\bar{\alpha}_t(s) + \alpha_{t-1}(s-2)) y_{\boldsymbol{l}_{s}'}^t & \text{otherwise} \\
+    \end{cases}
+    \label{eq:alpha}
+\end{equation}
 $$
 
 where
@@ -185,11 +189,15 @@ $$
 $$
 
 $$
-\beta_t(s) =
-\begin{cases}
-\bar{\beta}_t(s)y_{\boldsymbol{l}_{s}'}^t & \boldsymbol{l}_{s}' = b \text{ or } \boldsymbol{l}_{s+2}' = \boldsymbol{l}_{s}' \\
-(\bar{\beta}_t(s) + \beta_{t+1}(s+2)) y_{\boldsymbol{l}_{s}'}^t & \text{otherwise} \\
-\end{cases}
+\begin{equation}
+    \beta_t(s) =
+    \begin{cases}
+        \bar{\beta}_t(s)y_{\boldsymbol{l}_{s}'}^t & \boldsymbol{l}_{s}' = b \text{ or } \boldsymbol{l}_{s+2}'
+            = \boldsymbol{l}_{s}' \\
+        (\bar{\beta}_t(s) + \beta_{t+1}(s+2)) y_{\boldsymbol{l}_{s}'}^t & \text{otherwise} \\
+    \end{cases}
+    \label{eq:beta}
+\end{equation}
 $$
 
 where
@@ -298,7 +306,15 @@ $$
 p(\boldsymbol{\pi}|\boldsymbol{x})
 $$
 
-Then
+Let $\theta$ be the right hand side, then it is the sum of probability of the paths of $\boldsymbol{l}$
+that went through $\boldsymbol{l}_s'$ at time $t$.
+Thus,
+$$
+\sum_{\pi\in\mathcal{B}^{-1}(\boldsymbol{z})} p(\boldsymbol{\pi}|\boldsymbol{x})
+$$
+in \eqref{eq:prob_z} is the sum of $\theta$ over time.
+
+So:
 
 \begin{equation} 
     p(\boldsymbol{l}|\boldsymbol{x}) =
@@ -307,11 +323,16 @@ Then
     \label{eq:plx}
 \end{equation}
 
-Since the a label in $\boldsymbol{l}$ might corresponds to multiple labels
-in $\boldsymbol{\pi}$, we use
-$$\text{lab}(\boldsymbol{l},k) = \{s: \boldsymbol{l}_s' = k\}$$ to denote
-the set of positions where label $k$ occurs (note that this set can be empty).
-Now we have:
+To calculate the partial derivative of $p(\boldsymbol{l}|\boldsymbol{x})$
+w.r.t. $y_k^t$, we only need to consider the paths that went to label $k$
+at time $t$. However, since the a label in $\boldsymbol{l}$ might corresponds to multiple labels
+in $\boldsymbol{\pi}$, we define
+$$
+\text{lab}(\boldsymbol{l},k) = \{s: \boldsymbol{l}_s' = k\}
+$$
+as the set of positions where label $k$ occurs (note that this set can be empty).
+
+Then the partial derivative can be calculated as:
 
 \begin{equation}
 \frac{
@@ -341,6 +362,7 @@ $$
 \end{align}
 $$
 
-Using \eqref{eq:plx}, \eqref{eq:grad_plx}, and \eqref{eq:obj_func}, we can perform back propagation.
+Using \eqref{eq:alpha}, \eqref{eq:beta}, \eqref{eq:plx}, \eqref{eq:grad_plx}, and \eqref{eq:obj_func},
+we can calculate the gradiant and perform back propagation.
 
 ### Decoding
