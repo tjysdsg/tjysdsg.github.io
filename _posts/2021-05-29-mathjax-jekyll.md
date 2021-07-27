@@ -24,7 +24,6 @@ tag to the `<head>` tag in an html file.
 So add the following content to the end of `_includes/head.html`
 
 ```html
-
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 ```
@@ -32,7 +31,6 @@ So add the following content to the end of `_includes/head.html`
 You can also configure mathjax settings like so:
 
 ```html
-
 <script>
 MathJax = {
     tex: {
