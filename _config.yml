@@ -30,7 +30,7 @@ defaults:
 # author
 author:
   name: "Jiyang Tang"
-  avatar: "/assets/images/logo.svg"
+  avatar: "/assets/images/me.jpg"
   bio: " "
   location: "China"
   links:
@@ -46,7 +46,7 @@ author:
 
 
 ################ jekyll-seo-tag ################
-logo: /assets/images/logo.svg
+logo: /assets/images/me.jpg
 social:
   name: Jiyang Tang
   links:
