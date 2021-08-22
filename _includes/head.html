@@ -40,9 +40,19 @@
 {% endfor %}
 {% endif %}
 
-<!-- above is based on https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/head.html -->
-<script data-ad-client="ca-pub-4089436984613364" async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- above is copied from https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/head.html -->
+
+<!-- CUSTOM HEADER STARTING FROM HERE -->
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-40D975REKC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-40D975REKC');
+</script>
 
 <!-- mathjax -->
 <script>
