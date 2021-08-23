@@ -31,6 +31,8 @@ I also have interests in programming languages, compilers, and game engines.
   of digits using Python+Numpy
 - Compiler for my own programming language [tan](https://github.com/tjysdsg/tan)
 - Mandarin Tone Classification [experiments](https://github.com/tjysdsg/tone_classifier)
+- [End-to-End Mandarin Tone Classification with Short Term Context Information](https://arxiv.org/abs/2104.05657)
+  submitted to APSIPA ASC 2021 (under review)
 - [Wenet fork](https://github.com/tjysdsg/wenet)
 - Phone-level force alignment [scripts](https://github.com/tjysdsg/kaldi-align-to-phones) using Kaldi
 - Phone-level force alignment [scripts](https://github.com/tjysdsg/aidatatang_force_align) used for my paper
