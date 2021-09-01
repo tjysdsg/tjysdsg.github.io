@@ -12,15 +12,18 @@ I'm a Data Science student at [Duke Kunshan University](https://dukekunshan.edu.
 [SMIIP Lab](https://sites.duke.edu/dkusmiip/2019/08/10/welcome) led by my advisor
 [Professor Ming Li](https://scholars.duke.edu/person/MingLi).
 
-My research focus is Automatic Speech Recognition (ASR) and Computer Aided Pronunciation Training (CAPT) using
+My research focus is **Automatic Speech Recognition (ASR)** and **Computer Aided Pronunciation Training (CAPT)** using
 end-to-end methods.
 
 I also have interests in programming languages, compilers, and game engines.
 
 [My CV](assets/cv.pdf)
 
+# Publications
 
-# My Projects
+- End-to-End Mandarin Tone Classification with Short Term Context Information, accepted by APSIPA ASC 2021
+
+# Projects
 
 ## CAPT
 
@@ -33,8 +36,6 @@ I also have interests in programming languages, compilers, and game engines.
 - Standard Mandarin acoustic model [training script](https://github.com/tjysdsg/std-mandarin-kaldi).
   The model is used for calculating GOP
 - Mandarin Tone Classification [experiments](https://github.com/tjysdsg/tone_classifier)
-- [End-to-End Mandarin Tone Classification with Short Term Context Information](https://arxiv.org/abs/2104.05657)
-  (under review)
 - Phone-level force alignment [scripts](https://github.com/tjysdsg/kaldi-align-to-phones) using Kaldi
 - Phone-level force alignment [scripts](https://github.com/tjysdsg/aidatatang_force_align) used for my paper
  
