@@ -21,7 +21,8 @@ I also have interests in programming languages, compilers, and game engines.
 
 # Publications
 
-- End-to-End Mandarin Tone Classification with Short Term Context Information, accepted by APSIPA ASC 2021
+- [End-to-End Mandarin Tone Classification with Short Term Context Information](https://arxiv.org/abs/2104.05657),
+  accepted by APSIPA ASC 2021
 
 # Projects
 
@@ -33,16 +34,16 @@ I also have interests in programming languages, compilers, and game engines.
 - [Kaldi fork](https://github.com/tjysdsg/kaldi) for CAPT using Goodness of Pronunciation (GOP)
 - Computer Aided Pronunciation Training (CAPT) mobile app (server backend is not open source) called
   [hippo](https://github.com/tjysdsg/hippo)
-- Standard Mandarin acoustic model [training script](https://github.com/tjysdsg/std-mandarin-kaldi).
-  The model is used for calculating GOP
+- Standard Mandarin acoustic model [training script](https://github.com/tjysdsg/std-mandarin-kaldi). The model is used
+  for calculating GOP
 - Mandarin Tone Classification [experiments](https://github.com/tjysdsg/tone_classifier)
 - Phone-level force alignment [scripts](https://github.com/tjysdsg/kaldi-align-to-phones) using Kaldi
 - Phone-level force alignment [scripts](https://github.com/tjysdsg/aidatatang_force_align) used for my paper
- 
+
 ## Other
 
-- Hand-written [speech recognition system](https://github.com/tjysdsg/speech-recognition) for English pronunciation
-  of digits using Python+Numpy
+- Hand-written [speech recognition system](https://github.com/tjysdsg/speech-recognition) for English pronunciation of
+  digits using Python+Numpy
 - Compiler for my own programming language [tan](https://github.com/tjysdsg/tan)
 - [Dance style classifier](https://github.com/tjysdsg/dance-classifier)
 - [Scripts and documentation](https://github.com/tjysdsg/birds) for Chinese endemic bird image dataset
