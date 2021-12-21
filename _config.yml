@@ -54,9 +54,15 @@ social:
     - https://www.linkedin.com/in/tjy/
     - https://www.facebook.com/tjysdsg/
 
+################ jekyll scholar ################
+scholar:
+  style: ieee
+  bibliography: references.bib
+
 # Build settings
 theme: minimal-mistakes-jekyll
 plugins:
   - jekyll-feed
   - jekyll-include-cache
   - jekyll-seo-tag
+  - jekyll/scholar

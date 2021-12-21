@@ -6,7 +6,7 @@ permalink: /ctc
 ---
 
 In this post, I'm writing down my thought process of understanding the math behind 
-Connectionist Temporal Classification (CTC) [TODO reference].
+Connectionist Temporal Classification (CTC) {% cite graves_ctc_2006 %}{% cite graves_ctc_2012 %}.
 
 <!--more-->
 
@@ -366,3 +366,8 @@ Using \eqref{eq:alpha}, \eqref{eq:beta}, \eqref{eq:plx}, \eqref{eq:grad_plx}, an
 we can calculate the gradiant and perform back propagation.
 
 ### Decoding
+
+
+# Bibliography
+
+{% bibliography --cited %}

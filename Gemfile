@@ -31,3 +31,6 @@ gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
 
 # https://github.com/mmistakes/minimal-mistakes#remote-theme-method
 gem "minimal-mistakes-jekyll"
+
+# https://github.com/inukshuk/jekyll-scholar
+gem 'jekyll-scholar', group: :jekyll_plugins
