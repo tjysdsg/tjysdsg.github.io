@@ -57,7 +57,7 @@ $$
 
 ### The Goal
 
-Assuming the output $z_1,z_2,\dots$ is conditionally independence
+Assuming the output $z_1,z_2,\dots$ is conditionally independent
 w.r.t the input $\boldsymbol{x}$,
 we define
 $$
@@ -166,9 +166,6 @@ $$
 
 The major advantage of using the forward-backward algorithm is that you can calculate $\alpha$ or $\beta$
 recursively, which means you can use dynamic programming to do it efficiently.
-For example, when calculating the first n-th Fibonacci numbers, instead of performing recursion on every
-$i\in [1, n]$, you can store the result of the previous results $f_{i-1}, f_{i-2}, f_{i-3}, \dots$, and calculate
-$f_i$ by simply summing $f_{i-1}$ and $f_{i-2}$.
 
 The formula for calculating $\alpha$ and $\beta$ recursively given in the paper is:
 
@@ -222,10 +219,7 @@ I "borrowed" from [this blog](https://xiaodu.io/ctc-explained/):
 Note that the nodes in the graph without any connections have a probability of $0$, since
 it is impossible to reach them within $[0, T]$.
 
-TODO: details
-
-The probability of $\boldsymbol{l}$, expressed using $\alpha$,
-is the sum of the total probabilities
+The probability of $\boldsymbol{l}$, expressed using $\alpha$, is the sum of the total probabilities
 of $\boldsymbol{l}'$ with and without the final blank at time $T$:
 
 $$
@@ -367,6 +361,13 @@ we can calculate the gradiant and perform back propagation.
 
 ### Decoding
 
+TODO: complete this section
+
+#### Brute Force
+
+#### Prefix Search
+
+#### Beam Search
 
 # Bibliography
 
