@@ -2,7 +2,7 @@
 layout: single
 classes: wide
 author_profile: true
-title: Jiyang Tang 
+title: About Me
 permalink: /
 ---
 
