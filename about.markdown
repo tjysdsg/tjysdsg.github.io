@@ -16,8 +16,6 @@ I focus on **Automatic Speech Recognition (ASR)** and **Computer Aided Pronuncia
 
 I also have interests in programming languages, compilers, and game engines.
 
-[My CV](assets/cv.pdf)
-
 # Publications
 
 - [End-to-End Mandarin Tone Classification with Short Term Context Information](https://ieeexplore.ieee.org/document/9689521)
