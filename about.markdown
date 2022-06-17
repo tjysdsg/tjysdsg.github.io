@@ -14,6 +14,8 @@ an MS degree in Intelligent Information Systems in 2024.
 I obtained my bachelor's degree in Data Science at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) in
 May 2022.
 
+[CV](assets/cv.pdf)
+
 # Publications
 
 - [End-to-End Mandarin Tone Classification with Short Term Context Information](https://ieeexplore.ieee.org/document/9689521)
