@@ -8,13 +8,11 @@ permalink: /
 
 Jiyang Tang
 
-I'm a Data Science student at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about). I'm a member of
-[SMIIP Lab](https://sites.duke.edu/dkusmiip/2019/08/10/welcome) led by my advisor
-[Professor Ming Li](https://scholars.duke.edu/person/MingLi).
+I am an incoming master student at Carnegie Mellon University. I am expected to obtain
+an MS degree in Intelligent Information Systems in 2024.
 
-I focus on **Automatic Speech Recognition (ASR)** and **Computer Aided Pronunciation Training (CAPT)**.
-
-I also have interests in programming languages, compilers, and game engines.
+I obtained my bachelor's degree in Data Science at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) in
+May 2022.
 
 # Publications
 
@@ -23,13 +21,13 @@ I also have interests in programming languages, compilers, and game engines.
 
 # Projects
 
-## CAPT
+## Speech Processing
 
 - [Espnet fork](https://github.com/tjysdsg/espnet) for end-to-end mispronunciation detection
 - [Kaldi fork](https://github.com/tjysdsg/kaldi) for CAPT using Goodness of Pronunciation (GOP)
-- Computer Aided Pronunciation Training (CAPT) mobile app (server backend is not open source) called
+- A Computer Aided Pronunciation Training (CAPT) app (server backend is not open source) called
   [hippo](https://github.com/tjysdsg/hippo)
-- Standard Mandarin acoustic model [training script](https://github.com/tjysdsg/std-mandarin-kaldi)
+- Standard Mandarin (no accent) acoustic model [training script](https://github.com/tjysdsg/std-mandarin-kaldi)
 - Mandarin Tone Classification [experiments](https://github.com/tjysdsg/tone_classifier)
 - Phone-level force alignment [scripts](https://github.com/tjysdsg/kaldi-align-to-phones) using Kaldi
 - Phone-level force alignment [scripts](https://github.com/tjysdsg/aidatatang_force_align) used for my paper
@@ -43,4 +41,4 @@ I also have interests in programming languages, compilers, and game engines.
 - [Scripts and documentation](https://github.com/tjysdsg/birds) for Chinese endemic bird image dataset
 - [Prebuilt LLVM and Clang libraries](https://github.com/tjysdsg/llvm-build)
 - [Prebuilt Openpose](https://github.com/tjysdsg/openpose-built)
-- ... and many other repos [here](https://github.com/tjysdsg?tab=repositories)
+- ... and many other fun things [here](https://github.com/tjysdsg?tab=repositories)
