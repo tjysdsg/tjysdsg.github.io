@@ -27,8 +27,8 @@ May 2022.
 
 - [Espnet fork](https://github.com/tjysdsg/espnet) for end-to-end mispronunciation detection
 - [Kaldi fork](https://github.com/tjysdsg/kaldi) for CAPT using Goodness of Pronunciation (GOP)
-- A Computer Aided Pronunciation Training (CAPT) app (server backend is not open source) called
-  [hippo](https://github.com/tjysdsg/hippo)
+- Computer Aided Pronunciation Training (CAPT) [server backend](https://github.com/tjysdsg/capt-public)
+- CAPT mobile app called [hippo](https://github.com/tjysdsg/hippo)
 - Standard Mandarin (no accent) acoustic model [training script](https://github.com/tjysdsg/std-mandarin-kaldi)
 - Mandarin Tone Classification [experiments](https://github.com/tjysdsg/tone_classifier)
 - Phone-level force alignment [scripts](https://github.com/tjysdsg/kaldi-align-to-phones) using Kaldi
