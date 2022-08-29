@@ -1,4 +1,7 @@
 <meta charset="utf-8">
+{% if site.google_analytics_measure_id and jekyll.environment == 'production' %}
+{% include analytics.html %}
+{% endif %}
 
 {% include seo.html %}
 

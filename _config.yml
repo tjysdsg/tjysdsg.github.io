@@ -64,3 +64,6 @@ plugins:
   - jekyll-include-cache
   - jekyll-seo-tag
   - jekyll/scholar
+
+# Google Analytics
+google_analytics_measure_id: G-WYHC5BDEPZ
