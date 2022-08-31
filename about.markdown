@@ -8,13 +8,13 @@ permalink: /
 
 Jiyang Tang
 
-I am an incoming master student at Carnegie Mellon University. I am expected to obtain
-an MS degree in Intelligent Information Systems in 2024.
+I am a first year master student at Carnegie Mellon University, expected to obtain [Master of Science in Intelligent
+Information Systems](https://miis.cs.cmu.edu/) degree in 2024.
 
 I obtained my bachelor's degree in Data Science at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) in
 May 2022.
 
-[CV](assets/cv.pdf)
+[Resume](assets/Jiyang_Tang_Resume.pdf)
 
 # Publications
 
