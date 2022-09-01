@@ -44,3 +44,7 @@ May 2022.
 - [Prebuilt LLVM and Clang libraries](https://github.com/tjysdsg/llvm-build)
 - [Prebuilt Openpose](https://github.com/tjysdsg/openpose-built)
 - ... and many other fun things [here](https://github.com/tjysdsg?tab=repositories)
+
+# Posts
+
+Some of my notes and posts are [here]({% link index.markdown %})
