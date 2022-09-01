@@ -5,7 +5,7 @@ description: >- # this means to ignore newlines until "baseurl:"
 tagline: Jiyang Tang | Tang Jiyang | 唐际洋
 baseurl: ""
 url: "https://tjysdsg.github.io"
-timezone: CN
+timezone: US/Eastern
 markdown: kramdown
 
 # default front matters
@@ -34,7 +34,7 @@ author:
   url: "https://tjysdsg.github.io"
   avatar: "/assets/images/me.jpg"
   bio: " "
-  location: "China"
+  location: "Pittsburgh, PA, United States"
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
