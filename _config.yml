@@ -66,4 +66,8 @@ plugins:
   - jekyll/scholar
 
 # Google Analytics
-google_analytics_measure_id: G-WYHC5BDEPZ
+analytics:
+  provider: "google-gtag"
+  google:
+    tracking_id: "G-WYHC5BDEPZ"
+    anonymize_ip: false
