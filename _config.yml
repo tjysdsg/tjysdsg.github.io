@@ -23,6 +23,9 @@ defaults:
       share: true
       related: true
       toc: false
+      show_date: true
+      excerpt_separator: "<!--more-->"
+
       # markdown engine
       usemathjax: true
 

@@ -1,8 +1,8 @@
 ---
 title:  "Understanding the Math Behind CTC"
 date:   2021-06-18 10:56:00 +0800
-excerpt_separator: <!--more-->
 permalink: /ctc
+toc: true
 ---
 
 In this post, I'm writing down my thought process of understanding the math behind 
