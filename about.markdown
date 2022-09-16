@@ -14,7 +14,8 @@ Information Systems](https://miis.cs.cmu.edu/) degree in 2024.
 I obtained my bachelor's degree in Data Science at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) in
 May 2022.
 
-[Resume](assets/Jiyang_Tang_Resume.pdf)
+I am advised by [Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe) and working
+on [Espnet](https://github.com/espnet/espnet) for my directed study.
 
 # Publications
 
@@ -25,23 +26,23 @@ May 2022.
 
 ## Speech Processing
 
-- [Espnet fork](https://github.com/tjysdsg/espnet) for end-to-end mispronunciation detection
-- [Kaldi fork](https://github.com/tjysdsg/kaldi) for CAPT using Goodness of Pronunciation (GOP)
+- [Espnet](https://github.com/espnet/espnet)
 - Computer Aided Pronunciation Training (CAPT) [server backend](https://github.com/tjysdsg/capt-public)
 - CAPT mobile app called [hippo](https://github.com/tjysdsg/hippo)
+- [Kaldi fork](https://github.com/tjysdsg/kaldi) for CAPT using Goodness of Pronunciation (GOP)
 - Standard Mandarin (no accent) acoustic model [training script](https://github.com/tjysdsg/std-mandarin-kaldi)
 - Mandarin Tone Classification [experiments](https://github.com/tjysdsg/tone_classifier)
 - Phone-level force alignment [scripts](https://github.com/tjysdsg/kaldi-align-to-phones) using Kaldi
-- Phone-level force alignment [scripts](https://github.com/tjysdsg/aidatatang_force_align) used for my paper
+- Phone-level force alignment [scripts](https://github.com/tjysdsg/aidatatang_force_align) for my paper
+- Hand-written [speech recognition system](https://github.com/tjysdsg/speech-recognition) for English pronunciation of
+  digits using Python+Numpy
 
 ## Other
 
-- Hand-written [speech recognition system](https://github.com/tjysdsg/speech-recognition) for English pronunciation of
-  digits using Python+Numpy
 - Compiler for my own programming language [tan](https://github.com/tjysdsg/tan)
+- [Prebuilt LLVM and Clang libraries](https://github.com/tjysdsg/llvm-build)
 - [Dance style classifier](https://github.com/tjysdsg/dance-classifier)
 - [Scripts and documentation](https://github.com/tjysdsg/birds) for Chinese endemic bird image dataset
-- [Prebuilt LLVM and Clang libraries](https://github.com/tjysdsg/llvm-build)
 - [Prebuilt Openpose](https://github.com/tjysdsg/openpose-built)
 - ... and many other fun things [here](https://github.com/tjysdsg?tab=repositories)
 
