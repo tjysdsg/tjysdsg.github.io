@@ -17,16 +17,14 @@ May 2022.
 I am advised by [Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe) and working
 on [Espnet](https://github.com/espnet/espnet) for my directed study.
 
-# Publications
+# Publication
 
 - [End-to-End Mandarin Tone Classification with Short Term Context Information](https://ieeexplore.ieee.org/document/9689521)
   or on [arxiv](https://arxiv.org/abs/2104.05657)
 
-# Projects
+# ML/AI (mainly speech processing)
 
-## Speech Processing
-
-- [Espnet](https://github.com/espnet/espnet)
+- Contributing to [Espnet](https://github.com/espnet/espnet)
 - Computer Aided Pronunciation Training (CAPT) [server backend](https://github.com/tjysdsg/capt-public)
 - CAPT mobile app called [hippo](https://github.com/tjysdsg/hippo)
 - [Kaldi fork](https://github.com/tjysdsg/kaldi) for CAPT using Goodness of Pronunciation (GOP)
@@ -36,15 +34,44 @@ on [Espnet](https://github.com/espnet/espnet) for my directed study.
 - Phone-level force alignment [scripts](https://github.com/tjysdsg/aidatatang_force_align) for my paper
 - Hand-written [speech recognition system](https://github.com/tjysdsg/speech-recognition) for English pronunciation of
   digits using Python+Numpy
-
-## Other
-
-- Compiler for my own programming language [tan](https://github.com/tjysdsg/tan)
-- [Prebuilt LLVM and Clang libraries](https://github.com/tjysdsg/llvm-build)
+- Implementation of some fundamental ML algorithms: https://github.com/tjysdsg/ml
 - [Dance style classifier](https://github.com/tjysdsg/dance-classifier)
-- [Scripts and documentation](https://github.com/tjysdsg/birds) for Chinese endemic bird image dataset
+- Old pytorch ASR experiments https://github.com/tjysdsg/pytorch-projects
+
+# Compiler
+
+- https://github.com/tjysdsg/tan
+
+# OS
+
+- https://github.com/tjysdsg/tos
+- https://github.com/tjysdsg/newlib
+- https://github.com/tjysdsg/acpica
+
+# Gaming
+
+- My Victoria 3 mods https://github.com/tjysdsg/tjy_vic3_fix
+- Steam profile https://steamcommunity.com/id/tjysxsg/
+- Dynamically generate road mesh like in city building game https://github.com/tjysdsg/dynamic_road_gen
+
+# Tools, Experiments, and Misc
+
+- [Prebuilt LLVM and Clang libraries](https://github.com/tjysdsg/llvm-build)
+- Chinese endemic bird image dataset https://github.com/tjysdsg/birds
 - [Prebuilt Openpose](https://github.com/tjysdsg/openpose-built)
-- ... and many other fun things [here](https://github.com/tjysdsg?tab=repositories)
+- Sorting algorithm test benchmarks https://github.com/tjysdsg/sort-test-bench
+- Float representation tool https://github.com/tjysdsg/float_repr
+- Prebuilt cross compiling gnu toolchains https://github.com/tjysdsg/cross-gnu
+- Extract phone alignment from Kaldi kaldi ali.*.gz https://github.com/tjysdsg/ali_to_phone
+- Misc scripts https://github.com/tjysdsg/scripts
+- Experimenting different parallel computing methods https://github.com/tjysdsg/parallel_cpp
+- Neovim configs https://github.com/tjysdsg/nvim
+- Calculate WER https://github.com/tjysdsg/wer
+- Easily bootstrapping a new Ubuntu WSL installation https://github.com/tjysdsg/wsl-bootstrap
+
+# 3D Modeling
+
+- https://github.com/tjysdsg/blender-projects
 
 # Posts
 
