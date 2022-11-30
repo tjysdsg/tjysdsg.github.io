@@ -48,7 +48,7 @@ on [Espnet](https://github.com/espnet/espnet) for my directed study.
 - https://github.com/tjysdsg/newlib
 - https://github.com/tjysdsg/acpica
 
-# Gaming
+# Game Dev
 
 - My Victoria 3 mods https://github.com/tjysdsg/tjy_vic3_fix
 - Steam profile https://steamcommunity.com/id/tjysxsg/
