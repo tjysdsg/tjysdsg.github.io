@@ -25,6 +25,8 @@ on [Espnet](https://github.com/espnet/espnet) for my directed study.
 # ML/AI (mainly speech processing)
 
 - Contributing to [Espnet](https://github.com/espnet/espnet)
+    - MAGICDATA recipe: https://github.com/espnet/espnet/tree/master/egs2/magicdata/asr1
+    - Aphasia ASR: https://github.com/tjysdsg/espnet/tree/aphasiabank/egs2/aphasiabank/asr1
 - Computer Aided Pronunciation Training (CAPT) [server backend](https://github.com/tjysdsg/capt-public)
 - CAPT mobile app called [hippo](https://github.com/tjysdsg/hippo)
 - [Kaldi fork](https://github.com/tjysdsg/kaldi) for CAPT using Goodness of Pronunciation (GOP)
@@ -66,7 +68,6 @@ on [Espnet](https://github.com/espnet/espnet) for my directed study.
 - Misc scripts https://github.com/tjysdsg/scripts
 - Experimenting different parallel computing methods https://github.com/tjysdsg/parallel_cpp
 - Neovim configs https://github.com/tjysdsg/nvim
-- Calculate WER https://github.com/tjysdsg/wer
 - Easily bootstrapping a new Ubuntu WSL installation https://github.com/tjysdsg/wsl-bootstrap
 
 # 3D Modeling
