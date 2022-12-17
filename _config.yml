@@ -1,8 +1,8 @@
 title: Jiyang Tang
 email: tjy1018543509@google.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Jiyang Tang's blogs, memo and more
-tagline: Jiyang Tang | Tang Jiyang | 唐际洋
+description: >-
+  Jiyang Tang's personal website
+tagline: Jiyang Tang | 唐际洋
 baseurl: ""
 url: "https://tjysdsg.github.io"
 timezone: US/Eastern
@@ -39,12 +39,15 @@ author:
   bio: " "
   location: "Pittsburgh, PA, United States"
   links:
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/tjysdsg"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin-in"
       url: "https://www.linkedin.com/in/tjy"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/tjysdsg"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/tjysxsg"
 
 
 ################ jekyll-seo-tag ################
@@ -54,6 +57,7 @@ social:
   links:
     - https://github.com/tjysdsg
     - https://www.linkedin.com/in/tjy/
+    - https://twitter.com/tjysxsg
 
 ################ jekyll scholar ################
 scholar:
