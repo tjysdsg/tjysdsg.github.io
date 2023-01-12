@@ -25,8 +25,8 @@ on [Espnet](https://github.com/espnet/espnet) for my directed study.
 # ML/AI (mainly speech processing)
 
 - Contributing to [Espnet](https://github.com/espnet/espnet)
-    - MAGICDATA recipe: https://github.com/espnet/espnet/tree/master/egs2/magicdata/asr1
-    - Aphasia ASR: https://github.com/tjysdsg/espnet/tree/aphasiabank/egs2/aphasiabank/asr1
+    - MAGICDATA ASR [recipe](https://github.com/espnet/espnet/tree/master/egs2/magicdata/asr1)
+    - Aphasia English ASR [recipe](https://github.com/espnet/espnet/pull/4860) (in progress)
 - Computer Aided Pronunciation Training (CAPT) [server backend](https://github.com/tjysdsg/capt-public)
 - CAPT mobile app called [hippo](https://github.com/tjysdsg/hippo)
 - [Kaldi fork](https://github.com/tjysdsg/kaldi) for CAPT using Goodness of Pronunciation (GOP)
@@ -36,44 +36,41 @@ on [Espnet](https://github.com/espnet/espnet) for my directed study.
 - Phone-level force alignment [scripts](https://github.com/tjysdsg/aidatatang_force_align) for my paper
 - Hand-written [speech recognition system](https://github.com/tjysdsg/speech-recognition) for English pronunciation of
   digits using Python+Numpy
-- Implementation of some fundamental ML algorithms: https://github.com/tjysdsg/ml
+- [Implementation](https://github.com/tjysdsg/ml) of some fundamental ML algorithms
 - [Dance style classifier](https://github.com/tjysdsg/dance-classifier)
-- Old pytorch ASR experiments https://github.com/tjysdsg/pytorch-projects
+- Old pytorch ASR [experiments](https://github.com/tjysdsg/pytorch-projects)
 
 # Compiler
 
-- https://github.com/tjysdsg/tan
+- [Compiler](https://github.com/tjysdsg/tan) for my programming language using LLVM+LibClang
 
 # OS
 
-- https://github.com/tjysdsg/tos
-- https://github.com/tjysdsg/newlib
-- https://github.com/tjysdsg/acpica
-
-# Game Dev
-
-- My Victoria 3 mods https://github.com/tjysdsg/tjy_vic3_fix
-- Steam profile https://steamcommunity.com/id/tjysxsg/
-- Dynamically generate road mesh like in city building game https://github.com/tjysdsg/dynamic_road_gen
+- [A toy OS](https://github.com/tjysdsg/tos) that supports paging, APIC, ACPI, VBE console, and keyboard input with a
+  custom libc
+- [Porting]((https://github.com/tjysdsg/newlib)) newlib to TOS
+- ACPICA [ported](https://github.com/tjysdsg/acpica) to TOS
 
 # Tools, Experiments, and Misc
 
-- [Prebuilt LLVM and Clang libraries](https://github.com/tjysdsg/llvm-build)
-- Chinese endemic bird image dataset https://github.com/tjysdsg/birds
+- Chinese endemic bird image [dataset](https://github.com/tjysdsg/birds)
 - [Prebuilt Openpose](https://github.com/tjysdsg/openpose-built)
-- Sorting algorithm test benchmarks https://github.com/tjysdsg/sort-test-bench
-- Float representation tool https://github.com/tjysdsg/float_repr
-- Prebuilt cross compiling gnu toolchains https://github.com/tjysdsg/cross-gnu
-- Extract phone alignment from Kaldi kaldi ali.*.gz https://github.com/tjysdsg/ali_to_phone
-- Misc scripts https://github.com/tjysdsg/scripts
-- Experimenting different parallel computing methods https://github.com/tjysdsg/parallel_cpp
-- Neovim configs https://github.com/tjysdsg/nvim
-- Easily bootstrapping a new Ubuntu WSL installation https://github.com/tjysdsg/wsl-bootstrap
+- Sorting algorithm [tests and benchmarks](https://github.com/tjysdsg/sort-test-bench)
+- Float representation [tool](https://github.com/tjysdsg/float_repr)
+- Prebuilt cross compiling gnu [toolchains](https://github.com/tjysdsg/cross-gnu)
+- [Scripts](https://github.com/tjysdsg/ali_to_phone) for extracting phone alignment from Kaldi kaldi ali.*.gz
+- Misc [scripts](https://github.com/tjysdsg/scripts)
+- Neovim [configs](https://github.com/tjysdsg/nvim)
+
+# Game Dev
+
+- Victoria 3 [mods](https://github.com/tjysdsg/tjy_vic3_fix)
+- [Procedural road mesh generator](https://github.com/tjysdsg/dynamic_road_gen) like in city building games
 
 # 3D Modeling
 
-- https://github.com/tjysdsg/blender-projects
+- [Blender files](https://github.com/tjysdsg/blender-projects)
 
 # Posts
 
-Some of my notes and posts are [here]({% link index.markdown %})
+Some of my posts related to ML and software can be found [here]({% link index.markdown %})
