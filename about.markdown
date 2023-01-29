@@ -26,7 +26,7 @@ on [Espnet](https://github.com/espnet/espnet) for my directed study.
 
 - Contributing to [Espnet](https://github.com/espnet/espnet)
     - MAGICDATA ASR [recipe](https://github.com/espnet/espnet/tree/master/egs2/magicdata/asr1)
-    - Aphasia English ASR [recipe](https://github.com/espnet/espnet/pull/4860) (in progress)
+    - Aphasia English ASR [recipe](https://github.com/espnet/espnet/tree/master/egs2/aphasiabank/asr1)
 - Computer Aided Pronunciation Training (CAPT) [server backend](https://github.com/tjysdsg/capt-public)
 - CAPT mobile app called [hippo](https://github.com/tjysdsg/hippo)
 - [Kaldi fork](https://github.com/tjysdsg/kaldi) for CAPT using Goodness of Pronunciation (GOP)
@@ -48,7 +48,7 @@ on [Espnet](https://github.com/espnet/espnet) for my directed study.
 
 - [A toy OS](https://github.com/tjysdsg/tos) that supports paging, APIC, ACPI, VBE console, and keyboard input with a
   custom libc
-- [Porting]((https://github.com/tjysdsg/newlib)) newlib to TOS
+- [Porting](https://github.com/tjysdsg/newlib) newlib to TOS
 - ACPICA [ported](https://github.com/tjysdsg/acpica) to TOS
 
 # Tools, Experiments, and Misc
