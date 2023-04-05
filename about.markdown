@@ -20,20 +20,18 @@ on [Espnet](https://github.com/espnet/espnet) for my directed study.
 # Publication
 
 - [End-to-End Mandarin Tone Classification with Short Term Context Information](https://ieeexplore.ieee.org/document/9689521)
-  or on [arxiv](https://arxiv.org/abs/2104.05657)
 
 # ML/AI (mainly speech processing)
 
 - Contributing to [Espnet](https://github.com/espnet/espnet)
     - MAGICDATA ASR [recipe](https://github.com/espnet/espnet/tree/master/egs2/magicdata/asr1)
     - Aphasia English ASR [recipe](https://github.com/espnet/espnet/tree/master/egs2/aphasiabank/asr1)
-- Computer Aided Pronunciation Training (CAPT) [server backend](https://github.com/tjysdsg/capt-public)
-- CAPT mobile app called [hippo](https://github.com/tjysdsg/hippo)
+- An AI-driven pronunciation coaching app called [hippo](https://github.com/tjysdsg/hippo)
+- ...and its [server backend](https://github.com/tjysdsg/capt-public)
 - [Kaldi fork](https://github.com/tjysdsg/kaldi) for CAPT using Goodness of Pronunciation (GOP)
 - Standard Mandarin (no accent) acoustic model [training script](https://github.com/tjysdsg/std-mandarin-kaldi)
 - Mandarin Tone Classification [experiments](https://github.com/tjysdsg/tone_classifier)
-- Phone-level force alignment [scripts](https://github.com/tjysdsg/kaldi-align-to-phones) using Kaldi
-- Phone-level force alignment [scripts](https://github.com/tjysdsg/aidatatang_force_align) for my paper
+- Kaldi phone-level force alignment [scripts](https://github.com/tjysdsg/aidatatang_force_align) for my paper
 - Hand-written [speech recognition system](https://github.com/tjysdsg/speech-recognition) for English pronunciation of
   digits using Python+Numpy
 - [Implementation](https://github.com/tjysdsg/ml) of some fundamental ML algorithms
