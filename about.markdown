@@ -55,21 +55,20 @@ on [Espnet](https://github.com/espnet/espnet) for my directed study.
 
 - Chinese endemic bird image [dataset](https://github.com/tjysdsg/birds)
 - [Prebuilt Openpose](https://github.com/tjysdsg/openpose-built)
-- Sorting algorithm [tests and benchmarks](https://github.com/tjysdsg/sort-test-bench)
+- C++ [tests and benchmarks](https://github.com/tjysdsg/test-bench)
 - Float representation [tool](https://github.com/tjysdsg/float_repr)
-- Prebuilt cross compiling gnu [toolchains](https://github.com/tjysdsg/cross-gnu)
+- Prebuilt gnu [toolchains](https://github.com/tjysdsg/cross-gnu) for cross compiling i686-elf targets
 - [Scripts](https://github.com/tjysdsg/ali_to_phone) for extracting phone alignment from Kaldi kaldi ali.*.gz
-- Misc [scripts](https://github.com/tjysdsg/scripts)
 - Neovim [configs](https://github.com/tjysdsg/nvim)
 
 # Game Dev
 
-- Victoria 3 [mods](https://github.com/tjysdsg/tjy_vic3_fix)
-- [Procedural road mesh generator](https://github.com/tjysdsg/dynamic_road_gen) like in city building games
+- My Victoria 3 [mods](https://github.com/tjysdsg/tjy_vic3_fix)
+- [Procedural road mesh generator](https://github.com/tjysdsg/dynamic_road_gen) like the one in Cities:Skylines
 
 # 3D Modeling
 
-- [Blender files](https://github.com/tjysdsg/blender-projects)
+- [Blender projects](https://github.com/tjysdsg/blender-projects)
 
 # Posts
 
