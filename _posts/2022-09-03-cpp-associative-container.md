@@ -1,11 +1,15 @@
 ---
-title:  "C++ Associative Containers: Properties, Internals, and Implementations"
-date:   2022-09-02 12:31:47 -0500
+title: "C++ Associative Containers in One Place"
+date: 2022-09-02 12:31:47 -0500
 toc: true
 permalink: /cpp-associative-containers
 ---
 
-This is my detailed notes about C++'s containers:
+**This is not an original work. Most things on this page are summarized/copied
+from [cppreference.com](https://cppreference.com).**
+
+The purpose of this post is to put concise language reference of these containers in one place for easier reading.
+I also pointed out some common functionality and properties among them to help you understand them better.
 
 - std::set
 - std::map
@@ -392,8 +396,3 @@ Some specific member functions are exceptions, see below.
 > - Average $ O(\text{count(key)}) $
 > - Worse $O(n)$
 >
-
-# Implementations
-------------------------------------------------------------------------------------------
-
-TODO
