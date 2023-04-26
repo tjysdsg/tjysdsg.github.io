@@ -6,7 +6,7 @@ title: About Me
 permalink: /
 ---
 
-**Jiyang Tang**
+## Jiyang (Mark) Tang
 
 ![Xiaomi](https://img.shields.io/badge/-Ex_Mier-000?&logo=xiaomi)
 ![Game Developer](https://img.shields.io/badge/-Game_Developer-000?&logo=steamworks)
@@ -40,10 +40,12 @@ permalink: /
 ![Steam](https://img.shields.io/badge/-Steam-000?&logo=steam)
 ![VR](https://img.shields.io/badge/-VR-000?&logo=meta)
 
-I am a first year master student at Carnegie Mellon University, expected to obtain [Master of Science in Intelligent
+I am a first year graduate at Carnegie Mellon University Language Technologies Institute, expected to
+obtain [Master of Science in Intelligent
 Information Systems](https://miis.cs.cmu.edu/) degree in 2024.
 
-I obtained my bachelor's degree in Data Science at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) in
+I obtained my joint [Bachelor of Science in Data Science](https://ugstudies.dukekunshan.edu.cn/majors/data-science/)
+Degree at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) and Duke University in
 May 2022.
 
 I am fortunately to be advised by [Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe) and to be working
