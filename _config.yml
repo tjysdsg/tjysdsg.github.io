@@ -6,6 +6,8 @@ baseurl: ""
 url: "https://tjysdsg.github.io"
 timezone: US/Eastern
 markdown: kramdown
+locale: "en-US"
+repository: tjysdsg/tjysdsg.github.io
 
 # default front matters
 defaults:
@@ -35,8 +37,9 @@ author:
   name: "Jiyang Tang"
   url: "https://tjysdsg.github.io"
   avatar: "/assets/images/me.jpg"
-  bio: " "
+  bio: "MIIS@CMU LTI"
   location: "Pittsburgh, PA, United States"
+  email: jiyangta@cs.cmu.edu
   links:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin-in"
@@ -46,7 +49,7 @@ author:
       url: "https://github.com/tjysdsg"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/tjysxsg"
+      url: "https://twitter.com/JiyangTang"
 
 
 ################ jekyll-seo-tag ################
@@ -56,7 +59,7 @@ social:
   links:
     - https://github.com/tjysdsg
     - https://www.linkedin.com/in/tjy/
-    - https://twitter.com/tjysxsg
+    - https://twitter.com/JiyangTang
 
 ################ jekyll scholar ################
 scholar:
@@ -67,6 +70,7 @@ scholar:
 theme: minimal-mistakes-jekyll
 plugins:
   - jekyll-feed
+  - jekyll-sitemap
   - jekyll-include-cache
   - jekyll/scholar
 

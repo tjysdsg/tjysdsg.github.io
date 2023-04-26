@@ -117,7 +117,7 @@ DEPENDENCIES
   jekyll-feed (~> 0.12)
   jekyll-include-cache
   jekyll-scholar
-  jekyll-seo-tag
+  jekyll-sitemap
   minima (~> 2.5)
   minimal-mistakes-jekyll
   tzinfo (~> 1.2)
