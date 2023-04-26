@@ -2,7 +2,6 @@ title: Jiyang Tang
 email: tjy1018543509@google.com
 description: >-
   Jiyang Tang's personal website
-tagline: Jiyang Tang | 唐际洋
 baseurl: ""
 url: "https://tjysdsg.github.io"
 timezone: US/Eastern
@@ -69,12 +68,14 @@ theme: minimal-mistakes-jekyll
 plugins:
   - jekyll-feed
   - jekyll-include-cache
-  - jekyll-seo-tag
   - jekyll/scholar
 
+# Not using this because it puts the tag in the body but we want it to be in the header so that Google search
+# console can discover it
+
 # Google Analytics
-analytics:
-  provider: "google-gtag"
-  google:
-    tracking_id: "G-WYHC5BDEPZ"
-    anonymize_ip: false
+# analytics:
+#   provider: "google-gtag"
+#   google:
+#     tracking_id: "G-WYHC5BDEPZ"
+#     anonymize_ip: false
