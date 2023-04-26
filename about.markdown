@@ -48,7 +48,7 @@ I obtained my joint [Bachelor of Science in Data Science](https://ugstudies.duke
 Degree at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) and Duke University in
 May 2022.
 
-I am fortunately to be advised by [Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe) and to be working
+I am fortunate to be advised by [Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe) and to be working
 on [ESPnet](https://github.com/espnet/espnet) for my directed study.
 
 > I am addicted to a type of powerful black magic called coding.
