@@ -51,6 +51,20 @@ May 2022.
 I am fortunately to be advised by [Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe) and to be working
 on [ESPnet](https://github.com/espnet/espnet) for my directed study.
 
+> I am addicted to a type of powerful black magic called coding.
+>
+> I became interested in studying it as I witnessed a friend editing configuration files of GTA:SA to modify
+> in-game vehicle physics.
+> I, a little 14-year-old teenager, could not resist the temptation and wrote my first line of C using my
+> dad's ThinkPad on the next day.
+>
+> Unfortunately, the side effects of this magic included but not limited to: accelerated time, negative impact on health
+> due to prolonged sitting hours, noise pollution caused by my sudden ecstasy, and uncontrollable laughter in
+> public reading programmer's jokes.
+>
+> Serious face: I believe we should have one thing to love for our entire life, and I'm very grateful that I found mine
+> so early.
+
 # Publications
 
 - [[1]](https://ieeexplore.ieee.org/document/9689521) **J. Tang** and M. Li, "End-to-End Mandarin Tone Classification
@@ -63,6 +77,7 @@ on [ESPnet](https://github.com/espnet/espnet) for my directed study.
 |-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [tjysdsg/espnet](https://github.com/espnet/espnet)                                  | Contributing to Espnet2. Including the MAGICDATA ASR [recipe](https://github.com/espnet/espnet/tree/master/egs2/magicdata/asr1) and Aphasia English ASR [recipe](https://github.com/espnet/espnet/tree/master/egs2/aphasiabank/asr1) |
 | [tjysdsg/speech-recognition](https://github.com/tjysdsg/speech-recognition)         | A hand-written speech recognition system for English pronunciation of 10 digits using Python+Numpy                                                                                                                                   |
+| [tjysdsg/asr-ctc](https://github.com/tjysdsg/asr-ctc)                               | Implementation of the Conformer CTC speech recognition architecture                                                                                                                                                                  |
 | [tjysdsg/hippo](https://github.com/tjysdsg/hippo)                                   | An AI-driven pronunciation coaching app called Hippo                                                                                                                                                                                 |
 | [tjysdsg/capt-public](https://github.com/tjysdsg/capt-public)                       | ...and its server backend                                                                                                                                                                                                            |
 | [tjysdsg/kaldi](https://github.com/tjysdsg/kaldi)                                   | My Kaldi fork for CAPT using Goodness of Pronunciation (GOP)                                                                                                                                                                         |
@@ -87,6 +102,8 @@ on [ESPnet](https://github.com/espnet/espnet) for my directed study.
 | [tjysdsg/test-bench](https://github.com/tjysdsg/test-bench)             | C++ experiments, tests, and benchmarks for learning and future reference                                                                                                                                                                |
 | [tjysdsg/tjy_vic3_fix](https://github.com/tjysdsg/tjy_vic3_fix)         | A collection of my Victoria 3 quality-of-life mod ([1](https://steamcommunity.com/sharedfiles/filedetails/?id=2883978920) (1,075 subscribers), [2](https://steamcommunity.com/sharedfiles/filedetails/?id=2883143577) (18 subscribers)) |
 | [tjysdsg/dynamic_road_gen](https://github.com/tjysdsg/dynamic_road_gen) | A procedural road mesh generator like the one used in [Cities:Skylines](https://store.steampowered.com/app/255710/Cities_Skylines/)                                                                                                     |
+| [tjysdsg/cmu-15513](https://github.com/tjysdsg/cmu-15513)               | THE best computer science course I have ever taken                                                                                                                                                                                      |
+| [tjysdsg/cs308-slogo](https://github.com/tjysdsg/cs308-slogo)           | Logo programming environment created with my wonderful teammates. By far THE best team work experience                                                                                                                                  |
 
 # Misc
 
@@ -96,6 +113,8 @@ on [ESPnet](https://github.com/espnet/espnet) for my directed study.
 | [tjysdsg/cross-gnu](https://github.com/tjysdsg/cross-gnu)               | A prebuilt GNU toolchain for cross compiling `i686-elf` targets to assist operating system development |
 | [tjysdsg/nvim](https://github.com/tjysdsg/nvim)                         | A Minimal neovim configs (I hate bloated plugins)                                                      |
 | [tjysdsg/blender-projects](https://github.com/tjysdsg/blender-projects) | Some 3D models I made with [blender](https://www.blender.org/)                                         |
+| [tjysdsg/ohmyzsh](https://github.com/tjysdsg/ohmyzsh)                   | My [zsh](https://www.zsh.org) configs                                                                  |
+| [tjysdsg/wsl-bootstrap](https://github.com/tjysdsg/wsl-bootstrap)       | Quickly bootstrap WSL2 Ubuntu-20.04 for software development on Windows                                |
 
 # Posts
 
