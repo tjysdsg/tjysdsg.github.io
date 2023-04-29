@@ -8,12 +8,9 @@ permalink: /
 
 ## Jiyang (Mark) Tang
 
-![Xiaomi](https://img.shields.io/badge/-Ex_Mier-000?&logo=xiaomi)
-![Game Developer](https://img.shields.io/badge/-Game_Developer-000?&logo=steamworks)
-![Research](https://img.shields.io/badge/-ML/AI_Research-000)
-
 ![Speech Recognition](https://img.shields.io/badge/-Speech_Recognition-000)
 ![Natural Language Processing](https://img.shields.io/badge/-Natural_Language_Processing-000)
+![Research](https://img.shields.io/badge/-ML/AI_Research-000)
 ![Compiler](https://img.shields.io/badge/-Compiler-000)
 ![Game Dev](https://img.shields.io/badge/-Game_Dev-000)
 
@@ -40,36 +37,25 @@ permalink: /
 ![Steam](https://img.shields.io/badge/-Steam-000?&logo=steam)
 ![VR](https://img.shields.io/badge/-VR-000?&logo=meta)
 
-I am a first year graduate at Carnegie Mellon University Language Technologies Institute, expected to
-obtain [Master of Science in Intelligent
+I am a first year graduate at Carnegie Mellon University Language Technologies
+Institute, expected to obtain [Master of Science in Intelligent
 Information Systems](https://miis.cs.cmu.edu/) degree in 2024.
 
-I obtained my joint [Bachelor of Science in Data Science](https://ugstudies.dukekunshan.edu.cn/majors/data-science/)
-Degree at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) and Duke University in
-May 2022.
+I obtained my
+joint [Bachelor of Science in Data Science](https://ugstudies.dukekunshan.edu.cn/majors/data-science/)
+Degree at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) and Duke
+University in May 2022.
 
-I am fortunate to be advised by [Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe) and to be working
+I am fortunate to be advised
+by [Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe) and to be working
 on [ESPnet](https://github.com/espnet/espnet) for my directed study.
-
-> I am addicted to a type of powerful black magic called coding.
->
-> I became interested in studying it as I witnessed a friend editing configuration files of GTA:SA to modify
-> in-game vehicle physics.
-> I, a little 14-year-old teenager, could not resist the temptation and wrote my first line of C using my
-> dad's ThinkPad on the next day.
->
-> Unfortunately, the side effects of this magic included but not limited to: accelerated time, negative impact on health
-> due to prolonged sitting hours, noise pollution caused by my sudden ecstasy, and uncontrollable laughter in
-> public reading programmer's jokes.
->
-> Serious face: I believe we should have one thing to love for our entire life, and I'm very grateful that I found mine
-> so early.
 
 # Publications
 
-- [[1]](https://ieeexplore.ieee.org/document/9689521) **J. Tang** and M. Li, "End-to-End Mandarin Tone Classification
-  with Short Term Context Information," 2021 *Asia-Pacific Signal and Information Processing Association Annual Summit
-  and Conference (APSIPA ASC)*, Tokyo, Japan, 2021, pp. 878-883.
+- [[1]](https://ieeexplore.ieee.org/document/9689521) **J. Tang** and M. Li, "End-to-End
+  Mandarin Tone Classification with Short Term Context Information," 2021 *Asia-Pacific
+  Signal and Information Processing Association Annual Summit and Conference (APSIPA
+  ASC)*, Tokyo, Japan, 2021, pp. 878-883.
 
 # ML/AI (mainly speech processing)
 
@@ -118,4 +104,4 @@ on [ESPnet](https://github.com/espnet/espnet) for my directed study.
 
 # Posts
 
-Some of my posts related to ML and software can be found [here]({% link index.markdown %})
+I sometimes write [posts about programming and ML]({% link index.markdown %})
