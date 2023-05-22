@@ -37,7 +37,7 @@ permalink: /
 ![Steam](https://img.shields.io/badge/-Steam-000?&logo=steam)
 ![VR](https://img.shields.io/badge/-VR-000?&logo=meta)
 
-I am a first year graduate at Carnegie Mellon University Language Technologies
+I am a first year graduate student at Carnegie Mellon University Language Technologies
 Institute, expected to obtain [Master of Science in Intelligent
 Information Systems](https://miis.cs.cmu.edu/) degree in 2024.
 
@@ -52,29 +52,38 @@ on [ESPnet](https://github.com/espnet/espnet) for my directed study.
 
 # Publications
 
-- [[1]](https://ieeexplore.ieee.org/document/9689521) **J. Tang** and M. Li, "End-to-End
-  Mandarin Tone Classification with Short Term Context Information," 2021 *Asia-Pacific
-  Signal and Information Processing Association Annual Summit and Conference (APSIPA
-  ASC)*, Tokyo, Japan, 2021, pp. 878-883.
+- [1] **A New Benchmark of Aphasia Speech Recognition and Detection Based on E-Branchformer and Multi-task Learning**\
+  <sub>**Jiyang Tang**, William Chen, Xuankai Chang, Shinji Watanabe, Brian MacWhinney</sub>\
+  <sub>Annual Conference of the International Speech Communication Association (INTERSPEECH), Dublin, Ireland, 2023<sub>
+- [[2]](https://arxiv.org/abs/2305.11073) **A Comparative Study on E-Branchformer vs Conformer in Speech Recognition,
+  Translation, and Understanding Tasks**\
+  <sub>Yifan Peng, Kwangyoun Kim, Felix Wu, Brian Yan, Siddhant Arora, William Chen, **Jiyang Tang**, Suwon Shon,
+  Prashant Sridhar, Shinji Watanabe</sub>\
+  <sub>Annual Conference of the International Speech Communication Association (INTERSPEECH), Dublin, Ireland, 2023<sub>
+- [[3]](https://ieeexplore.ieee.org/document/9689521) **End-to-End Mandarin Tone Classification with Short Term Context
+  Information**\
+  <sub>**Jiyang Tang**, Ming Li</sub>\
+  <sub>*Asia-Pacific Signal and Information Processing Association Annual Summit and Conference (APSIPA ASC)*, Tokyo,
+  Japan, 2021<sub>
 
 # ML/AI (mainly speech processing)
 
-| Project                                                                             | Description                                                                                                                                                                                                                          |
-|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [tjysdsg/espnet](https://github.com/espnet/espnet)                                  | Contributing to Espnet2. Including the MAGICDATA ASR [recipe](https://github.com/espnet/espnet/tree/master/egs2/magicdata/asr1) and Aphasia English ASR [recipe](https://github.com/espnet/espnet/tree/master/egs2/aphasiabank/asr1) |
-| [tjysdsg/speech-recognition](https://github.com/tjysdsg/speech-recognition)         | A hand-written speech recognition system for English pronunciation of 10 digits using Python+Numpy                                                                                                                                   |
-| [tjysdsg/asr-ctc](https://github.com/tjysdsg/asr-ctc)                               | Implementation of the Conformer CTC speech recognition architecture                                                                                                                                                                  |
-| [tjysdsg/hippo](https://github.com/tjysdsg/hippo)                                   | An AI-driven pronunciation coaching app called Hippo                                                                                                                                                                                 |
-| [tjysdsg/capt-public](https://github.com/tjysdsg/capt-public)                       | ...and its server backend                                                                                                                                                                                                            |
-| [tjysdsg/kaldi](https://github.com/tjysdsg/kaldi)                                   | My Kaldi fork for CAPT using Goodness of Pronunciation (GOP)                                                                                                                                                                         |
-| [tjysdsg/std-mandarin-kaldi](https://github.com/tjysdsg/std-mandarin-kaldi)         | A training recipe for Standard Mandarin (no accent) acoustic model                                                                                                                                                                   |
-| [tjysdg/tone_classifier](https://github.com/tjysdsg/tone_classifier)                | Mandarin Tone Classification experiments                                                                                                                                                                                             |
-| [tjysdsg/aidatatang_force_align](https://github.com/tjysdsg/aidatatang_force_align) | Kaldi phone-level force alignment scripts for [[1]](#publications)                                                                                                                                                                   |
-| [tjysdsg/ml](https://github.com/tjysdsg/ml)                                         | Implementation of some fundamental ML algorithms                                                                                                                                                                                     |
-| [tjysdsg/dance-classifier](https://github.com/tjysdsg/dance-classifier)             | A video dance style classifier                                                                                                                                                                                                       |
-| [tjysdsg/pytorch-projects](https://github.com/tjysdsg/pytorch-projects)             | Some old pytorch ASR experiments                                                                                                                                                                                                     |
-| [tjysdsg/birds](https://github.com/tjysdsg/birds)                                   | A Chinese endemic bird image dataset                                                                                                                                                                                                 |
-| [tjysdsg/ali_to_phone](https://github.com/tjysdsg/ali_to_phone)                     | Some scripts for extracting phone alignment from `ali.*.gz` alignment files generated by Kaldi                                                                                                                                       |
+| Project                                                                             | Description                                                                                                                                                                                                                                                   |
+|-------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [tjysdsg/espnet](https://github.com/tjysdsg/espnet)                                 | Contributing to Espnet2. Including the MAGICDATA ASR [recipe](https://github.com/espnet/espnet/tree/master/egs2/magicdata/asr1) and Aphasia English ASR [recipe](https://github.com/espnet/espnet/tree/master/egs2/aphasiabank/asr1) for [[1]](#publications) |
+| [tjysdsg/speech-recognition](https://github.com/tjysdsg/speech-recognition)         | A hand-written speech recognition system for English pronunciation of 10 digits using Python+Numpy                                                                                                                                                            |
+| [tjysdsg/asr-ctc](https://github.com/tjysdsg/asr-ctc)                               | Implementation of the Conformer CTC speech recognition architecture                                                                                                                                                                                           |
+| [tjysdsg/hippo](https://github.com/tjysdsg/hippo)                                   | An AI-driven pronunciation coaching app called Hippo                                                                                                                                                                                                          |
+| [tjysdsg/capt-public](https://github.com/tjysdsg/capt-public)                       | ...and its server backend                                                                                                                                                                                                                                     |
+| [tjysdsg/kaldi](https://github.com/tjysdsg/kaldi)                                   | My Kaldi fork for CAPT using Goodness of Pronunciation (GOP)                                                                                                                                                                                                  |
+| [tjysdsg/std-mandarin-kaldi](https://github.com/tjysdsg/std-mandarin-kaldi)         | A training recipe for Standard Mandarin (no accent) acoustic model                                                                                                                                                                                            |
+| [tjysdg/tone_classifier](https://github.com/tjysdsg/tone_classifier)                | Mandarin Tone Classification experiments                                                                                                                                                                                                                      |
+| [tjysdsg/aidatatang_force_align](https://github.com/tjysdsg/aidatatang_force_align) | Kaldi phone-level force alignment scripts for [[3]](#publications)                                                                                                                                                                                            |
+| [tjysdsg/ml](https://github.com/tjysdsg/ml)                                         | Implementation of some fundamental ML algorithms                                                                                                                                                                                                              |
+| [tjysdsg/dance-classifier](https://github.com/tjysdsg/dance-classifier)             | A video dance style classifier                                                                                                                                                                                                                                |
+| [tjysdsg/pytorch-projects](https://github.com/tjysdsg/pytorch-projects)             | Some old pytorch ASR experiments                                                                                                                                                                                                                              |
+| [tjysdsg/birds](https://github.com/tjysdsg/birds)                                   | A Chinese endemic bird image dataset                                                                                                                                                                                                                          |
+| [tjysdsg/ali_to_phone](https://github.com/tjysdsg/ali_to_phone)                     | Some scripts for extracting phone alignment from `ali.*.gz` alignment files generated by Kaldi                                                                                                                                                                |
 
 # System Programming
 
