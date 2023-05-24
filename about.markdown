@@ -52,7 +52,7 @@ on [ESPnet](https://github.com/espnet/espnet) for my directed study.
 
 # Publications
 
-- [1] **A New Benchmark of Aphasia Speech Recognition and Detection Based on E-Branchformer and Multi-task Learning**\
+- [[1]](https://arxiv.org/abs/2305.13331) **A New Benchmark of Aphasia Speech Recognition and Detection Based on E-Branchformer and Multi-task Learning**\
   <sub>**Jiyang Tang**, William Chen, Xuankai Chang, Shinji Watanabe, Brian MacWhinney</sub>\
   <sub>Annual Conference of the International Speech Communication Association (INTERSPEECH), Dublin, Ireland, 2023<sub>
 - [[2]](https://arxiv.org/abs/2305.11073) **A Comparative Study on E-Branchformer vs Conformer in Speech Recognition,
