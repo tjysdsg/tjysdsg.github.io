@@ -47,7 +47,7 @@ Degree at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) and Duk
 University in May 2022.
 
 I am fortunate to be advised
-by [Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe) and to be working
+by [Dr. Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe) and to be working
 on [ESPnet](https://github.com/espnet/espnet) for my directed study.
 
 # Publications
