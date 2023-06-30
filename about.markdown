@@ -99,6 +99,7 @@ on [ESPnet](https://github.com/espnet/espnet) for my directed study.
 | [tjysdsg/dynamic_road_gen](https://github.com/tjysdsg/dynamic_road_gen) | A procedural road mesh generator like the one used in [Cities:Skylines](https://store.steampowered.com/app/255710/Cities_Skylines/)                                                                                                     |
 | [tjysdsg/cmu-15513](https://github.com/tjysdsg/cmu-15513)               | THE best computer science course I have ever taken                                                                                                                                                                                      |
 | [tjysdsg/cs308-slogo](https://github.com/tjysdsg/cs308-slogo)           | Logo programming environment created with my wonderful teammates. By far THE best team work experience                                                                                                                                  |
+| [tjysdsg/notification_remover](https://github.com/tjysdsg/notification_remover)          | An android app to remove annoying notifications, published on [![On Google Play](https://img.shields.io/badge/-Play%20Store-000?&logo=googleplay)](https://play.google.com/store/apps/details?id=com.tjysdsg.notification_remover) |
 
 # Misc
 
