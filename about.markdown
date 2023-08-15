@@ -52,10 +52,12 @@ on [ESPnet](https://github.com/espnet/espnet) for my directed study.
 
 # Publications
 
-- [[1]](https://arxiv.org/abs/2305.13331) **A New Benchmark of Aphasia Speech Recognition and Detection Based on E-Branchformer and Multi-task Learning**\
+- [[1]](https://www.isca-speech.org/archive/interspeech_2023/tang23b_interspeech.html) **A New Benchmark of Aphasia
+  Speech Recognition and Detection Based on E-Branchformer and Multi-task Learning**\
   <sub>**Jiyang Tang**, William Chen, Xuankai Chang, Shinji Watanabe, Brian MacWhinney</sub>\
   <sub>Annual Conference of the International Speech Communication Association (INTERSPEECH), Dublin, Ireland, 2023<sub>
-- [[2]](https://arxiv.org/abs/2305.11073) **A Comparative Study on E-Branchformer vs Conformer in Speech Recognition,
+- [[2]](https://www.isca-speech.org/archive/interspeech_2023/peng23b_interspeech.html) **A Comparative Study on
+  E-Branchformer vs Conformer in Speech Recognition,
   Translation, and Understanding Tasks**\
   <sub>Yifan Peng, Kwangyoun Kim, Felix Wu, Brian Yan, Siddhant Arora, William Chen, **Jiyang Tang**, Suwon Shon,
   Prashant Sridhar, Shinji Watanabe</sub>\
@@ -87,19 +89,19 @@ on [ESPnet](https://github.com/espnet/espnet) for my directed study.
 
 # System Programming
 
-| Project                                                                 | Description                                                                                                                                                                                                                             |
-|-------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [tjysdsg/tan](https://github.com/tjysdsg/tan)                           | A compiler for my programming language called tan using LLVM+Clang                                                                                                                                                                      |
-| [tjysdsg/tos](https://github.com/tjysdsg/tos)                           | A toy operating system called TOS that supports paging, APIC, ACPI, VBE console, and keyboard input with a custom libc                                                                                                                  |
-| [tjysdsg/newlib](https://github.com/tjysdsg/newlib)                     | Working on a TOS port of newlib                                                                                                                                                                                                         |
-| [tjysdsg/acpica](https://github.com/tjysdsg/acpica)                     | A TOS port of [ACPICA](https://acpica.org/)                                                                                                                                                                                             |
-| [tjysdsg/float_repr](https://github.com/tjysdsg/float_repr)             | A tool for visualizing IEEE `float32` representation                                                                                                                                                                                    |
-| [tjysdsg/test-bench](https://github.com/tjysdsg/test-bench)             | C++ experiments, tests, and benchmarks for learning and future reference                                                                                                                                                                |
-| [tjysdsg/tjy_vic3_fix](https://github.com/tjysdsg/tjy_vic3_fix)         | A collection of my Victoria 3 quality-of-life mod ([1](https://steamcommunity.com/sharedfiles/filedetails/?id=2883978920) (1,075 subscribers), [2](https://steamcommunity.com/sharedfiles/filedetails/?id=2883143577) (18 subscribers)) |
-| [tjysdsg/dynamic_road_gen](https://github.com/tjysdsg/dynamic_road_gen) | A procedural road mesh generator like the one used in [Cities:Skylines](https://store.steampowered.com/app/255710/Cities_Skylines/)                                                                                                     |
-| [tjysdsg/cmu-15513](https://github.com/tjysdsg/cmu-15513)               | THE best computer science course I have ever taken                                                                                                                                                                                      |
-| [tjysdsg/cs308-slogo](https://github.com/tjysdsg/cs308-slogo)           | Logo programming environment created with my wonderful teammates. By far THE best team work experience                                                                                                                                  |
-| [tjysdsg/notification_remover](https://github.com/tjysdsg/notification_remover)          | An android app to remove annoying notifications, published on [![On Google Play](https://img.shields.io/badge/-Play%20Store-000?&logo=googleplay)](https://play.google.com/store/apps/details?id=com.tjysdsg.notification_remover) |
+| Project                                                                         | Description                                                                                                                                                                                                                             |
+|---------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [tjysdsg/tan](https://github.com/tjysdsg/tan)                                   | A compiler for my programming language called tan using LLVM+Clang                                                                                                                                                                      |
+| [tjysdsg/tos](https://github.com/tjysdsg/tos)                                   | A toy operating system called TOS that supports paging, APIC, ACPI, VBE console, and keyboard input with a custom libc                                                                                                                  |
+| [tjysdsg/newlib](https://github.com/tjysdsg/newlib)                             | Working on a TOS port of newlib                                                                                                                                                                                                         |
+| [tjysdsg/acpica](https://github.com/tjysdsg/acpica)                             | A TOS port of [ACPICA](https://acpica.org/)                                                                                                                                                                                             |
+| [tjysdsg/float_repr](https://github.com/tjysdsg/float_repr)                     | A tool for visualizing IEEE `float32` representation                                                                                                                                                                                    |
+| [tjysdsg/test-bench](https://github.com/tjysdsg/test-bench)                     | C++ experiments, tests, and benchmarks for learning and future reference                                                                                                                                                                |
+| [tjysdsg/tjy_vic3_fix](https://github.com/tjysdsg/tjy_vic3_fix)                 | A collection of my Victoria 3 quality-of-life mod ([1](https://steamcommunity.com/sharedfiles/filedetails/?id=2883978920) (1,075 subscribers), [2](https://steamcommunity.com/sharedfiles/filedetails/?id=2883143577) (18 subscribers)) |
+| [tjysdsg/dynamic_road_gen](https://github.com/tjysdsg/dynamic_road_gen)         | A procedural road mesh generator like the one used in [Cities:Skylines](https://store.steampowered.com/app/255710/Cities_Skylines/)                                                                                                     |
+| [tjysdsg/cmu-15513](https://github.com/tjysdsg/cmu-15513)                       | THE best computer science course I have ever taken                                                                                                                                                                                      |
+| [tjysdsg/cs308-slogo](https://github.com/tjysdsg/cs308-slogo)                   | Logo programming environment created with my wonderful teammates. By far THE best team work experience                                                                                                                                  |
+| [tjysdsg/notification_remover](https://github.com/tjysdsg/notification_remover) | An android app to remove annoying notifications, published on [![On Google Play](https://img.shields.io/badge/-Play%20Store-000?&logo=googleplay)](https://play.google.com/store/apps/details?id=com.tjysdsg.notification_remover)      |
 
 # Misc
 
