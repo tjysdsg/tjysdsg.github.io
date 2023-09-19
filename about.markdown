@@ -37,13 +37,11 @@ permalink: /
 ![Steam](https://img.shields.io/badge/-Steam-000?&logo=steam)
 ![VR](https://img.shields.io/badge/-VR-000?&logo=meta)
 
-I am a first year graduate student at Carnegie Mellon University Language Technologies
-Institute, expected to obtain [Master of Science in Intelligent
-Information Systems](https://miis.cs.cmu.edu/) degree in 2024.
-
+I am a graduate student at Carnegie Mellon University Language Technologies
+Institute, majoring in [Master of Science in Intelligent Information Systems](https://miis.cs.cmu.edu/).
 I obtained my
 joint [Bachelor of Science in Data Science](https://ugstudies.dukekunshan.edu.cn/majors/data-science/)
-Degree at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) and Duke
+degree at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) and Duke
 University in May 2022.
 
 I am fortunate to be advised
