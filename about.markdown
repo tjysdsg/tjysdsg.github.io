@@ -17,7 +17,6 @@ permalink: /
 ![C++](https://img.shields.io/badge/-C++-000?&logo=cplusplus)
 ![Python](https://img.shields.io/badge/-Python-000?&logo=Python)
 ![Java](https://img.shields.io/badge/-Java-000)
-![SQL](https://img.shields.io/badge/-SQL-000?&logo=MySQL)
 ![PyTorch](https://img.shields.io/badge/-PyTorch-000?&logo=PyTorch)
 ![ESPnet](https://img.shields.io/badge/-ESPnet-000)
 ![Kaldi](https://img.shields.io/badge/-Kaldi-000)
@@ -32,10 +31,6 @@ permalink: /
 
 ![Vim](https://img.shields.io/badge/-Vim-000?&logo=vim)
 ![JetBrains](https://img.shields.io/badge/-JetBrains-000?&logo=jetbrains)
-![VSCode](https://img.shields.io/badge/-VSCode-000?&logo=visualstudiocode)
-![PS5](https://img.shields.io/badge/-PS5-000?&logo=playstation5)
-![Steam](https://img.shields.io/badge/-Steam-000?&logo=steam)
-![VR](https://img.shields.io/badge/-VR-000?&logo=meta)
 
 I am a graduate student at Carnegie Mellon University Language Technologies
 Institute, majoring in [Master of Science in Intelligent Information Systems](https://miis.cs.cmu.edu/).
