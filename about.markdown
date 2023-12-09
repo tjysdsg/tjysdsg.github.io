@@ -98,14 +98,12 @@ on [ESPnet](https://github.com/espnet/espnet) for my directed study and capstone
 
 # Misc
 
-| Project                                                                 | Description                                                                                            |
-|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| [tjysdsg/openpose-built](https://github.com/tjysdsg/openpose-built)     | OpenPose v1.7.0 libraries built on Ubuntu, including pretrained models and python bindings             |
-| [tjysdsg/cross-gnu](https://github.com/tjysdsg/cross-gnu)               | A prebuilt GNU toolchain for cross compiling `i686-elf` targets to assist operating system development |
-| [tjysdsg/nvim](https://github.com/tjysdsg/nvim)                         | A Minimal neovim configs (I hate bloated plugins)                                                      |
-| [tjysdsg/blender-projects](https://github.com/tjysdsg/blender-projects) | Some 3D models I made with [blender](https://www.blender.org/)                                         |
-| [tjysdsg/ohmyzsh](https://github.com/tjysdsg/ohmyzsh)                   | My [zsh](https://www.zsh.org) configs                                                                  |
-| [tjysdsg/wsl-bootstrap](https://github.com/tjysdsg/wsl-bootstrap)       | Quickly bootstrap WSL2 Ubuntu-20.04 for software development on Windows                                |
+| Project                                                                 | Description                                                             |
+|-------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| [tjysdsg/blender-projects](https://github.com/tjysdsg/blender-projects) | Some 3D models I made with [blender](https://www.blender.org/)          |
+| [tjysdsg/dotfiles](https://github.com/tjysdsg/dotfiles)                 | Dotfiles                                                                |
+| [tjysdsg/nvim](https://github.com/tjysdsg/nvim)                         | A minimal neovim configs                                                |
+| [tjysdsg/ohmyzsh](https://github.com/tjysdsg/ohmyzsh)                   | zsh configs                                                             |
 
 # Posts
 
