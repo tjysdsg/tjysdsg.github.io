@@ -39,3 +39,13 @@ sudo visudo
 
 Add this line:
 `<username> ALL=(ALL) NOPASSWD: ALL`
+
+# Change default editor to vim
+
+Set `EDITOR` and `VISUAL` env variable
+
+Alternative solution for **Debian-based** systems
+
+```bash
+sudo update-alternatives --config editor
+```
