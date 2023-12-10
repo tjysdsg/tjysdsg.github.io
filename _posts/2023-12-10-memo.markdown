@@ -1,0 +1,41 @@
+---
+title: "Shit I Should've Remembered but Google'd Every Time"
+date: 2023-12-10 14:20:00 -0500
+permalink: /memo
+toc: true
+---
+
+> Ah shit, here we go again.
+>
+> -- Carl Johnson
+
+<!--more-->
+
+# Connect to a SLURM node using SSH tunneling (and use jupyter)
+
+Using PSC as an example:
+
+```bash
+ssh -t -t XXX@bridges2.psc.edu -L 7777:localhost:8888 ssh v001.ib.bridges2.psc.edu -L 8888:localhost:9999
+```
+
+This command forwards the port 9999 on `v001` to the port 8888 on the login node, and then forward it to the port 7777
+on your local host.
+
+# Change JetBrain IDE's cache dirs [[<ins>source</ins>]](https://www.jetbrains.com/help/idea/directories-used-by-the-ide-to-store-settings-caches-plugins-and-logs.html)
+
+By default:
+
+- Windows: `C:\Users\XXX\AppData\Local\JetBrains\IntelliJIdea2023.3`
+- Linux: `~/.cache/JetBrains/IntelliJIdea2023.3`
+
+In `Help | Edit Custom Properties` add `idea.system.path=xxx` and restart IDE.
+
+# Execute sudo without inputing password
+
+```bash
+sudo visudo
+```
+
+Add this line:
+`<username> ALL=(ALL) NOPASSWD: ALL`
