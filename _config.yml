@@ -1,5 +1,4 @@
 title: Jiyang Tang
-email: tjy1018543509@google.com
 description: >-
   Jiyang Tang's personal website
 baseurl: ""
@@ -39,7 +38,7 @@ author:
   avatar: "/assets/images/me.jpg"
   bio: "MIIS@CMU LTI"
   location: "Pittsburgh, PA, United States"
-  email: jiyangta@cs.cmu.edu
+  email: jiyang.mark.tang@gmail.com
   links:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin-in"
@@ -53,7 +52,7 @@ author:
 
 
 ################ jekyll-seo-tag ################
-logo: /assets/images/me.jpg
+logo: /assets/images/apple-touch-icon.png
 social:
   name: Jiyang Tang
   links:
