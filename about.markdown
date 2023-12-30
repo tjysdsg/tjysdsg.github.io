@@ -45,17 +45,21 @@ on [ESPnet](https://github.com/espnet/espnet) for my directed study and capstone
 
 # Publications
 
-- [[1]](https://www.isca-speech.org/archive/interspeech_2023/tang23b_interspeech.html) **A New Benchmark of Aphasia
+- [[1]]() **Improving ASR Contextual
+  Biasing with Guided Attention**\
+  <sub>**Jiyang Tang**, Kwangyoun Kim, Suwon Shon, Felix Wu, Prashant Sridhar, Shinji Watanabe</sub>\
+  <sub>Accepted to IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), Seoul, Korea, 2024<sub>
+- [[2]](https://www.isca-speech.org/archive/interspeech_2023/tang23b_interspeech.html) **A New Benchmark of Aphasia
   Speech Recognition and Detection Based on E-Branchformer and Multi-task Learning**\
   <sub>**Jiyang Tang**, William Chen, Xuankai Chang, Shinji Watanabe, Brian MacWhinney</sub>\
   <sub>Annual Conference of the International Speech Communication Association (INTERSPEECH), Dublin, Ireland, 2023<sub>
-- [[2]](https://www.isca-speech.org/archive/interspeech_2023/peng23b_interspeech.html) **A Comparative Study on
+- [[3]](https://www.isca-speech.org/archive/interspeech_2023/peng23b_interspeech.html) **A Comparative Study on
   E-Branchformer vs Conformer in Speech Recognition,
   Translation, and Understanding Tasks**\
   <sub>Yifan Peng, Kwangyoun Kim, Felix Wu, Brian Yan, Siddhant Arora, William Chen, **Jiyang Tang**, Suwon Shon,
   Prashant Sridhar, Shinji Watanabe</sub>\
   <sub>Annual Conference of the International Speech Communication Association (INTERSPEECH), Dublin, Ireland, 2023<sub>
-- [[3]](https://ieeexplore.ieee.org/document/9689521) **End-to-End Mandarin Tone Classification with Short Term Context
+- [[4]](https://ieeexplore.ieee.org/document/9689521) **End-to-End Mandarin Tone Classification with Short Term Context
   Information**\
   <sub>**Jiyang Tang**, Ming Li</sub>\
   <sub>*Asia-Pacific Signal and Information Processing Association Annual Summit and Conference (APSIPA ASC)*, Tokyo,
@@ -98,12 +102,12 @@ on [ESPnet](https://github.com/espnet/espnet) for my directed study and capstone
 
 # Misc
 
-| Project                                                                 | Description                                                             |
-|-------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| [tjysdsg/blender-projects](https://github.com/tjysdsg/blender-projects) | Some 3D models I made with [blender](https://www.blender.org/)          |
-| [tjysdsg/dotfiles](https://github.com/tjysdsg/dotfiles)                 | Dotfiles                                                                |
-| [tjysdsg/nvim](https://github.com/tjysdsg/nvim)                         | A minimal neovim configs                                                |
-| [tjysdsg/ohmyzsh](https://github.com/tjysdsg/ohmyzsh)                   | zsh configs                                                             |
+| Project                                                                 | Description                                                    |
+|-------------------------------------------------------------------------|----------------------------------------------------------------|
+| [tjysdsg/blender-projects](https://github.com/tjysdsg/blender-projects) | Some 3D models I made with [blender](https://www.blender.org/) |
+| [tjysdsg/dotfiles](https://github.com/tjysdsg/dotfiles)                 | Dotfiles                                                       |
+| [tjysdsg/nvim](https://github.com/tjysdsg/nvim)                         | A minimal neovim configs                                       |
+| [tjysdsg/ohmyzsh](https://github.com/tjysdsg/ohmyzsh)                   | zsh configs                                                    |
 
 # Posts
 
