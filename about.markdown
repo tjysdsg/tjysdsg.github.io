@@ -45,7 +45,7 @@ on [ESPnet](https://github.com/espnet/espnet) for my directed study and capstone
 
 # Publications
 
-- [[1]]() **Improving ASR Contextual
+- [[1]](https://arxiv.org/abs/2401.08835) **Improving ASR Contextual
   Biasing with Guided Attention**\
   <sub>**Jiyang Tang**, Kwangyoun Kim, Suwon Shon, Felix Wu, Prashant Sridhar, Shinji Watanabe</sub>\
   <sub>Accepted to IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), Seoul, Korea, 2024<sub>
