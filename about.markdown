@@ -32,16 +32,15 @@ permalink: /
 ![Vim](https://img.shields.io/badge/-Vim-000?&logo=vim)
 ![JetBrains](https://img.shields.io/badge/-JetBrains-000?&logo=jetbrains)
 
-I am a graduate student at Carnegie Mellon University Language Technologies
-Institute, majoring in [Master of Science in Intelligent Information Systems](https://miis.cs.cmu.edu/).
-I obtained my
-joint [Bachelor of Science in Data Science](https://ugstudies.dukekunshan.edu.cn/majors/data-science/)
-degree at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) and Duke
-University in May 2022.
+I am a Software Engineer at Intel Corporation.
 
-I am fortunate to be advised
-by [Dr. Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe) and to be working
-on [ESPnet](https://github.com/espnet/espnet) for my directed study and capstone project.
+I obtained [Master of Science in Intelligent Information Systems](https://miis.cs.cmu.edu/) at Carnegie Mellon University Language Technologies Institute.
+I was fortunate to be advised by [Dr. Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe).
+Under his supervision, I worked on speech processing problems and contributed to [ESPnet](https://github.com/espnet/espnet) 
+
+Before that, I obtained my joint [Bachelor of Science in Data Science](https://ugstudies.dukekunshan.edu.cn/majors/data-science/) degree
+at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) and Duke University.
+
 
 # Publications
 
