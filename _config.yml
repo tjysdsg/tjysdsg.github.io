@@ -3,7 +3,7 @@ description: >-
   Jiyang Tang's personal website
 baseurl: ""
 url: "https://tjysdsg.github.io"
-timezone: US/Eastern
+timezone: US/Pacific
 markdown: kramdown
 locale: "en-US"
 repository: tjysdsg/tjysdsg.github.io
@@ -36,8 +36,8 @@ author:
   name: "Jiyang Tang"
   url: "https://tjysdsg.github.io"
   avatar: "/assets/images/me.jpg"
-  bio: "MIIS@CMU LTI"
-  location: "Pittsburgh, PA, United States"
+  bio: "SWE@Intel"
+  location: "Hillsboro, OR, United States"
   email: jiyang.mark.tang@gmail.com
   links:
     - label: "LinkedIn"
