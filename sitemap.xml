@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://tjysdsg.github.io/mathjax-jekyll</loc>
+<lastmod>2021-05-29T00:31:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://tjysdsg.github.io/ctc</loc>
+<lastmod>2021-06-17T19:56:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://tjysdsg.github.io/libbacktrace</loc>
+<lastmod>2021-07-27T06:44:00-07:00</lastmod>
+</url>
+<url>
+<loc>https://tjysdsg.github.io/ml-notes</loc>
+<lastmod>2022-10-12T19:06:28-07:00</lastmod>
+</url>
+<url>
+<loc>https://tjysdsg.github.io/</loc>
+</url>
+<url>
+<loc>https://tjysdsg.github.io/posts</loc>
+</url>
+</urlset>

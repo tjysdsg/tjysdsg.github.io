@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://tjysdsg.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://tjysdsg.github.io/" rel="alternate" type="text/html" /><updated>2024-08-01T23:30:43-07:00</updated><id>https://tjysdsg.github.io/feed.xml</id><title type="html">Jiyang (Mark) Tang</title><author><name>Jiyang (Mark) Tang</name><email>jiyang.mark.tang@gmail.com</email></author><entry><title type="html">Machine Learning Notes</title><link href="https://tjysdsg.github.io/ml-notes" rel="alternate" type="text/html" title="Machine Learning Notes" /><published>2022-10-12T19:06:28-07:00</published><updated>2022-10-12T19:06:28-07:00</updated><id>https://tjysdsg.github.io/ml-notes</id><content type="html" xml:base="https://tjysdsg.github.io/ml-notes"><![CDATA[<p>Machine Learning review notes</p>
+
+<!--more-->
+
+<h1 id="fundamentals">Fundamentals</h1>
+
+<h2 id="overfittingunderfitting">Overfitting/Underfitting</h2>
+
+<ul>
+  <li>Overfitting = a model fits too well against its training data, and it cannot perform accurately against unseen data,
+thus has high generalization error/out-of-sample error/risk</li>
+  <li>Underfitting = a data model is unable to capture the relationship between the input and output variables accurately,
+generating a high error rate on both the training set and unseen data</li>
+</ul>
+
+<h2 id="prevent-underfitting">Prevent Underfitting?</h2>
+
+<ul>
+  <li>Try a more complicated (non-linear, nn) model</li>
+  <li>Decrease regularization</li>
+  <li>Increase the duration of training</li>
+  <li>Add in more features to provide more information</li>
+</ul>
+
+<h2 id="prevent-overfitting">Prevent Overfitting?</h2>
+
+<ul>
+  <li>Early stopping</li>
+  <li>Cross validation</li>
+  <li>Train with more data</li>
+  <li>Data augmentation</li>
+  <li>Feature selection</li>
+  <li>Regularization</li>
+  <li>Ensemble methods</li>
+</ul>
+
+<h2 id="biasvariance-trade-off">Bias/Variance Trade-Off</h2>
+
+<ul>
+  <li>$y$ labels</li>
+  <li>We want to model function $f(x;D)$ , $f’(x)$ being my model, $x$ is the input, $D$ is the training data</li>
+  <li>$y = f(x) = f’(x;D) + \varepsilon$ where $\varepsilon$ is the noise with $0$ mean and $\sigma^2$ variance</li>
+</ul>
+
+<p>We decompose its expected error on <strong>an unseen sample</strong> $x$:</p>
+
+\[E_D \left[ (y - f'(x;D))^2 \right] = \left( \text{Bias}_D[f'(x;D)] \right)^2 + \text{Var}_D[f'(x;D)] + \sigma^2\]
+
+<ul>
+  <li>The bias term \(= E_D[f'(x;D)] - f(x)\)</li>
+  <li>And the variance \(= E_D \left[ (E_D[f'(x;D)] - f'(x;D))^2 \right]\)</li>
+</ul>
+
+<p>The more complex the model is, the more data points it will capture, and the lower the bias will
+be.
+However, complexity will make the model “move” more to capture the data points, and hence its variance will be
+larger.</p>
+
+<ul>
+  <li><strong>Underfitting = High bias, low variance</strong></li>
+  <li><strong>Overfitting = Low bias, high variance</strong></li>
+</ul>
+
+<h2 id="hypothesis-testing-on-ml-models">Hypothesis Testing on ML Models</h2>
+
+<p>Give a set of ground truths, model A, and model B, how do you be confident that one model is better than another?</p>
+
+<ul>
+  <li>$H_0$: Both models perform equally good</li>
+  <li>$H_1$: Model B performs better</li>
+</ul>
+
+<p>Test model on various sets of data, calculate the mean $\mu$ and variance $\Sigma$ of the accuracy (or other metrics),
+and perform significance testing (z-test, t-test, …).</p>
+
+<p>The more test datasets the better according to the Central Limit Theorem.</p>
+
+<h2 id="logistic-regression">Logistic Regression</h2>
+
+<h3 id="sigmoid">Sigmoid</h3>
+
+\[y = \frac{1}{1 + e{-z}}\]
+
+<h3 id="log-loss-logistic-losscross-entropy-loss">Log Loss (Logistic Loss/Cross-Entropy Loss)</h3>
+
+<p>Log Loss is the negative average of the log of corrected predicted probabilities for each instance.</p>
+
+\[L(y, p) = - \frac{1}{N} \sum_{i}^{N} (y_i\log(p_i) + (1 - y_i)\log(1 - p_i))\]
+
+<p>True label $y \in \{0, 1\}$ and probability estimate $p$</p>
+
+<p><strong>Can’t use MSE loss</strong> because when using Sigmoid+MSE the loss function w.r.t. weights $ L(w) $ become non-convex.</p>
+
+<h1 id="regularization">Regularization</h1>
+
+<p>The intuitive difference between L1 and L2:
+L1 tries to estimate the median of the data while L2 tries to estimate the mean of the data.</p>
+
+<h2 id="l1-regularization-lasso-regression">L1 Regularization (Lasso Regression)</h2>
+
+<ul>
+  <li>Lasso = Least Absolute Shrinkage and Selection Operator</li>
+  <li>L1 regularization leads to <strong>sparsity</strong> (some weight can be 0, so we can use it for <strong>feature selection</strong>)</li>
+</ul>
+
+\[L = \sum_i^N(y_i - \boldsymbol{\omega}^T \boldsymbol{x}_i)^2 + \lambda ||\boldsymbol{\omega_i}||_1\]
+
+\[||\boldsymbol{\omega_i}||_1 = \sum_i^N |\boldsymbol{\omega}_i|\]
+
+<h2 id="l2-regularization-ridge-regression">L2 Regularization (Ridge Regression)</h2>
+
+<ul>
+  <li>L2 regularization does not have sparsity (some weight can be close to 0 but not 0)</li>
+</ul>
+
+\[L = \sum_i^N(y_i - \boldsymbol{\omega}^T \boldsymbol{x}_i)^2 + \lambda ||\boldsymbol{\omega_i}||_2^2\]
+
+\[||\boldsymbol{\omega_i}||_2^2 = \sum_i^N |\boldsymbol{\omega}_i|^2\]
+
+<h2 id="priors-of-l1-and-l2">Priors of L1 and L2</h2>
+
+<p>If we assume the prior of the weight $P(\omega)$ to be</p>
+
+<ul>
+  <li>a Laplace (Double Exponential) Distribution with mean 0, we can derive to Lasso Regression using MAP</li>
+  <li>a Gaussian Distribution with mean 0, we can derive to Ridge Regression using MAP</li>
+</ul>
+
+<h1 id="classic-machine-learning-models">Classic Machine Learning Models</h1>
+
+<h2 id="knn">KNN</h2>
+
+<ul>
+  <li>Classification and regression</li>
+  <li>Non-parametric</li>
+  <li>Algorithm:
+    <ol>
+      <li>Given a vector $v$, calculate the distance between it and every vector in the training data</li>
+      <li>Sort the distances descendingly, keep the smallest $k$ samples</li>
+      <li>For classification, the prediction of $v$ is the most common class labels in the $k$ neighbors. For regression,
+the prediction is the mean value of the neighbors.</li>
+    </ol>
+  </li>
+  <li>Applications: anomaly detection, search, recommender system</li>
+</ul>
+
+<h2 id="k-means">k-means</h2>
+
+<ul>
+  <li><strong>k-means is a NP-hard problem, the k-means algorithm usually refers to Loyd’s algorithm, a heuristic algorithm to
+solve this problem</strong></li>
+  <li>k-means partitions observations into $k$ clusters in which each observation belongs to the nearest cluster</li>
+  <li>These heuristic algorithms <strong>don’t guarantee to find the global optimum</strong>. The result depend on the initial clusters</li>
+  <li>Loyd’s algorithm (<em>the</em> k-means algorithm)
+    <ol>
+      <li>Determine $k$ and initialize $k$ clusters (determining the mean of each cluster $\mu_k$) in some way</li>
+      <li>E-step: Compute the sum of the squared distances between each data point and all centroids, and assign each
+data point to the closest cluster (centroid)</li>
+      <li>M-step: Compute the new centroid (mean) by taking the average of the all data points that was assigned to
+this cluster</li>
+      <li>Keep iterating until the end condition is met (for example, max number of iterations finished)</li>
+    </ol>
+  </li>
+  <li>k-means++ (better initialization)
+    <ol>
+      <li>Choose one data point as the initial center $c_1$ uniformly at random from the data samples</li>
+      <li>For each data point $x$ not chosen, compute the distance $D(x)$ between it and the nearest center that has
+already been chosen</li>
+      <li>Choose one new data point at random as a new center, the probability of a point $x’$ being chosen is
+$\frac{D(x)^2}{\sum_x D(x)^2}$</li>
+      <li>Repeat until $k$ centers have been chosen</li>
+      <li>Proceed to the standard k-means algorithm</li>
+    </ol>
+  </li>
+  <li>Applications: Vector quantization for signal processing (where k-means was originally developed), cluster analysis,
+feature learning, topic modeling</li>
+</ul>
+
+<h2 id="bagging">Bagging</h2>
+
+<ul>
+  <li>Bagging = bootstrap aggregating</li>
+  <li>Designed to improve the stability and accuracy of ML algorithms. It reduces variance and helps to avoid overfitting</li>
+  <li>Sample with replacement to create different data subsets (bootstraps), and train a model on each of these bootstraps
+    <ul>
+      <li>Sampling with replacement ensures each bootstrap is independent of its peers</li>
+    </ul>
+  </li>
+  <li>The final prediction is the majority vote or average of all models’ predictions</li>
+  <li>Bagging generally improves unstable methods, such as neural networks, classification and regression trees, and subset
+selection in linear regression</li>
+  <li>It can mildly degrade the performance of stable methods such as KNN</li>
+  <li>Example: Random Forest</li>
+</ul>
+
+<h2 id="boosting">Boosting</h2>
+
+<ul>
+  <li>Boosting is a family of iterative ensemble algorithms that convert weak learners to strong ones</li>
+  <li>Start by training the first weak classifier on the original dataset</li>
+  <li>Samples are re-weighted based on how well the first classifier classifies them: misclassified samples are given higher
+weight</li>
+  <li>Train the second classifier on this re-weighted dataset. The ensemble now includes both classifiers</li>
+  <li>Samples are re-weighted based on how well the ensemble classifies them.</li>
+  <li>Repeat for as many iterations as needed. And the final strong classifier is created as a weighted combination of the
+existing classifiers (classifiers with smaller training errors have higher weights)</li>
+  <li>Example: Gradient-booted Tree (GBT)</li>
+</ul>
+
+<h2 id="stacking">Stacking</h2>
+
+<ul>
+  <li>Predictions from each model are stacked together and used as input to a final model (usually called a
+meta-model)</li>
+  <li>It’s similar to the weighted average of models, but the weights here are learned, rather than manually assigned</li>
+  <li>There is a also a term called blending, which trains the meta model on a different holdout set, rather than on the
+same training set used for the upstream models
+    <ul>
+      <li>Blending can prevent information leak but may lead to overfitting if the holdout set is small</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="standardization-and-normalization">Standardization and Normalization</h2>
+
+<ul>
+  <li>Normalization or min-max scaling is calculate as</li>
+</ul>
+
+\[X' = \frac{X - X_{min}}{X_{max} - X_{min}}\]
+
+<ul>
+  <li>Standardization or z-score normalization is calculate as</li>
+</ul>
+
+\[X' = \frac{X - mean}{std}\]
+
+<ul>
+  <li>Normalization scales the range to [0, 1], while standardization is not bounded to a certain range.</li>
+  <li>As normalization deals with min and max values, it can be affected by outliers easily</li>
+  <li>If we don’t know the distribution of the data, normalization can often be useful.</li>
+  <li>If we know the the distribution to be normal already, then standardization can be useful.</li>
+</ul>
+
+<h2 id="useful-links">Useful Links</h2>
+
+<ul>
+  <li>https://ekamperi.github.io/machine%20learning/2019/10/19/norms-in-machine-learning.html</li>
+  <li>https://ekamperi.github.io/mathematics/2020/08/02/bayesian-connection-to-lasso-and-ridge-regression.html</li>
+  <li>https://www.ibm.com/cloud/learn</li>
+  <li>https://github.com/jayinai/nail-machine-learning/blob/main/concepts.md</li>
+</ul>]]></content><author><name>Jiyang (Mark) Tang</name><email>jiyang.mark.tang@gmail.com</email></author><summary type="html"><![CDATA[Machine Learning review notes]]></summary></entry><entry><title type="html">C/C++: printing stacktrace containing file name, function name, and line numbers using libbacktrace</title><link href="https://tjysdsg.github.io/libbacktrace" rel="alternate" type="text/html" title="C/C++: printing stacktrace containing file name, function name, and line numbers using libbacktrace" /><published>2021-07-27T06:44:00-07:00</published><updated>2021-07-27T06:44:00-07:00</updated><id>https://tjysdsg.github.io/libbacktrace</id><content type="html" xml:base="https://tjysdsg.github.io/libbacktrace"><![CDATA[<p>I needed a library for printing stack traces when developing <a href="https://github.com/tjysdsg/tan">tan</a>.
+More specifically, the compiler and the runtime had to print the function names, source file names, and the line
+numbers when an assertion failed or an error was raised.</p>
+
+<!--more-->
+
+<h1 id="initial-solution">Initial Solution</h1>
+
+<p>The library was initially implemented using <a href="https://www.nongnu.org/libunwind/docs.html">libunwind</a>.
+The code was based on this awesome
+<a href="https://eli.thegreenplace.net/2015/programmatic-access-to-the-call-stack-in-c/">blog post</a></p>
+
+<p>But the problem was, <strong>it couldn’t show line numbers</strong>.
+The closest thing libunwind could provide was the program counter, like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>main.cpp (main+0x14)
+</code></pre></div></div>
+
+<p>To achieve the goal, we need to somehow read the debug information stored in the binary file
+and use it to calculate to convert the program counter into the line numbers in the source file.</p>
+
+<p>As <a href="https://stackoverflow.com/q/4636456/7730917">suggested</a> by some folks, I can use <code class="language-plaintext highlighter-rouge">addr2line</code> or <code class="language-plaintext highlighter-rouge">gdb</code> to
+do that. However, <strong>I didn’t want to invoke an external program since they couldn’t be integrated into the
+<code class="language-plaintext highlighter-rouge">tan</code> runtime</strong>.</p>
+
+<p>Just as I was about to copy the source code of <code class="language-plaintext highlighter-rouge">addr2line</code> and wrap it into a library, I came across this <a href="https://stackoverflow.com/a/65773679/7730917">SO answer</a>.</p>
+
+<h1 id="libbacktrace-ftw">libbacktrace FTW</h1>
+
+<p>The SO answer said that libbacktrace could provide the functionalities I needed. After some digging, I decided to use
+it and made <a href="https://github.com/tjysdsg/tan/tree/master/src/backtrace">a simple wrapper</a> around it.</p>
+
+<p>The final API is very simple</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">init_back_trace</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">filename</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">print_back_trace</span><span class="p">();</span></code></pre></figure>
+
+<p><code class="language-plaintext highlighter-rouge">init_back_trace</code> should be used at the beginning of the program. It is responsible for loading the debug information
+of a binary (use <code class="language-plaintext highlighter-rouge">argv[0]</code> for the program itself) and it is quite an expensive routine.</p>
+
+<p><code class="language-plaintext highlighter-rouge">print_back_trace</code> prints the stack trace starting from the current frame to the furthest frame.</p>
+
+<p>The <a href="https://github.com/ianlancetaylor/libbacktrace/blob/master/backtrace.h">documentation</a> of the APIs is well written,
+so I’m not copying and pasting them here.</p>
+
+<p>For anyone that just wants to copy and paste my code (<strong>note that this code only works on linux and has only been
+tested using gcc and clang</strong>):</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;cxxabi.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;backtrace.h&gt;</span><span class="cp">
+</span>
+<span class="k">extern</span> <span class="s">"C"</span> <span class="kt">void</span> <span class="nf">init_back_trace</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">filename</span><span class="p">);</span>
+<span class="k">extern</span> <span class="s">"C"</span> <span class="kt">void</span> <span class="nf">print_back_trace</span><span class="p">();</span>
+
+<span class="kt">void</span> <span class="o">*</span><span class="n">__bt_state</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">bt_callback</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">,</span> <span class="kt">uintptr_t</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">filename</span><span class="p">,</span> <span class="kt">int</span> <span class="n">lineno</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">function</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">/// demangle function name</span>
+  <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">func_name</span> <span class="o">=</span> <span class="n">function</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">status</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">demangled</span> <span class="o">=</span> <span class="n">abi</span><span class="o">::</span><span class="n">__cxa_demangle</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="nb">nullptr</span><span class="p">,</span> <span class="nb">nullptr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">status</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">func_name</span> <span class="o">=</span> <span class="n">demangled</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">/// print</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"%s:%d in function %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">func_name</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">bt_error_callback</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">msg</span><span class="p">,</span> <span class="kt">int</span> <span class="n">errnum</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Error %d occurred when getting the stacktrace: %s"</span><span class="p">,</span> <span class="n">errnum</span><span class="p">,</span> <span class="n">msg</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">bt_error_callback_create</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">msg</span><span class="p">,</span> <span class="kt">int</span> <span class="n">errnum</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Error %d occurred when initializing the stacktrace: %s"</span><span class="p">,</span> <span class="n">errnum</span><span class="p">,</span> <span class="n">msg</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">init_back_trace</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">filename</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">__bt_state</span> <span class="o">=</span> <span class="n">backtrace_create_state</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">bt_error_callback_create</span><span class="p">,</span> <span class="nb">nullptr</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">print_back_trace</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">__bt_state</span><span class="p">)</span> <span class="p">{</span> <span class="c1">/// make sure init_back_trace() is called</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Make sure init_back_trace() is called before calling print_stack_trace()</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">abort</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="n">backtrace_full</span><span class="p">((</span><span class="n">backtrace_state</span> <span class="o">*</span><span class="p">)</span> <span class="n">__bt_state</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">bt_callback</span><span class="p">,</span> <span class="n">bt_error_callback</span><span class="p">,</span> <span class="nb">nullptr</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>]]></content><author><name>Jiyang (Mark) Tang</name><email>jiyang.mark.tang@gmail.com</email></author><summary type="html"><![CDATA[I needed a library for printing stack traces when developing tan. More specifically, the compiler and the runtime had to print the function names, source file names, and the line numbers when an assertion failed or an error was raised.]]></summary></entry><entry><title type="html">Understanding the Math Behind CTC</title><link href="https://tjysdsg.github.io/ctc" rel="alternate" type="text/html" title="Understanding the Math Behind CTC" /><published>2021-06-17T19:56:00-07:00</published><updated>2021-06-17T19:56:00-07:00</updated><id>https://tjysdsg.github.io/ctc</id><content type="html" xml:base="https://tjysdsg.github.io/ctc"><![CDATA[<p>In this post, I’m writing down my thought process of understanding the math behind 
+Connectionist Temporal Classification (CTC) <a class="citation" href="#graves_ctc_2006">[1]</a><a class="citation" href="#graves_ctc_2012">[2]</a>.</p>
+
+<!--more-->
+
+<p>This article assumes that you understand the intuition behind CTC.</p>
+
+<h1 id="definitions">Definitions</h1>
+
+<h2 id="input-and-output-sequences">Input and Output Sequences</h2>
+
+<p>The input of a CTC network (an audio signal) is a sequence denoted as
+\(\boldsymbol{x} =
+\begin{bmatrix}
+x_1 &amp; x_2 &amp; \cdots &amp; x_m \\
+\end{bmatrix}\)
+while the target sequence (a list of phonemes) is
+\(\boldsymbol{z} =
+\begin{bmatrix}
+x_1 &amp; x_2 &amp; \cdots &amp; x_n \\
+\end{bmatrix}\).</p>
+
+<p>The target sequence consists of any symbols drawn from an alphabet $L$.</p>
+
+<p>Note that the length of $\boldsymbol{x}$, $T$, is larger than the length of
+$\boldsymbol{z}$, $U$.</p>
+
+<h2 id="operations-and-values">Operations and Values</h2>
+
+<p>The output of the neural network, $\boldsymbol{y}$, is a matrix, where
+$y_k^t$ is the probability of observing label $k$ at time $t$.
+$\boldsymbol{y}$ consists of symbols drawn from another alphabet $L’$,
+which has one more symbol called “blank”, denoted as $\%$, than $L$.</p>
+
+<p>Also, we define an operation $\mathcal{B}: L’^{T} \mapsto L^{\le T}$ that</p>
+
+<ol>
+  <li>Merge consecutive identical symbols</li>
+  <li>Remove the blank symbol</li>
+</ol>
+
+<p>For example,
+\(\mathcal{B}(aaa\%b\%cc\%d) = abc\)</p>
+
+<h2 id="derivation">Derivation</h2>
+
+<h3 id="the-goal">The Goal</h3>
+
+<p>Assuming the output $z_1,z_2,\dots$ is conditionally independent
+w.r.t the input $\boldsymbol{x}$,
+we define
+\(y = p(\boldsymbol{\pi}|\boldsymbol{x}) = \prod y_{\boldsymbol{\pi}_t}^{t}\)
+where $\boldsymbol{\pi} =
+\begin{bmatrix}
+\pi_1 &amp; \pi_2 &amp; \cdots &amp; \pi_n <br />
+\end{bmatrix}
+$ is a possible sequence that can be mapped to $\boldsymbol{z}$ by $\mathcal{B}$.</p>
+
+<p>Then, the ultimate goal of CTC is to find a sequence $\boldsymbol{l}$ 
+that maximize the probability</p>
+
+<p>\begin{equation}
+p(\boldsymbol{z}|\boldsymbol{x}) = \sum_{\pi\in\mathcal{B}^{-1}(\boldsymbol{z})}
+p(\boldsymbol{\pi}|\boldsymbol{x})
+\label{eq:prob_z}
+\end{equation}</p>
+
+<p><em>in an efficient way</em>.</p>
+
+<p>where $\boldsymbol{z} \in L^{\le T}$ meaning it has a length smaller than $T$.</p>
+
+<p>To achieve the goal, 1) we need some way of training the model, and 2) we need to figure out
+how to find the best sequence when decoding</p>
+
+<h3 id="training">Training</h3>
+
+<p>To estimate $p(\boldsymbol{l}|\boldsymbol{x})$, we use a method similar to
+Viterbi decoding or the forward-backward algorithm.
+By doing this, we can calculate the <em>forward variable</em> and <em>backward variable</em>.
+And we express the objective function using
+them so that by minimizing the objective, the RNN learns to model the audio sequence.</p>
+
+<h4 id="forward--backward">Forward &amp; Backward</h4>
+
+<p>For a sequence $\boldsymbol{q}$ with a length $r$,
+the first $p$ of its elements are denoted by
+\(\boldsymbol{q}_{1:p}\)
+and the last $p$ of its elements are denoted by
+\(\boldsymbol{q}_{r-p:r}\)</p>
+
+<p>For some labeling $\boldsymbol{l}$ (a result of $\mathcal{B}$),
+its <em>forward variable</em> at time $t$ for symbols before the $s$-th symbol is</p>
+
+\[\alpha_t(s) = \sum_{
+\begin{align*}
+    &amp;\pi\in N^T \\
+    &amp;\mathcal{B}(\pi_{1:t}) = \boldsymbol{l}_{1:s} \\
+\end{align*}
+}
+\prod_{t'=1}^t y_{\pi_{t}'}^{t'}\]
+
+<p>This basically means that the forward variable is the sum of probabilities of all paths that can
+result in $\boldsymbol{l}_{1:s}$ at time $t$.</p>
+
+<p>Similarly, <em>the backward variable</em> at time $t$ for symbols after the $s$-th symbol is defined as:</p>
+
+\[\beta_t(s) = \sum_{
+\begin{align*}
+&amp;\pi\in N^T \\
+&amp;\mathcal{B}(\pi_{t:T}) = \boldsymbol{l}_{s:|\boldsymbol{l}|} \\
+\end{align*}
+}
+\prod_{t'=t}^T y_{\pi_{t}'}^{t'}\]
+
+<h4 id="considering-the-blank-symbol">Considering the “blank” symbol</h4>
+
+<p>The blank symbol makes things a little more difficult in terms of forward-backward algorithm and decoding.
+There are some rules regarding to whether a transition from node A to node B is possible:</p>
+
+<ol>
+  <li>transitions between blank and non-blank labels are allowed, because transitions between blanks do not make
+any sense</li>
+  <li>transitions between any pair of <em>distinct</em> non-blank labels are allowed, because the blank symbol is used
+to separate consecutive same labels</li>
+  <li>the initial state is either a blank or the first symbol in $\boldsymbol{l}$</li>
+</ol>
+
+<p>Also, during training, what we are actually performing the forward-backward algorithm on is a modified sequence
+$\boldsymbol{l}’$, which has blanks added to the beginning and the end of $\boldsymbol{l}$ and blanks inserted
+between every two labels.</p>
+
+<p>Thus, the initialization of $\alpha$ and $\beta$ is:</p>
+
+\[\begin{align*}
+    \alpha_1(1) &amp;= y_b^1 \\
+    \alpha_1(2) &amp;= y_{\boldsymbol{l}_1}^1 \\
+    \alpha_1(s) &amp;= 0, \forall s &gt; 2 \\
+    \beta_T(|\boldsymbol{l}'|) &amp;= y_b^T \\
+    \beta_T(|\boldsymbol{l}'| - 1) &amp;= y_{\boldsymbol{l}_{|\boldsymbol{l}|}}^T \\
+    \beta_T(s) &amp;= 0, \forall s &lt; |\boldsymbol{l}'| - 1 \\
+\end{align*}\]
+
+<h4 id="recursion">Recursion</h4>
+
+<p>The major advantage of using the forward-backward algorithm is that you can calculate $\alpha$ or $\beta$
+recursively, which means you can use dynamic programming to do it efficiently.</p>
+
+<p>The formula for calculating $\alpha$ and $\beta$ recursively given in the paper is:</p>
+
+\[\begin{equation}
+    \alpha_t(s) =
+    \begin{cases}
+        \bar{\alpha}_t(s)y_{\boldsymbol{l}_{s}'}^t &amp; \boldsymbol{l}_{s}' = b \text{ or } \boldsymbol{l}_{s-2}' = \boldsymbol{l}_{s}' \\
+        (\bar{\alpha}_t(s) + \alpha_{t-1}(s-2)) y_{\boldsymbol{l}_{s}'}^t &amp; \text{otherwise} \\
+    \end{cases}
+    \label{eq:alpha}
+\end{equation}\]
+
+<p>where
+\(\bar{\alpha}_t(s) = \alpha_{t-1}(s) + \alpha_{t-1}(s-1)\)</p>
+
+\[\begin{equation}
+    \beta_t(s) =
+    \begin{cases}
+        \bar{\beta}_t(s)y_{\boldsymbol{l}_{s}'}^t &amp; \boldsymbol{l}_{s}' = b \text{ or } \boldsymbol{l}_{s+2}'
+            = \boldsymbol{l}_{s}' \\
+        (\bar{\beta}_t(s) + \beta_{t+1}(s+2)) y_{\boldsymbol{l}_{s}'}^t &amp; \text{otherwise} \\
+    \end{cases}
+    \label{eq:beta}
+\end{equation}\]
+
+<p>where
+\(\bar{\beta}_t(s) = \beta_{t+1}(s) + \beta_{t+1}(s+1)\)</p>
+
+<p>NOTE that the formula actually implies some rules of transitions in addition to the previous ones:</p>
+
+<ol>
+  <li>…</li>
+  <li>…</li>
+  <li>…</li>
+  <li>Transitions can only occur from the previous symbol to the next symbol, not the other way around</li>
+  <li>Transitions cannot occur between two identical symbols without going through a blank in between them</li>
+  <li>Transitions cannot skip a non-blank symbol</li>
+</ol>
+
+<p>Here is an example of all possible paths for “apple” in the following graph
+I “borrowed” from <a href="https://xiaodu.io/ctc-explained/">this blog</a>:</p>
+
+<p><img src="assets/images/ctc_path_apple.webp" alt="ctc_path_apple" /></p>
+
+<p>Note that the nodes in the graph without any connections have a probability of $0$, since
+it is impossible to reach them within $[0, T]$.</p>
+
+<p>The probability of $\boldsymbol{l}$, expressed using $\alpha$, is the sum of the total probabilities
+of $\boldsymbol{l}’$ with and without the final blank at time $T$:</p>
+
+\[p(\boldsymbol{l}|\boldsymbol{x}) = \alpha_T(|\boldsymbol{l}'|) + \alpha_T(|\boldsymbol{l}'| - 1)\]
+
+<p>Also, the probability of $\boldsymbol{l}$, expressed using $\beta$,
+is the sum of the total probabilities
+of $\boldsymbol{l}’$ with and without the first blank at time $1$:</p>
+
+\[p(\boldsymbol{l}|\boldsymbol{x}) = \beta_T(1) + \beta_T(2)\]
+
+<p>Note that underflow is bound to happen in the recursive process.
+Therefore we should rescale the forward and backward variable in our calculation.
+However, I’m not covering the details here.</p>
+
+<h4 id="mle">MLE</h4>
+
+<p>To train the neural network, we need to derive an objective function that is differentiable.
+Our objective function is simply the sum of the log of $p(\boldsymbol{z}|\boldsymbol{x})$:</p>
+
+\[O(S,\mathcal{N}_{\omega}) = -\sum_{(\boldsymbol{x},\boldsymbol{z})\in S} \ln(p(\boldsymbol{z}|\boldsymbol{x}))\]
+
+<p>where $p(\boldsymbol{z}|\boldsymbol{x})$ is the posterior of $\boldsymbol{z}$, the target sequences
+in the training data $S$, and $\mathcal{N}_{\omega}$ is the output of the neural network.</p>
+
+<p>The next step is to differentiate the objective function.
+For each data sample \(\{\boldsymbol{x},\boldsymbol{z}\}\) we have:</p>
+
+\[\frac{
+\partial O(\{\boldsymbol{x},\boldsymbol{z}\}, \mathcal{N}_{\omega})
+}{
+\partial y_k^t
+} =
+-\frac{
+\partial \ln(p(\boldsymbol{z}|\boldsymbol{x}))
+}{
+\partial y_k^t
+}\]
+
+<p>Since for a labeling $\boldsymbol{l}$ the product of the forward and backward variables at a given $s$
+and $t$ is the probability of all the paths corresponding to $\boldsymbol{l}$ that go through
+the symbol $s$ at time $t$, we have:</p>
+
+\[\alpha_t(s)\beta_t(s) =
+\sum_{
+\begin{align*}
+    &amp;\pi\in \mathcal{B}^{-1}(\boldsymbol{l}): \\
+    &amp;\pi_t = \boldsymbol{l}_s' \\
+\end{align*}
+}
+y_{\boldsymbol{l}_s'}^t \prod_{t'=1}^T y_{\pi_{t'}}^{t'}\]
+
+<p>Since</p>
+
+\[p(\boldsymbol{\pi}|\boldsymbol{x}) = \prod_t y_{\boldsymbol{\pi}_t}^{t}\]
+
+<p>we get</p>
+
+\[\frac{\alpha_t(s)\beta_t(s)}{y_{\boldsymbol{l}_s'}^t} =
+\sum_{
+\begin{align*}
+&amp;\pi\in \mathcal{B}^{-1}(\boldsymbol{l}): \\
+&amp;\pi_t = \boldsymbol{l}_s' \\
+\end{align*}
+}
+p(\boldsymbol{\pi}|\boldsymbol{x})\]
+
+<p>Let $\theta$ be the right hand side, then it is the sum of probability of the paths of $\boldsymbol{l}$
+that went through $\boldsymbol{l}_s’$ at time $t$.
+Thus,
+\(\sum_{\pi\in\mathcal{B}^{-1}(\boldsymbol{z})} p(\boldsymbol{\pi}|\boldsymbol{x})\)
+in \eqref{eq:prob_z} is the sum of $\theta$ over time.</p>
+
+<p>So:</p>
+
+<p>\begin{equation} 
+    p(\boldsymbol{l}|\boldsymbol{x}) =
+    \sum_{s=1}^{|\boldsymbol{l}’|}
+    \frac{\alpha_t(s)\beta_t(s)}{y_{\boldsymbol{l}_s’}^t}
+    \label{eq:plx}
+\end{equation}</p>
+
+<p>To calculate the partial derivative of $p(\boldsymbol{l}|\boldsymbol{x})$
+w.r.t. $y_k^t$, we only need to consider the paths that went to label $k$
+at time $t$. However, since the a label in $\boldsymbol{l}$ might corresponds to multiple labels
+in $\boldsymbol{\pi}$, we define
+\(\text{lab}(\boldsymbol{l},k) = \{s: \boldsymbol{l}_s' = k\}\)
+as the set of positions where label $k$ occurs (note that this set can be empty).</p>
+
+<p>Then the partial derivative can be calculated as:</p>
+
+<p>\begin{equation}
+\frac{
+\partial p(\boldsymbol{l}|\boldsymbol{x})
+}{
+\partial y_k^t
+} =
+\frac{1}{(y_k^t)^2} \sum_{s\in\text{lab}(\boldsymbol{l},k)} \alpha_t(s)\beta_t(s)
+\label{eq:grad_plx}
+\end{equation}</p>
+
+<p>Let $\boldsymbol{l} = \boldsymbol{z}$,
+then</p>
+
+\[\begin{align}
+    \frac{
+    \partial O(\{\boldsymbol{x},\boldsymbol{z}\}, \mathcal{N}_{\omega})
+    }{\partial y_k^t}
+    &amp;= -\frac{
+    \partial\ln(p(\boldsymbol{z}|\boldsymbol{x}))
+    }{\partial y_k^t} \notag \\
+    &amp;= -\frac{1}{p(\boldsymbol{z}|\boldsymbol{x})}
+    \frac{
+    \partial p(\boldsymbol{z}|\boldsymbol{x})
+    }{\partial y_k^t} \label{eq:obj_func} \\
+\end{align}\]
+
+<p>Using \eqref{eq:alpha}, \eqref{eq:beta}, \eqref{eq:plx}, \eqref{eq:grad_plx}, and \eqref{eq:obj_func},
+we can calculate the gradiant and perform back propagation.</p>
+
+<h3 id="decoding">Decoding</h3>
+
+<p>TODO: complete this section</p>
+
+<h4 id="brute-force">Brute Force</h4>
+
+<h4 id="prefix-search">Prefix Search</h4>
+
+<h4 id="beam-search">Beam Search</h4>
+
+<h1 id="bibliography">Bibliography</h1>
+
+<ol class="bibliography"><li><span id="graves_ctc_2006">[1]A. Graves, S. Fernández, F. Gomez, and J. Schmidhuber, “Connectionist temporal classification: labelling unsegmented sequence data with recurrent neural networks,” in <i>Proceedings of the 23rd international conference on Machine learning - ICML ’06</i>, Pittsburgh, Pennsylvania, 2006, pp. 369–376, doi: 10.1145/1143844.1143891.</span></li>
+<li><span id="graves_ctc_2012">[2]A. Graves, <i>Supervised sequence labelling with recurrent neural networks</i>, no. v. 385. Heidelberg; New York: Springer, 2012.</span></li></ol>]]></content><author><name>Jiyang (Mark) Tang</name><email>jiyang.mark.tang@gmail.com</email></author><summary type="html"><![CDATA[In this post, I’m writing down my thought process of understanding the math behind Connectionist Temporal Classification (CTC) [1][2].]]></summary></entry><entry><title type="html">Adding mathjax to jekyll</title><link href="https://tjysdsg.github.io/mathjax-jekyll" rel="alternate" type="text/html" title="Adding mathjax to jekyll" /><published>2021-05-29T00:31:00-07:00</published><updated>2021-05-29T00:31:00-07:00</updated><id>https://tjysdsg.github.io/mathjax-jekyll</id><content type="html" xml:base="https://tjysdsg.github.io/mathjax-jekyll"><![CDATA[<h1 id="steps">Steps</h1>
+
+<h2 id="1-check-for-_includesheadhtml-file-in-your-project">1. Check for <code class="language-plaintext highlighter-rouge">_includes/head.html</code> file in your project</h2>
+
+<p>If you don’t have <code class="language-plaintext highlighter-rouge">_includes/head.html</code> in your jekyll project, create one.</p>
+
+<p>Be careful that it will override the <code class="language-plaintext highlighter-rouge">_includes/head.html</code> from the theme, so you should copy the content of it from the
+original theme files.</p>
+
+<p>For example, I’m using <a href="https://mmistakes.github.io/minimal-mistakes/">minimal mistakes</a> theme, so I downloaded the
+content of <a href="https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/head.html"><code class="language-plaintext highlighter-rouge">_includes/head.html</code></a>.</p>
+
+<h2 id="2-add-mathjax">2. Add mathjax</h2>
+
+<p>According to <a href="https://www.mathjax.org/#gettingstarted">the official doc</a>, mathjax can be enabled by adding a <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code>
+tag to the <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> tag in an html file.</p>
+
+<p>So add the following content to the end of <code class="language-plaintext highlighter-rouge">_includes/head.html</code></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://polyfill.io/v3/polyfill.min.js?features=es6"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">id=</span><span class="s">"MathJax-script"</span> <span class="na">async</span> <span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>You can also configure mathjax settings like so:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
+<span class="nx">MathJax</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">tex</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">inlineMath</span><span class="p">:</span> <span class="p">[[</span><span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">],</span> <span class="p">[</span><span class="dl">'</span><span class="se">\\</span><span class="s1">(</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="se">\\</span><span class="s1">)</span><span class="dl">'</span><span class="p">]],</span>
+        <span class="na">displayMath</span><span class="p">:</span> <span class="p">[[</span><span class="dl">'</span><span class="s1">$$</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">$$</span><span class="dl">'</span><span class="p">],</span> <span class="p">[</span><span class="dl">'</span><span class="se">\\</span><span class="s1">[</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="se">\\</span><span class="s1">]</span><span class="dl">'</span><span class="p">]]</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://polyfill.io/v3/polyfill.min.js?features=es6"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">id=</span><span class="s">"MathJax-script"</span> <span class="na">async</span> <span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>I did this because I want to use <code class="language-plaintext highlighter-rouge">$</code> and <code class="language-plaintext highlighter-rouge">$$</code> to start and end an inline math block and a display math block.</p>
+
+<h1 id="test">Test</h1>
+
+<p>I did the same step on this site, using the following code, I can test the rendering of the math symbols:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\\[ \alpha + \beta = \theta \\]
+</code></pre></div></div>
+
+<p>Looks like mathjax works correctly:</p>
+
+<p>\[ \alpha + \beta = \theta \]</p>]]></content><author><name>Jiyang (Mark) Tang</name><email>jiyang.mark.tang@gmail.com</email></author><summary type="html"><![CDATA[Steps 1. Check for _includes/head.html file in your project If you don’t have _includes/head.html in your jekyll project, create one. Be careful that it will override the _includes/head.html from the theme, so you should copy the content of it from the original theme files. For example, I’m using minimal mistakes theme, so I downloaded the content of _includes/head.html. 2. Add mathjax According to the official doc, mathjax can be enabled by adding a &lt;script&gt; tag to the &lt;head&gt; tag in an html file. So add the following content to the end of _includes/head.html &lt;script src="https://polyfill.io/v3/polyfill.min.js?features=es6"&gt;&lt;/script&gt; &lt;script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"&gt;&lt;/script&gt; You can also configure mathjax settings like so: &lt;script&gt; MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] } }; &lt;/script&gt; &lt;script src="https://polyfill.io/v3/polyfill.min.js?features=es6"&gt;&lt;/script&gt; &lt;script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"&gt;&lt;/script&gt; I did this because I want to use $ and $$ to start and end an inline math block and a display math block. Test I did the same step on this site, using the following code, I can test the rendering of the math symbols: \\[ \alpha + \beta = \theta \\] Looks like mathjax works correctly: \[ \alpha + \beta = \theta \]]]></summary></entry></feed>
