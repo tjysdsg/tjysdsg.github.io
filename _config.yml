@@ -1,6 +1,4 @@
-title: Jiyang Tang
-description: >-
-  Jiyang Tang's personal website
+title: Jiyang (Mark) Tang
 baseurl: ""
 url: "https://tjysdsg.github.io"
 timezone: US/Pacific
@@ -33,10 +31,10 @@ defaults:
 ################ minimal-mistakes-jekyll ################
 # author
 author:
-  name: "Jiyang Tang"
+  name: "Jiyang (Mark) Tang"
   url: "https://tjysdsg.github.io"
   avatar: "/assets/images/me.jpg"
-  bio: "SWE@Intel"
+  bio: "Software Research Scientist at Intel"
   location: "Hillsboro, OR, United States"
   email: jiyang.mark.tang@gmail.com
   links:
@@ -46,19 +44,14 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/tjysdsg"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/JiyangTang"
-
 
 ################ jekyll-seo-tag ################
 logo: /assets/images/apple-touch-icon.png
 social:
-  name: Jiyang Tang
+  name: Jiyang (Mark) Tang
   links:
     - https://github.com/tjysdsg
     - https://www.linkedin.com/in/tjy/
-    - https://twitter.com/JiyangTang
 
 ################ jekyll scholar ################
 scholar:

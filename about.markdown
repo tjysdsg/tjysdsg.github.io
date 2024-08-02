@@ -4,9 +4,10 @@ classes: wide
 author_profile: true
 title: About Me
 permalink: /
+toc: true
 ---
 
-## Jiyang (Mark) Tang
+# Hi
 
 ![Speech Recognition](https://img.shields.io/badge/-Speech_Recognition-000)
 ![Natural Language Processing](https://img.shields.io/badge/-Natural_Language_Processing-000)
@@ -37,22 +38,25 @@ permalink: /
 ![Steam](https://img.shields.io/badge/-Steam-000?&logo=steam)
 ![VR](https://img.shields.io/badge/-VR-000?&logo=meta)
 
-I am a Software Engineer at Intel Corporation.
+I am a Software Research Scientist at Intel Corporation.
 
-I obtained [Master of Science in Intelligent Information Systems](https://miis.cs.cmu.edu/) at Carnegie Mellon University Language Technologies Institute.
+I obtained [Master of Science in Intelligent Information Systems](https://miis.cs.cmu.edu/) at Carnegie Mellon
+University Language Technologies Institute.
 I was fortunate to be advised by [Dr. Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe).
-Under his supervision, I worked on speech processing problems and contributed to [ESPnet](https://github.com/espnet/espnet) 
+Under his supervision, I worked on speech processing problems and contributed
+to [ESPnet](https://github.com/espnet/espnet)
 
-Before that, I obtained my joint [Bachelor of Science in Data Science](https://ugstudies.dukekunshan.edu.cn/majors/data-science/) degree
+Before that, I obtained my
+joint [Bachelor of Science in Data Science](https://ugstudies.dukekunshan.edu.cn/majors/data-science/) degree
 at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) and Duke University.
-
 
 # Publications
 
 - [[1]](https://arxiv.org/abs/2401.08835) **Improving ASR Contextual
   Biasing with Guided Attention**\
   <sub>**Jiyang Tang**, Kwangyoun Kim, Suwon Shon, Felix Wu, Prashant Sridhar, Shinji Watanabe</sub>\
-  <sub>Accepted to IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), Seoul, Korea, 2024<sub>
+  <sub>Accepted to IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), Seoul, Korea,
+  2024<sub>
 - [[2]](https://www.isca-speech.org/archive/interspeech_2023/tang23b_interspeech.html) **A New Benchmark of Aphasia
   Speech Recognition and Detection Based on E-Branchformer and Multi-task Learning**\
   <sub>**Jiyang Tang**, William Chen, Xuankai Chang, Shinji Watanabe, Brian MacWhinney</sub>\
@@ -69,50 +73,31 @@ at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) and Duke Unive
   <sub>*Asia-Pacific Signal and Information Processing Association Annual Summit and Conference (APSIPA ASC)*, Tokyo,
   Japan, 2021<sub>
 
-# ML/AI (mainly speech processing)
+# Machine Learning
 
-| Project                                                                             | Description                                                                                                                                                                                                                                                   |
-|-------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [tjysdsg/espnet](https://github.com/tjysdsg/espnet)                                 | Contributing to Espnet2. Including the MAGICDATA ASR [recipe](https://github.com/espnet/espnet/tree/master/egs2/magicdata/asr1) and Aphasia English ASR [recipe](https://github.com/espnet/espnet/tree/master/egs2/aphasiabank/asr1) for [[1]](#publications) |
-| [tjysdsg/speech-recognition](https://github.com/tjysdsg/speech-recognition)         | A hand-written speech recognition system for English pronunciation of 10 digits using Python+Numpy                                                                                                                                                            |
-| [tjysdsg/asr-ctc](https://github.com/tjysdsg/asr-ctc)                               | Implementation of the Conformer CTC speech recognition architecture                                                                                                                                                                                           |
-| [tjysdsg/hippo](https://github.com/tjysdsg/hippo)                                   | An AI-driven pronunciation coaching app called Hippo                                                                                                                                                                                                          |
-| [tjysdsg/capt-public](https://github.com/tjysdsg/capt-public)                       | ...and its server backend                                                                                                                                                                                                                                     |
-| [tjysdsg/kaldi](https://github.com/tjysdsg/kaldi)                                   | My Kaldi fork for CAPT using Goodness of Pronunciation (GOP)                                                                                                                                                                                                  |
-| [tjysdsg/std-mandarin-kaldi](https://github.com/tjysdsg/std-mandarin-kaldi)         | A training recipe for Standard Mandarin (no accent) acoustic model                                                                                                                                                                                            |
-| [tjysdg/tone_classifier](https://github.com/tjysdsg/tone_classifier)                | Mandarin Tone Classification experiments                                                                                                                                                                                                                      |
-| [tjysdsg/aidatatang_force_align](https://github.com/tjysdsg/aidatatang_force_align) | Kaldi phone-level force alignment scripts for [[3]](#publications)                                                                                                                                                                                            |
-| [tjysdsg/ml](https://github.com/tjysdsg/ml)                                         | Implementation of some fundamental ML algorithms                                                                                                                                                                                                              |
-| [tjysdsg/dance-classifier](https://github.com/tjysdsg/dance-classifier)             | A video dance style classifier                                                                                                                                                                                                                                |
-| [tjysdsg/pytorch-projects](https://github.com/tjysdsg/pytorch-projects)             | Some old pytorch ASR experiments                                                                                                                                                                                                                              |
-| [tjysdsg/birds](https://github.com/tjysdsg/birds)                                   | A Chinese endemic bird image dataset                                                                                                                                                                                                                          |
-| [tjysdsg/ali_to_phone](https://github.com/tjysdsg/ali_to_phone)                     | Some scripts for extracting phone alignment from `ali.*.gz` alignment files generated by Kaldi                                                                                                                                                                |
+| Project                                                             | Description                                                                                                                                                                                                                                                   |
+|---------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [espnet](https://github.com/tjysdsg/espnet)                         | Contributing to Espnet2. Including the MAGICDATA ASR [recipe](https://github.com/espnet/espnet/tree/master/egs2/magicdata/asr1) and Aphasia English ASR [recipe](https://github.com/espnet/espnet/tree/master/egs2/aphasiabank/asr1) for [[1]](#publications) |
+| [speech-recognition](https://github.com/tjysdsg/speech-recognition) | A hand-written speech recognition system for English pronunciation of 10 digits using Python+Numpy                                                                                                                                                            |
+| [asr-ctc](https://github.com/tjysdsg/asr-ctc)                       | Implementation of the Conformer CTC speech recognition architecture                                                                                                                                                                                           |
+| [one_classifier](https://github.com/tjysdsg/tone_classifier)        | Mandarin Tone Classification experiments                                                                                                                                                                                                                      |
+| [birds](https://github.com/tjysdsg/birds)                           | A Chinese endemic bird image dataset                                                                                                                                                                                                                          |
 
-# System Programming
+# Software Engineering
 
-| Project                                                                         | Description                                                                                                                                                                                                                             |
-|---------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [tjysdsg/tan](https://github.com/tjysdsg/tan)                                   | A compiler for my programming language called tan using LLVM+Clang                                                                                                                                                                      |
-| [tjysdsg/tos](https://github.com/tjysdsg/tos)                                   | A toy operating system called TOS that supports paging, APIC, ACPI, VBE console, and keyboard input with a custom libc                                                                                                                  |
-| [tjysdsg/newlib](https://github.com/tjysdsg/newlib)                             | Working on a TOS port of newlib                                                                                                                                                                                                         |
-| [tjysdsg/acpica](https://github.com/tjysdsg/acpica)                             | A TOS port of [ACPICA](https://acpica.org/)                                                                                                                                                                                             |
-| [tjysdsg/float_repr](https://github.com/tjysdsg/float_repr)                     | A tool for visualizing IEEE `float32` representation                                                                                                                                                                                    |
-| [tjysdsg/test-bench](https://github.com/tjysdsg/test-bench)                     | C++ experiments, tests, and benchmarks for learning and future reference                                                                                                                                                                |
-| [tjysdsg/tjy_vic3_fix](https://github.com/tjysdsg/tjy_vic3_fix)                 | A collection of my Victoria 3 quality-of-life mod ([1](https://steamcommunity.com/sharedfiles/filedetails/?id=2883978920) (1,075 subscribers), [2](https://steamcommunity.com/sharedfiles/filedetails/?id=2883143577) (18 subscribers)) |
-| [tjysdsg/dynamic_road_gen](https://github.com/tjysdsg/dynamic_road_gen)         | A procedural road mesh generator like the one used in [Cities:Skylines](https://store.steampowered.com/app/255710/Cities_Skylines/)                                                                                                     |
-| [tjysdsg/cmu-15513](https://github.com/tjysdsg/cmu-15513)                       | THE best computer science course I have ever taken                                                                                                                                                                                      |
-| [tjysdsg/cs308-slogo](https://github.com/tjysdsg/cs308-slogo)                   | Logo programming environment created with my wonderful teammates. By far THE best team work experience                                                                                                                                  |
-| [tjysdsg/notification_remover](https://github.com/tjysdsg/notification_remover) | An android app to remove annoying notifications, published on [![On Google Play](https://img.shields.io/badge/-Play%20Store-000?&logo=googleplay)](https://play.google.com/store/apps/details?id=com.tjysdsg.notification_remover)      |
+| Project                                                           | Description                                                                                                            |
+|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
+| [tan](https://github.com/tjysdsg/tan)                             | A compiler for my programming language called tan using LLVM+Clang                                                     |
+| [tos](https://github.com/tjysdsg/tos)                             | A toy operating system called TOS that supports paging, APIC, ACPI, VBE console, and keyboard input with a custom libc |
+| [newlib](https://github.com/tjysdsg/newlib)                       | Working on a TOS port of newlib                                                                                        |
+| [acpica](https://github.com/tjysdsg/acpica)                       | A TOS port of [ACPICA](https://acpica.org/)                                                                            |
+| [NO-tifications](https://github.com/tjysdsg/notification_remover) | Remove any notifications on Android                                                                                    |
 
-# Misc
+# Game Dev
 
-| Project                                                                 | Description                                                    |
-|-------------------------------------------------------------------------|----------------------------------------------------------------|
-| [tjysdsg/blender-projects](https://github.com/tjysdsg/blender-projects) | Some 3D models I made with [blender](https://www.blender.org/) |
-| [tjysdsg/dotfiles](https://github.com/tjysdsg/dotfiles)                 | Dotfiles                                                       |
-| [tjysdsg/nvim](https://github.com/tjysdsg/nvim)                         | A minimal neovim configs                                       |
-| [tjysdsg/ohmyzsh](https://github.com/tjysdsg/ohmyzsh)                   | zsh configs                                                    |
-
-# Posts
-
-I sometimes write [posts about programming and ML]({% link index.markdown %})
+| Project                                                                           | Description                                                                                                                         |
+|-----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| [ExtendedCharacterMovement](https://github.com/tjysdsg/ExtendedCharacterMovement) | A Unreal Engine plugin for extended character movement component for FPS/TPS.                                                       |
+| [tjy_vic3_fix](https://github.com/tjysdsg/tjy_vic3_fix)                           | A collection of my Victoria 3 quality-of-life mod                                                                                   |
+| [dynamic_road_gen](https://github.com/tjysdsg/dynamic_road_gen)                   | A procedural road mesh generator like the one used in [Cities:Skylines](https://store.steampowered.com/app/255710/Cities_Skylines/) |
+| [blender-projects](https://github.com/tjysdsg/blender-projects)                   | Some 3D models I made with [blender](https://www.blender.org/)                                                                      |
