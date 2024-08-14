@@ -1,7 +1,7 @@
 ---
-title:  "C/C++: printing stacktrace containing file name, function name, and line numbers using libbacktrace"
-date:   2021-07-27 21:44:00 +0800
-permalink: /libbacktrace
+title: "C/C++: printing stacktrace containing file name, function name, and line numbers using libbacktrace"
+date: 2021-07-27 21:44:00 +0800
+url: /libbacktrace
 ---
 
 I needed a library for printing stack traces when developing [tan](https://github.com/tjysdsg/tan).
@@ -30,7 +30,8 @@ As [suggested](https://stackoverflow.com/q/4636456/7730917) by some folks, I can
 do that. However, **I didn't want to invoke an external program since they couldn't be integrated into the
 `tan` runtime**.
 
-Just as I was about to copy the source code of `addr2line` and wrap it into a library, I came across this [SO answer](https://stackoverflow.com/a/65773679/7730917).
+Just as I was about to copy the source code of `addr2line` and wrap it into a library, I came across
+this [SO answer](https://stackoverflow.com/a/65773679/7730917).
 
 # libbacktrace FTW
 
@@ -39,10 +40,10 @@ it and made [a simple wrapper](https://github.com/tjysdsg/tan/tree/master/src/ba
 
 The final API is very simple
 
-{% highlight C++ %}
+```C++
 void init_back_trace(const char *filename);
 void print_back_trace();
-{% endhighlight %}
+```
 
 `init_back_trace` should be used at the beginning of the program. It is responsible for loading the debug information
 of a binary (use `argv[0]` for the program itself) and it is quite an expensive routine.
@@ -55,7 +56,7 @@ so I'm not copying and pasting them here.
 For anyone that just wants to copy and paste my code (**note that this code only works on linux and has only been
 tested using gcc and clang**):
 
-{% highlight C++ %}
+```C++
 #include <cxxabi.h>
 #include <cstdio>
 #include <cstdlib>
@@ -99,4 +100,4 @@ void print_back_trace() {
   }
   backtrace_full((backtrace_state *) __bt_state, 0, bt_callback, bt_error_callback, nullptr);
 }
-{% endhighlight %}
+```

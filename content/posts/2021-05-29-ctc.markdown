@@ -1,8 +1,9 @@
 ---
 title:  "Understanding the Math Behind CTC"
 date:   2021-06-18 10:56:00 +0800
-permalink: /ctc
+url: /ctc
 toc: true
+math: true
 ---
 
 In this post, I'm writing down my thought process of understanding the math behind 
@@ -29,7 +30,7 @@ $$
 \begin{bmatrix}
 x_1 & x_2 & \cdots & x_n \\
 \end{bmatrix}
-$$.
+$$
 
 The target sequence consists of any symbols drawn from an alphabet $L$.
 
@@ -72,11 +73,13 @@ $ is a possible sequence that can be mapped to $\boldsymbol{z}$ by $\mathcal{B}$
 Then, the ultimate goal of CTC is to find a sequence $\boldsymbol{l}$ 
 that maximize the probability
 
+$$
 \begin{equation}
 p(\boldsymbol{z}|\boldsymbol{x}) = \sum_{\pi\in\mathcal{B}^{-1}(\boldsymbol{z})}
 p(\boldsymbol{\pi}|\boldsymbol{x})
 \label{eq:prob_z}
 \end{equation}
+$$
 
 *in an efficient way*.
 
@@ -214,7 +217,7 @@ NOTE that the formula actually implies some rules of transitions in addition to 
 Here is an example of all possible paths for "apple" in the following graph
 I "borrowed" from [this blog](https://xiaodu.io/ctc-explained/):
 
-![ctc_path_apple](assets/images/ctc_path_apple.webp)
+![ctc_path_apple](/images/ctc_path_apple.jpg)
 
 Note that the nodes in the graph without any connections have a probability of $0$, since
 it is impossible to reach them within $[0, T]$.

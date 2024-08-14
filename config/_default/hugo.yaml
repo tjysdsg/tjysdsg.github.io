@@ -1,0 +1,86 @@
+baseURL: 'https://tjysdsg.github.io'
+languageCode: 'en-us'
+title: 'Mark Tang'
+theme: 'papermod'
+enableRobotsTXT: true
+
+markup:
+  # noinspection YAMLSchemaValidation
+  goldmark:
+    parser:
+      wrapStandAloneImageWithinParagraph: false
+    extensions:
+      passthrough: # math
+        delimiters:
+          block:
+            - - \[
+              - \]
+            - - $$
+              - $$
+          inline:
+            - - \(
+              - \)
+        enable: true
+
+
+params:
+  author: Mark Tang
+
+  defaultTheme: auto
+  # disableThemeToggle: true
+  ShowShareButtons: false
+  ShowReadingTime: false
+  # disableSpecial1stPost: true
+  displayFullLangName: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: true
+  ShowAllPagesInArchive: true
+  ShowPageNums: true
+  ShowToc: true
+  TocOpen: true
+
+  profileMode:
+    enabled: true
+    title: Jiyang (Mark) Tang
+    subtitle: "Software Research Scientist at Intel"
+    imageUrl: "/me.jpg"
+    imageWidth: 120
+    imageHeight: 120
+    imageTitle: my image
+    buttons:
+      - name: About
+        url: about
+      - name: Posts
+        url: posts
+
+  socialIcons:
+    - name: github
+      title: Github
+      url: "https://github.com/tjysdsg"
+    - name: linkedin
+      title: LinkedIn
+      url: https://www.linkedin.com/in/tjy/
+    - name: email
+      title: Email
+      url: jiyang.mark.tang@gmail.com
+
+
+assets:
+  favicon: "/favicon.ico"
+  favicon16x16: "/favicon-16x16.png"
+  favicon32x32: "/favicon-32x32.png"
+  apple_touch_icon: "/apple-touch-icon.png"
+  safari_pinned_tab: "/safari-pinned-tab.svg"
+
+menu:
+  main:
+    - identifier: about
+      name: About
+      url: /about
+      weight: 10
+    - identifier: posts
+      name: Posts
+      url: /posts
+      weight: 20
