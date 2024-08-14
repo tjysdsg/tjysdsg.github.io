@@ -2,12 +2,13 @@
 title: About Me
 url: /about
 ShowToc: false
+cover:
+  image: "/images/cover.jpg"
 ---
 
 {{< inTextImg url="https://img.shields.io/badge/-Speech_Recognition-000" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Natural_Language_Processing-000" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Electronic_Design_Automation-000" height=20 >}}
-
 {{< inTextImg url="https://img.shields.io/badge/-C++-000?&logo=cplusplus" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Python-000?&logo=Python" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Java-000" height=20 >}}
@@ -38,23 +39,21 @@ at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) and Duke Unive
 
 # Publications
 
-- [[1]](https://arxiv.org/abs/2401.08835) **Improving ASR Contextual
-  Biasing with Guided Attention**\
+- [1] [**Improving ASR Contextual Biasing with Guided Attention**](https://arxiv.org/abs/2401.08835) \
   <sub>**Jiyang Tang**, Kwangyoun Kim, Suwon Shon, Felix Wu, Prashant Sridhar, Shinji Watanabe</sub>\
   <sub>Accepted to IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), Seoul, Korea,
   2024<sub>
-- [[2]](https://www.isca-speech.org/archive/interspeech_2023/tang23b_interspeech.html) **A New Benchmark of Aphasia
-  Speech Recognition and Detection Based on E-Branchformer and Multi-task Learning**\
+- [2] [**A New Benchmark of Aphasia Speech Recognition and Detection Based on E-Branchformer and
+  Multi-task Learning**](https://www.isca-speech.org/archive/interspeech_2023/tang23b_interspeech.html) \
   <sub>**Jiyang Tang**, William Chen, Xuankai Chang, Shinji Watanabe, Brian MacWhinney</sub>\
   <sub>Annual Conference of the International Speech Communication Association (INTERSPEECH), Dublin, Ireland, 2023<sub>
-- [[3]](https://www.isca-speech.org/archive/interspeech_2023/peng23b_interspeech.html) **A Comparative Study on
-  E-Branchformer vs Conformer in Speech Recognition,
-  Translation, and Understanding Tasks**\
+- [3] [**A Comparative Study on E-Branchformer vs Conformer in Speech Recognition, Translation,
+  and Understanding Tasks**](https://www.isca-speech.org/archive/interspeech_2023/peng23b_interspeech.html) \
   <sub>Yifan Peng, Kwangyoun Kim, Felix Wu, Brian Yan, Siddhant Arora, William Chen, **Jiyang Tang**, Suwon Shon,
   Prashant Sridhar, Shinji Watanabe</sub>\
   <sub>Annual Conference of the International Speech Communication Association (INTERSPEECH), Dublin, Ireland, 2023<sub>
-- [[4]](https://ieeexplore.ieee.org/document/9689521) **End-to-End Mandarin Tone Classification with Short Term Context
-  Information**\
+- [4] [**End-to-End Mandarin Tone Classification with Short Term
+  Context Information**](https://ieeexplore.ieee.org/document/9689521) \
   <sub>**Jiyang Tang**, Ming Li</sub>\
   <sub>*Asia-Pacific Signal and Information Processing Association Annual Summit and Conference (APSIPA ASC)*, Tokyo,
   Japan, 2021<sub>

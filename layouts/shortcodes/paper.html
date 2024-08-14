@@ -1,0 +1,39 @@
+{{- $title := (.Get "title") }}
+{{- $authors := strings.Split (.Get "authors") "," }}
+{{- $hl_author := .Site.Params.PaperAuthor }}
+{{- $venue := .Get "venue" }}
+{{- $year:= .Get "year" }}
+{{- $url := .Get "url" }}
+{{- $n_authors := len $authors }}
+
+<ul style="list-style-type:none;">
+    <li>
+        <b>
+            <a href="{{ $url }}">{{- $title -}}</a>
+        </b>
+    </li>
+    <li>
+        {{- range $i, $name := $authors -}}
+
+        {{- if eq $name $hl_author -}}
+        <b>{{ $name }}</b>
+        {{- else -}}
+        {{ $name }}
+        {{- end -}}
+
+        {{- if ne (add $i 1) $n_authors -}}
+        ,
+        {{- end -}}
+
+        {{- end -}}
+
+    </li>
+
+    <li>
+        {{- if eq $venue "ICASSP" -}}
+        IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), {{ $year }}
+        {{- else if eq $venue "INTERSPEECH" -}}
+        Annual Conference of the International Speech Communication Association (INTERSPEECH), {{ $year }}
+        {{- end -}}
+    </li>
+</ul>
