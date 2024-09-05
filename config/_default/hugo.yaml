@@ -20,6 +20,8 @@ markup:
           inline:
             - - \(
               - \)
+              - $
+              - $
         enable: true
 
 
@@ -40,6 +42,8 @@ params:
   ShowPageNums: true
   ShowToc: true
   TocOpen: true
+
+  math: true
 
   profileMode:
     enabled: true
