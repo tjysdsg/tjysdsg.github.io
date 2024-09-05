@@ -64,7 +64,7 @@ params:
       url: https://www.linkedin.com/in/tjy/
     - name: email
       title: Email
-      url: jiyang.mark.tang@gmail.com
+      url: mailto:jiyang.mark.tang@gmail.com
 
 
 assets:
