@@ -48,7 +48,7 @@ params:
   profileMode:
     enabled: true
     title: Jiyang (Mark) Tang
-    subtitle: "Software Research Scientist at Intel"
+    subtitle: "Research Scientist (Speech) at Zoom"
     imageUrl: "/me.jpg"
     imageWidth: 120
     imageHeight: 120
