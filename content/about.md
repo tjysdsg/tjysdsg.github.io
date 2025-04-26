@@ -6,24 +6,28 @@ cover:
   image: "/images/cover.jpg"
 ---
 
+Professional Skills:
 {{< inTextImg url="https://img.shields.io/badge/-Speech_Recognition-000" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Natural_Language_Processing-000" height=20 >}}
-{{< inTextImg url="https://img.shields.io/badge/-Electronic_Design_Automation-000" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-C++-000?&logo=cplusplus" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Python-000?&logo=Python" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Java-000" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-PyTorch-000?&logo=PyTorch" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-ESPnet-000" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Kaldi-000" height=20 >}}
-{{< inTextImg url="https://img.shields.io/badge/-LLVM-000?&logo=llvm" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-SLURM-000" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-AWS-000?&logo=amazonaws" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Docker-000?&logo=docker" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Linux-000?&logo=Linux" height=20 >}}
-{{< inTextImg url="https://img.shields.io/badge/-Flutter-000?&logo=Flutter" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Git-000?&logo=Git" height=20 >}}
+
+Hobbies:
+{{< inTextImg url="https://img.shields.io/badge/-LLVM-000?&logo=llvm" height=20 >}}
+{{< inTextImg url="https://img.shields.io/badge/-Flutter-000?&logo=Flutter" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Unity-000?&logo=unity" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-UE5-000?&logo=unrealengine" height=20 >}}
+
+# About Me
 
 I am a Research Scientist at Zoom working on Automatic Speech Recognition (ASR).
 
