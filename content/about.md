@@ -18,8 +18,6 @@ Professional Skills:
 {{< inTextImg url="https://img.shields.io/badge/-SLURM-000" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-AWS-000?&logo=amazonaws" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Docker-000?&logo=docker" height=20 >}}
-{{< inTextImg url="https://img.shields.io/badge/-Linux-000?&logo=Linux" height=20 >}}
-{{< inTextImg url="https://img.shields.io/badge/-Git-000?&logo=Git" height=20 >}}
 
 Hobbies:
 {{< inTextImg url="https://img.shields.io/badge/-LLVM-000?&logo=llvm" height=20 >}}
