@@ -6,38 +6,44 @@ cover:
   image: "/images/cover.jpg"
 ---
 
-Professional Skills:
-{{< inTextImg url="https://img.shields.io/badge/-Speech_Recognition-000" height=20 >}}
-{{< inTextImg url="https://img.shields.io/badge/-Natural_Language_Processing-000" height=20 >}}
+Professional skills:
+{{< inTextImg url="https://img.shields.io/badge/-Spoken_Language_Model-000" height=20 >}}
+{{< inTextImg url="https://img.shields.io/badge/-Speech_AI-000" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-C++-000?&logo=cplusplus" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Python-000?&logo=Python" height=20 >}}
-{{< inTextImg url="https://img.shields.io/badge/-Java-000" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-PyTorch-000?&logo=PyTorch" height=20 >}}
+{{< inTextImg url="https://img.shields.io/badge/-vLLM-000" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-ESPnet-000" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Kaldi-000" height=20 >}}
-{{< inTextImg url="https://img.shields.io/badge/-SLURM-000" height=20 >}}
-{{< inTextImg url="https://img.shields.io/badge/-AWS-000?&logo=amazonaws" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Docker-000?&logo=docker" height=20 >}}
 
-Hobbies:
+Skills picked up from hobbies:
 {{< inTextImg url="https://img.shields.io/badge/-LLVM-000?&logo=llvm" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Flutter-000?&logo=Flutter" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-Unity-000?&logo=unity" height=20 >}}
 {{< inTextImg url="https://img.shields.io/badge/-UE5-000?&logo=unrealengine" height=20 >}}
+{{< inTextImg url="https://img.shields.io/badge/-CAD-000" height=20 >}}
+{{< inTextImg url="https://img.shields.io/badge/-3D_Printing-000" height=20 >}}
 
 # About Me
 
-I am a Research Scientist at Zoom working on Automatic Speech Recognition (ASR).
+I am a Research Scientist at Zoom working on Spoken Language Models and Speech AI.
 
 I obtained [Master of Science in Intelligent Information Systems](https://miis.cs.cmu.edu/) at Carnegie Mellon
 University Language Technologies Institute.
 I was fortunate to be advised by [Dr. Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe).
 Under his supervision, I worked on speech processing problems and contributed
 to [ESPnet](https://github.com/espnet/espnet).
-
 Before that, I obtained my
 joint [Bachelor of Science in Data Science](https://ugstudies.dukekunshan.edu.cn/majors/data-science/) degree
 at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) and Duke University.
+
+**I am driven by an endless curiosity for how things work and how to make them better and cooler.**
+Outside of work, my hobby projects range from writing compilers and developing video games,
+to 3D printing custom parts and wrenching on my car.
+I love the challenge of mastering new skills to bring complex projects to life.
+**I pride myself on my technical agility**: the ability to rapidly assimilate new concepts and thrive in an ever-evolving
+field.
 
 # Publications
 
@@ -67,7 +73,6 @@ at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) and Duke Unive
 | [espnet](https://github.com/tjysdsg/espnet)                         | Contributing to Espnet2. Including the MAGICDATA ASR [recipe](https://github.com/espnet/espnet/tree/master/egs2/magicdata/asr1) and Aphasia English ASR [recipe](https://github.com/espnet/espnet/tree/master/egs2/aphasiabank/asr1) for [[1]](#publications) |
 | [speech-recognition](https://github.com/tjysdsg/speech-recognition) | A hand-written speech recognition system for English pronunciation of 10 digits using Python+Numpy                                                                                                                                                            |
 | [asr-ctc](https://github.com/tjysdsg/asr-ctc)                       | Implementation of the Conformer CTC speech recognition architecture                                                                                                                                                                                           |
-| [tone_classifier](https://github.com/tjysdsg/tone_classifier)       | Mandarin Tone Classification experiments                                                                                                                                                                                                                      |
 
 # Software Engineering
 
@@ -75,7 +80,7 @@ at [Duke Kunshan University](https://dukekunshan.edu.cn/en/about) and Duke Unive
 |-------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
 | [tan](https://github.com/tjysdsg/tan)                             | A compiler for my programming language called tan using LLVM+Clang                                                     |
 | [tos](https://github.com/tjysdsg/tos)                             | A toy operating system called TOS that supports paging, APIC, ACPI, VBE console, and keyboard input with a custom libc |
-| [NO-tifications](https://github.com/tjysdsg/notification_remover) | Remove any notifications on Android                                                                                    |
+| [NO-tifications](https://github.com/tjysdsg/notification_remover) | Purge any notifications on Android                                                                                     |
 
 # Game Dev
 
